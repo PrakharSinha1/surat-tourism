@@ -1,3 +1,4 @@
+// API variable is defined in api-config.js (loaded in HTML)
 const email = localStorage.getItem("userEmail");
 
 if (!email) {
@@ -44,7 +45,7 @@ function downloadPlanPDF(plan) {
 // 🚀 LOAD PLANS
 async function loadPlans() {
 
-    const res = await fetch("http://127.0.0.1:5000/get-plans?email=" + email);
+    const res = await fetch(`${API}/get-plans?email=${email}`);
     const plans = await res.json();
 
     const container = document.getElementById("plans");

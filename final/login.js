@@ -1,3 +1,4 @@
+// API variable is defined in api-config.js (loaded in HTML)
 let isLogin = true;
 
 function toggleMode() {
@@ -18,8 +19,8 @@ async function handleAuth() {
     }
 
     const url = isLogin
-        ? "http://127.0.0.1:5000/login"
-        : "http://127.0.0.1:5000/register";
+        ? `${API}/login`
+        : `${API}/register`;
 
     try {
         const res = await fetch(url, {
