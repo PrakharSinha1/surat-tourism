@@ -8,15 +8,12 @@ import os
 app = Flask(__name__)
 
 # ─── CORS ────────────────────────────────────────────────────────────────────
-# After deploying to Netlify, replace "your-site.netlify.app" with your real URL
-# and remove the "*" line
 CORS(app, origins=[
     "http://127.0.0.1:5500",
     "http://localhost:5500",
     "http://127.0.0.1:3000",
     "https://surat-tourism-api-ps.onrender.com",
-    "https://your-site.netlify.app",   # ← UPDATE after Netlify deploy
-    "*"                                 # ← REMOVE after adding real URL
+    "https://suratcitytourism.netlify.app",
 ])
 
 # ─── DB PATH ─────────────────────────────────────────────────────────────────
