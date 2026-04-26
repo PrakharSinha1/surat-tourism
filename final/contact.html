@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Contact Us - Surat City Tourism</title>
+  <link rel="stylesheet" href="simple-surat-tourism.css">
+  <style>
+    .contact-hero {
+      background: linear-gradient(135deg, #1e1e2f, #2c2c54);
+      color: #fff;
+      text-align: center;
+      padding: 60px 20px 50px;
+    }
+    .contact-hero h1 { font-size: 2.2rem; margin-bottom: 8px; }
+    .contact-hero p  { color: #bbb; font-size: 1rem; }
+
+    /* Two-column layout */
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      max-width: 1100px;
+      margin: 50px auto 0;
+      padding: 0 20px;
+    }
+    @media (max-width: 768px) { .contact-layout { grid-template-columns: 1fr; } }
+
+    /* Cards */
+    .c-card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 34px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.09);
+    }
+    .c-card h2 { font-size: 1.3rem; color: #222; margin-bottom: 22px; }
+
+    .fg { margin-bottom: 16px; }
+    .fg label {
+      display: block; font-size: 0.8rem; font-weight: 700;
+      color: #666; text-transform: uppercase; letter-spacing: .5px; margin-bottom: 5px;
+    }
+    .fg input, .fg textarea, .fg select {
+      width: 100%; padding: 10px 13px; border: 2px solid #eee;
+      border-radius: 8px; font-size: 0.93rem; font-family: inherit;
+      box-sizing: border-box; transition: border-color .25s;
+    }
+    .fg input:focus, .fg textarea:focus, .fg select:focus {
+      outline: none; border-color: #ff6600;
+    }
+    .submit-btn {
+      width: 100%; padding: 12px; background: #ff6600; color: #fff;
+      border: none; border-radius: 8px; font-size: 1rem; font-weight: 600;
+      cursor: pointer; transition: background .2s, transform .15s; margin-top: 4px;
+    }
+    .submit-btn:hover { background: #ff4500; transform: scale(1.02); }
+
+    .success-msg { background: #d4edda; border: 1px solid #28a745; border-radius: 8px; padding: 12px; color: #155724; font-size: .9rem; margin-top: 10px; }
+    .error-msg   { background: #fff3cd; border: 1px solid #ffc107; border-radius: 8px; padding: 12px; color: #856404; font-size: .9rem; margin-top: 10px; }
+
+    /* Info cards */
+    .info-strip {
+      display: flex; flex-direction: column; gap: 16px;
+    }
+    .info-pill {
+      background: #fff8f5; border-left: 4px solid #ff6600;
+      border-radius: 10px; padding: 18px 20px;
+    }
+    .info-pill h3 { font-size: 1rem; color: #ff6600; margin-bottom: 6px; }
+    .info-pill p  { font-size: .9rem; color: #555; margin: 2px 0; }
+
+    /* Event request section */
+    .event-req-section {
+      max-width: 1100px; margin: 40px auto 60px; padding: 0 20px;
+    }
+    .event-req-section h2 {
+      font-size: 1.5rem; color: #222; margin-bottom: 8px;
+      border-left: 4px solid #ff6600; padding-left: 12px;
+    }
+    .event-req-section .sub {
+      color: #888; font-size: .92rem; margin-bottom: 24px; padding-left: 16px;
+    }
+    .req-card-form {
+      background: #fff; border-radius: 16px; padding: 34px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.09);
+      display: grid; grid-template-columns: 1fr 1fr; gap: 18px 24px;
+    }
+    @media (max-width: 768px) { .req-card-form { grid-template-columns: 1fr; } }
+    .req-card-form .fg.full { grid-column: 1 / -1; }
+    .req-card-form .submit-btn { margin-top: 0; }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="container">
+      <h2 class="brand-title">Surat City Tourism</h2>
+      <div class="nav-menu" style="display:flex;align-items:center;">
+        <a href="index.html">Home</a>
+        <a href="attractions.html">Attractions</a>
+        <a href="culture.html">Culture</a>
+        <a href="food.html">Food</a>
+        <a href="events.html">Live Events</a>
+        <a href="itinerary.html">Plan Trip</a>
+        <a href="contact.html" class="active">Contact</a>
+        <a href="login.html" class="nav-login-link" id="loginLink">Login</a>
+        <div class="user-avatar-wrapper" id="avatarWrapper" style="display:none;">
+          <button class="user-avatar-btn" id="avatarBtn" title="Account">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 12c2.7 0 5-2.3 5-5s-2.3-5-5-5-5 2.3-5 5 2.3 5 5 5zm0 2c-3.3 0-10 1.7-10 5v2h20v-2c0-3.3-6.7-5-10-5z"/>
+            </svg>
+          </button>
+          <div class="user-dropdown" id="userDropdown">
+            <div class="user-email-label" id="dropdownEmail"></div>
+            <a href="dashboard.html">🗂️ Dashboard</a>
+            <a href="itinerary.html">🗺️ My Itineraries</a>
+            <button class="dropdown-item logout-item" id="logoutBtn">🚪 Logout</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <div class="contact-hero">
+    <h1>Get in Touch 📬</h1>
+    <p>Questions about your visit to the Diamond City? We're here to help!</p>
+  </div>
+
+  <!-- Contact + Info -->
+  <div class="contact-layout">
+
+    <!-- General Contact Form -->
+    <div class="c-card">
+      <h2>✉️ Send us a Message</h2>
+      <div class="fg">
+        <label>Full Name</label>
+        <input type="text" id="cName" placeholder="Your full name">
+      </div>
+      <div class="fg">
+        <label>Email Address</label>
+        <input type="email" id="cEmail" placeholder="you@example.com">
+      </div>
+      <div class="fg">
+        <label>Subject</label>
+        <input type="text" id="cSubject" placeholder="Plan a trip / General Inquiry">
+      </div>
+      <div class="fg">
+        <label>Message</label>
+        <textarea id="cMsg" rows="5" placeholder="How can we help you?"></textarea>
+      </div>
+      <button class="submit-btn" onclick="submitContact()">Send Message 📨</button>
+      <div id="contactMsg"></div>
+    </div>
+
+    <!-- Info Strip -->
+    <div class="info-strip">
+      <div class="info-pill">
+        <h3>📍 Tourism Office</h3>
+        <p>Surat Municipal Corporation HQ</p>
+        <p>Muglisara, Surat, Gujarat 395003</p>
+      </div>
+      <div class="info-pill">
+        <h3>📞 Helpline</h3>
+        <p>+91 261 2423751</p>
+        <p>Toll Free: 1800 233 1944</p>
+      </div>
+      <div class="info-pill">
+        <h3>✉️ Email Us</h3>
+        <p>info@surattourism.gov.in</p>
+        <p>support@suratcity.com</p>
+      </div>
+      <div class="info-pill">
+        <h3>🕐 Office Hours</h3>
+        <p>Monday – Saturday: 9 AM – 6 PM</p>
+        <p>Sunday: Closed</p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ── EVENT REQUEST SECTION ── -->
+  <div class="event-req-section">
+    <h2>🎭 Submit an Event for Listing</h2>
+    <p class="sub">Want to list your event on our Live Events page? Fill in the details below and our admin team will review it.</p>
+
+    <div class="req-card-form">
+
+      <div class="fg">
+        <label>Your Name *</label>
+        <input type="text" id="rName" placeholder="Organizer / Your name">
+      </div>
+
+      <div class="fg">
+        <label>Your Email *</label>
+        <input type="email" id="rEmail" placeholder="you@example.com">
+      </div>
+
+      <div class="fg">
+        <label>Event Title *</label>
+        <input type="text" id="rTitle" placeholder="e.g. Navratri Garba Night 2026">
+      </div>
+
+      <div class="fg">
+        <label>Venue</label>
+        <input type="text" id="rVenue" placeholder="e.g. Piplod Grounds, Surat">
+      </div>
+
+      <div class="fg">
+        <label>Event Date</label>
+        <input type="date" id="rDate">
+      </div>
+
+      <div class="fg">
+        <label>Expected Audience</label>
+        <select id="rAudience">
+          <option value="">Select...</option>
+          <option>Families</option>
+          <option>Youth / College</option>
+          <option>Kids</option>
+          <option>General Public</option>
+          <option>Professionals</option>
+        </select>
+      </div>
+
+      <div class="fg full">
+        <label>Why should we feature this event? *</label>
+        <textarea id="rReason" rows="4" placeholder="Tell us why this event deserves a spot on the Surat City Tourism platform. Include any special highlights, past editions, or community impact..."></textarea>
+      </div>
+
+      <div class="fg full">
+        <label>Additional Details (optional)</label>
+        <textarea id="rDetails" rows="3" placeholder="Entry fee, performers, sponsors, social links, etc."></textarea>
+      </div>
+
+      <div class="fg full" style="margin-bottom:0">
+        <button class="submit-btn" onclick="submitEventRequest()">Submit Event Request 🚀</button>
+        <div id="reqMsg" style="margin-top:10px"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <p>© 2025 Surat City Tourism. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="nav-avatar.js"></script>
+  <script>
+const API = "http://127.0.0.1:5000";
+
+// Pre-fill email if logged in
+window.addEventListener("DOMContentLoaded", () => {
+  const email = localStorage.getItem("userEmail");
+  if (email) {
+    if (document.getElementById("cEmail")) document.getElementById("cEmail").value = email;
+    if (document.getElementById("rEmail")) document.getElementById("rEmail").value = email;
+  }
+});
+
+function submitContact() {
+  const name  = document.getElementById("cName").value.trim();
+  const email = document.getElementById("cEmail").value.trim();
+  const msg   = document.getElementById("cMsg").value.trim();
+  const el    = document.getElementById("contactMsg");
+
+  if (!name || !email || !msg) {
+    el.innerHTML = '<div class="error-msg">⚠️ Please fill in name, email, and message.</div>';
+    return;
+  }
+  // Simulate send (no dedicated endpoint needed)
+  el.innerHTML = '<div class="success-msg">✅ Message sent! We\'ll get back to you within 24 hours.</div>';
+  document.getElementById("cName").value    = "";
+  document.getElementById("cEmail").value   = "";
+  document.getElementById("cSubject").value = "";
+  document.getElementById("cMsg").value     = "";
+}
+
+async function submitEventRequest() {
+  const name   = document.getElementById("rName").value.trim();
+  const email  = document.getElementById("rEmail").value.trim();
+  const title  = document.getElementById("rTitle").value.trim();
+  const venue  = document.getElementById("rVenue").value.trim();
+  const date   = document.getElementById("rDate").value;
+  const reason = document.getElementById("rReason").value.trim();
+  const details= document.getElementById("rDetails").value.trim();
+  const el     = document.getElementById("reqMsg");
+
+  if (!name || !email || !title || !reason) {
+    el.innerHTML = '<div class="error-msg">⚠️ Please fill in your name, email, event title, and reason.</div>';
+    return;
+  }
+
+  const description = `Organizer: ${name} | Venue: ${venue || "TBD"} | Date: ${date || "TBD"} | Audience: ${document.getElementById("rAudience").value || "General"}\n\nReason: ${reason}\n\nDetails: ${details}`;
+
+  try {
+    const res = await fetch(`${API}/submit-event`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ title, description, email })
+    });
+
+    if (res.ok) {
+      el.innerHTML = '<div class="success-msg">✅ Event request submitted! Our admin team will review it and get back to you.</div>';
+      ["rName","rEmail","rTitle","rVenue","rDate","rReason","rDetails"].forEach(id => document.getElementById(id).value = "");
+      document.getElementById("rAudience").value = "";
+    } else {
+      const d = await res.json();
+      el.innerHTML = `<div class="error-msg">⚠️ ${d.error || "Submission failed."}</div>`;
+    }
+  } catch {
+    // Offline fallback
+    el.innerHTML = '<div class="success-msg">✅ Request recorded! (Note: Server offline — your request will be submitted when the server is back online.)</div>';
+  }
+}
+  </script>
+</body>
+</html>

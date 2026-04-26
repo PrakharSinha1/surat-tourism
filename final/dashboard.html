@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard - Surat Tourism</title>
+<link rel="stylesheet" href="simple-surat-tourism.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<style>
+  /* ── Header ── */
+  .dash-header {
+    background: linear-gradient(135deg, #1e1e2f 0%, #2c2c54 100%);
+    padding: 40px 30px 0; color: #fff;
+  }
+  .dash-header-top { display: flex; align-items: center; gap: 18px; padding-bottom: 30px; }
+  .avatar-circle {
+    width: 56px; height: 56px; border-radius: 50%;
+    background: #ff6600; display: flex; align-items: center; justify-content: center;
+    font-size: 1.5rem; font-weight: 700; color: #fff; flex-shrink: 0;
+  }
+  .dash-header-top h1 { font-size: 1.6rem; margin-bottom: 4px; }
+  .dash-header-top p  { color: #aaa; font-size: .9rem; }
+  .admin-badge-header {
+    background: #ff6600; color: #fff; font-size: .7rem; font-weight: 700;
+    padding: 3px 10px; border-radius: 20px; letter-spacing: 1px; text-transform: uppercase;
+    display: inline-block; margin-top: 5px;
+  }
+
+  /* ── Tabs ── */
+  .dash-tabs {
+    display: flex; gap: 0; border-bottom: none; padding: 0 30px;
+  }
+  .tab-btn {
+    padding: 12px 22px; background: transparent; border: none;
+    color: #aaa; font-size: .92rem; cursor: pointer; position: relative;
+    transition: color .2s; font-family: inherit; font-weight: 500;
+    border-bottom: 3px solid transparent; margin-bottom: -1px;
+  }
+  .tab-btn:hover { color: #fff; }
+  .tab-btn.active { color: #ff6600; border-bottom-color: #ff6600; }
+
+  /* ── Body ── */
+  .dash-body { max-width: 1200px; margin: 0 auto; padding: 36px 24px 60px; }
+
+  /* Tab panels */
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; animation: fadeSlideUp .35s ease; }
+
+  /* ── Stats row ── */
+  .stats-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px,1fr)); gap: 16px; margin-bottom: 34px; }
+  .stat-card {
+    background: #fff; border-radius: 14px; padding: 22px 20px;
+    box-shadow: 0 4px 18px rgba(0,0,0,.08); text-align: center;
+    border-top: 4px solid #ff6600; transition: transform .25s;
+  }
+  .stat-card:hover { transform: translateY(-4px); }
+  .stat-num { font-size: 2.2rem; font-weight: 800; color: #ff6600; }
+  .stat-lbl { font-size: .82rem; color: #888; margin-top: 4px; }
+
+  /* ── Plan cards ── */
+  .plans-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px,1fr)); gap: 18px; }
+  .plan-card {
+    background: #fff; border-radius: 12px; padding: 22px;
+    box-shadow: 0 4px 16px rgba(0,0,0,.08); border-top: 4px solid #ff6600;
+    transition: transform .3s, box-shadow .3s;
+  }
+  .plan-card:hover { transform: translateY(-5px); box-shadow: 0 10px 28px rgba(0,0,0,.13); }
+  .plan-card h3 { color: #ff6600; margin-bottom: 10px; font-size: 1rem; }
+  .plan-card p  { font-size: .85rem; color: #666; margin-bottom: 5px; }
+  .card-btns { display: flex; gap: 8px; margin-top: 14px; }
+  .card-btns button { flex:1; padding:7px; border:none; border-radius:7px; cursor:pointer; font-size:.82rem; font-weight:600; transition: opacity .2s; }
+  .card-btns button:hover { opacity: .85; }
+  .btn-pdf { background: #222; color: #fff; }
+  .btn-del { background: #dc3545; color: #fff; }
+
+  .empty-state { text-align:center; padding:50px 20px; color:#bbb; }
+  .empty-state .ei { font-size:2.8rem; display:block; margin-bottom:10px; }
+
+  /* ── Admin: event cards ── */
+  .req-list { display: flex; flex-direction: column; gap: 14px; }
+  .req-card {
+    background: #fff; border-radius: 12px; padding: 20px 24px;
+    box-shadow: 0 4px 16px rgba(0,0,0,.08);
+    display: flex; align-items: flex-start; gap: 18px; flex-wrap: wrap;
+  }
+  .req-icon { font-size:1.8rem; flex-shrink:0; }
+  .req-body { flex:1; }
+  .req-body h4 { color:#222; margin-bottom:5px; font-size:1rem; }
+  .req-body p  { font-size:.85rem; color:#777; margin-bottom:3px; }
+  .req-actions { display:flex; gap:8px; align-items:center; }
+  .btn-approve { background:#28a745; color:#fff; border:none; padding:8px 16px; border-radius:8px; cursor:pointer; font-weight:600; font-size:.88rem; }
+  .btn-reject  { background:#dc3545; color:#fff; border:none; padding:8px 16px; border-radius:8px; cursor:pointer; font-weight:600; font-size:.88rem; }
+  .approved-badge { background:#d4edda; color:#155724; border-radius:20px; padding:3px 10px; font-size:.78rem; font-weight:700; }
+
+  /* Live events admin table */
+  .events-table { width:100%; border-collapse:collapse; background:#fff; border-radius:12px; overflow:hidden; box-shadow:0 4px 16px rgba(0,0,0,.08); }
+  .events-table th { background:#1e1e2f; color:#fff; padding:12px 16px; text-align:left; font-size:.85rem; }
+  .events-table td { padding:12px 16px; border-bottom:1px solid #f0f0f0; font-size:.88rem; color:#444; }
+  .events-table tr:last-child td { border-bottom:none; }
+  .events-table tr:hover td { background:#fff8f5; }
+  .tbl-edit { background:#ffc107; color:#000; border:none; padding:5px 12px; border-radius:6px; cursor:pointer; font-size:.8rem; font-weight:600; }
+  .tbl-del  { background:#dc3545; color:#fff; border:none; padding:5px 12px; border-radius:6px; cursor:pointer; font-size:.8rem; font-weight:600; }
+
+  /* Users table */
+  .users-table { width:100%; border-collapse:collapse; background:#fff; border-radius:12px; overflow:hidden; box-shadow:0 4px 16px rgba(0,0,0,.08); }
+  .users-table th { background:#1e1e2f; color:#fff; padding:12px 16px; text-align:left; font-size:.85rem; }
+  .users-table td { padding:12px 16px; border-bottom:1px solid #f0f0f0; font-size:.88rem; color:#444; }
+  .users-table tr:hover td { background:#fff8f5; }
+  .role-admin { background:#ff6600; color:#fff; border-radius:20px; padding:2px 10px; font-size:.75rem; font-weight:700; }
+  .role-user  { background:#eee; color:#555; border-radius:20px; padding:2px 10px; font-size:.75rem; }
+
+  /* Section header row */
+  .section-head { display:flex; align-items:center; justify-content:space-between; margin-bottom:18px; }
+  .section-head h2 { font-size:1.25rem; color:#222; border-left:4px solid #ff6600; padding-left:12px; }
+  .add-btn { background:#ff6600; color:#fff; border:none; padding:9px 18px; border-radius:8px; cursor:pointer; font-size:.88rem; font-weight:600; }
+  .add-btn:hover { background:#ff4500; }
+
+  /* Edit modal */
+  .modal-back { display:none; position:fixed; inset:0; background:rgba(0,0,0,.55); z-index:3000; align-items:center; justify-content:center; }
+  .modal-back.open { display:flex; }
+  .modal-box { background:#fff; border-radius:16px; padding:34px; width:440px; max-width:95vw; box-shadow:0 20px 60px rgba(0,0,0,.3); animation:fadeSlideUp .3s ease; }
+  .modal-box h2 { margin-bottom:18px; font-size:1.2rem; }
+  .mfg { margin-bottom:13px; }
+  .mfg label { display:block; font-size:.78rem; font-weight:700; color:#666; text-transform:uppercase; margin-bottom:4px; }
+  .mfg input, .mfg textarea { width:100%; padding:9px 12px; border:2px solid #eee; border-radius:8px; font-family:inherit; font-size:.92rem; box-sizing:border-box; }
+  .mfg input:focus, .mfg textarea:focus { outline:none; border-color:#ff6600; }
+  .modal-actions { display:flex; gap:10px; margin-top:16px; }
+  .modal-save { flex:1; padding:11px; background:#ff6600; color:#fff; border:none; border-radius:8px; font-size:.95rem; font-weight:700; cursor:pointer; }
+  .modal-cancel { padding:11px 18px; background:#eee; color:#333; border:none; border-radius:8px; cursor:pointer; }
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="container">
+    <h2 class="brand-title">Surat City Tourism</h2>
+    <div class="nav-menu" style="display:flex;align-items:center;">
+      <a href="index.html">Home</a>
+      <a href="attractions.html">Attractions</a>
+      <a href="culture.html">Culture</a>
+      <a href="food.html">Food</a>
+      <a href="events.html">Live Events</a>
+      <a href="itinerary.html">Plan Trip</a>
+      <a href="contact.html">Contact</a>
+      <a href="login.html" class="nav-login-link" id="loginLink">Login</a>
+      <div class="user-avatar-wrapper" id="avatarWrapper" style="display:none;">
+        <button class="user-avatar-btn" id="avatarBtn" title="Account">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 12c2.7 0 5-2.3 5-5s-2.3-5-5-5-5 2.3-5 5 2.3 5 5 5zm0 2c-3.3 0-10 1.7-10 5v2h20v-2c0-3.3-6.7-5-10-5z"/>
+          </svg>
+        </button>
+        <div class="user-dropdown" id="userDropdown">
+          <div class="user-email-label" id="dropdownEmail"></div>
+          <a href="dashboard.html">🗂️ Dashboard</a>
+          <a href="itinerary.html">🗺️ My Itineraries</a>
+          <button class="dropdown-item logout-item" id="logoutBtn">🚪 Logout</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- Header -->
+<div class="dash-header">
+  <div class="dash-header-top container">
+    <div class="avatar-circle" id="avatarInitial">?</div>
+    <div>
+      <h1 id="welcomeMsg">Welcome back 👋</h1>
+      <p id="userEmailDisplay">Loading...</p>
+      <span id="adminBadgeHeader" class="admin-badge-header" style="display:none">🛡️ Admin</span>
+    </div>
+  </div>
+
+  <!-- Tabs -->
+  <div class="dash-tabs container">
+    <button class="tab-btn active" onclick="switchTab('plans')">📅 My Plans</button>
+    <button class="tab-btn" onclick="switchTab('admin')" id="adminTabBtn" style="display:none">🛡️ Admin Panel</button>
+  </div>
+</div>
+
+<!-- Body -->
+<div class="dash-body">
+
+  <!-- ── PLANS TAB ── -->
+  <div class="tab-panel active" id="tab-plans">
+
+    <!-- Stats -->
+    <div class="stats-row" id="statsRow">
+      <div class="stat-card"><div class="stat-num">—</div><div class="stat-lbl">Saved Plans</div></div>
+      <div class="stat-card"><div class="stat-num">—</div><div class="stat-lbl">Places Added</div></div>
+      <div class="stat-card"><div class="stat-num">—</div><div class="stat-lbl">Events Listed</div></div>
+      <div class="stat-card"><div class="stat-num">—</div><div class="stat-lbl">Foods to Try</div></div>
+    </div>
+
+    <div class="section-head">
+      <h2>Your Itinerary Plans</h2>
+      <a href="itinerary.html" class="add-btn">＋ New Plan</a>
+    </div>
+    <div class="plans-grid" id="plansGrid">
+      <div class="empty-state"><span class="ei">📭</span>Loading your plans...</div>
+    </div>
+  </div>
+
+  <!-- ── ADMIN TAB ── -->
+  <div class="tab-panel" id="tab-admin">
+
+    <!-- Live Events Manager -->
+    <div class="section-head" style="margin-bottom:16px">
+      <h2>🎭 Live Events Manager</h2>
+      <button class="add-btn" onclick="openModal()">＋ Add Event</button>
+    </div>
+    <div style="overflow-x:auto;margin-bottom:40px">
+      <table class="events-table">
+        <thead>
+          <tr>
+            <th>Title</th><th>Venue</th><th>Date</th><th>Time</th><th style="width:120px">Actions</th>
+          </tr>
+        </thead>
+        <tbody id="eventsTableBody">
+          <tr><td colspan="5" style="text-align:center;color:#aaa;padding:30px">Loading...</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Event Requests -->
+    <div class="section-head" style="margin-bottom:16px">
+      <h2>📥 Event Requests</h2>
+    </div>
+    <div class="req-list" id="reqList">
+      <div class="empty-state"><span class="ei">📭</span>Loading requests...</div>
+    </div>
+
+    <!-- Users -->
+    <div class="section-head" style="margin-top:40px;margin-bottom:16px">
+      <h2>👥 Registered Users</h2>
+    </div>
+    <div style="overflow-x:auto">
+      <table class="users-table">
+        <thead>
+          <tr><th>#</th><th>Email</th><th>Role</th></tr>
+        </thead>
+        <tbody id="usersTableBody">
+          <tr><td colspan="3" style="text-align:center;color:#aaa;padding:24px">Loading...</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</div>
+
+<!-- Edit / Add Event Modal -->
+<div class="modal-back" id="modalBack">
+  <div class="modal-box">
+    <h2 id="modalTitle">Add Event</h2>
+    <input type="hidden" id="editId">
+    <div class="mfg"><label>Title *</label><input type="text" id="mTitle" placeholder="Event title"></div>
+    <div class="mfg"><label>Description</label><textarea id="mDesc" rows="2" placeholder="Short description"></textarea></div>
+    <div class="mfg"><label>Venue</label><input type="text" id="mVenue" placeholder="Venue name"></div>
+    <div class="mfg"><label>Date</label><input type="date" id="mDate"></div>
+    <div class="mfg"><label>Time</label><input type="text" id="mTime" placeholder="e.g. 8:00 PM"></div>
+    <div class="mfg"><label>Image URL</label><input type="text" id="mImage" placeholder="/final/images/event1.jpg"></div>
+    <div class="modal-actions">
+      <button class="modal-save" onclick="saveEvent()">Save</button>
+      <button class="modal-cancel" onclick="closeModal()">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<footer class="footer"><div class="container"><p>© 2025 Surat City Tourism. All rights reserved.</p></div></footer>
+
+<script src="nav-avatar.js"></script>
+<script>
+const API  = "http://127.0.0.1:5000";
+const email   = localStorage.getItem("userEmail");
+const isAdmin = localStorage.getItem("isAdmin") === "true";
+
+if (!email) window.location.href = "login.html";
+
+// ── Header setup ──────────────────────────────────────────────────────────────
+const initial = (email || "?")[0].toUpperCase();
+document.getElementById("avatarInitial").textContent   = initial;
+document.getElementById("userEmailDisplay").textContent = email;
+document.getElementById("welcomeMsg").textContent = isAdmin ? "Welcome, Admin 🛡️" : "Welcome back 👋";
+
+if (isAdmin) {
+  document.getElementById("adminBadgeHeader").style.display = "inline-block";
+  document.getElementById("adminTabBtn").style.display = "inline-block";
+}
+
+// ── Tab switching ─────────────────────────────────────────────────────────────
+function switchTab(name) {
+  document.querySelectorAll(".tab-panel").forEach(p => p.classList.remove("active"));
+  document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
+  document.getElementById("tab-" + name).classList.add("active");
+  event.target.classList.add("active");
+
+  if (name === "admin") { loadEvents(); loadRequests(); loadUsers(); }
+}
+
+// ── Load Plans ────────────────────────────────────────────────────────────────
+async function loadPlans() {
+  const grid = document.getElementById("plansGrid");
+  try {
+    const res   = await fetch(`${API}/get-plans?email=${encodeURIComponent(email)}`);
+    const plans = await res.json();
+
+    document.getElementById("statsRow").innerHTML = `
+      <div class="stat-card"><div class="stat-num">${plans.length}</div><div class="stat-lbl">Saved Plans</div></div>
+      <div class="stat-card"><div class="stat-num">${plans.reduce((a,p)=>a+(p.places||[]).length,0)}</div><div class="stat-lbl">Places Added</div></div>
+      <div class="stat-card"><div class="stat-num">${plans.reduce((a,p)=>a+(p.events||[]).length,0)}</div><div class="stat-lbl">Events Listed</div></div>
+      <div class="stat-card"><div class="stat-num">${plans.reduce((a,p)=>a+(p.food||[]).length,0)}</div><div class="stat-lbl">Foods to Try</div></div>
+    `;
+
+    if (!plans.length) {
+      grid.innerHTML = `<div class="empty-state"><span class="ei">📭</span>No plans yet. <a href="itinerary.html" style="color:#ff6600">Create one!</a></div>`;
+      return;
+    }
+    grid.innerHTML = "";
+    plans.forEach(p => {
+      const card = document.createElement("div");
+      card.className = "plan-card"; card.id = "plan-" + p.id;
+      card.innerHTML = `
+        <h3>📅 ${p.dates}</h3>
+        <p>📍 ${(p.places||[]).join(", ") || "No places"}</p>
+        <p>🎉 ${(p.events||[]).join(", ") || "No events"}</p>
+        <p>🍽️ ${(p.food||[]).join(", ") || "No food"}</p>
+        <div class="card-btns">
+          <button class="btn-pdf">📄 PDF</button>
+          <button class="btn-del">🗑️ Delete</button>
+        </div>`;
+      card.querySelector(".btn-pdf").addEventListener("click", () => downloadPDF(p));
+      card.querySelector(".btn-del").addEventListener("click", () => deletePlan(p.id));
+      grid.appendChild(card);
+    });
+  } catch {
+    grid.innerHTML = `<div class="empty-state"><span class="ei">⚠️</span>Backend not connected. <a href="itinerary.html" style="color:#ff6600">Still plan offline!</a></div>`;
+    document.getElementById("statsRow").innerHTML = `
+      <div class="stat-card"><div class="stat-num">—</div><div class="stat-lbl">Saved Plans</div></div>
+      <div class="stat-card"><div class="stat-num">—</div><div class="stat-lbl">Places Added</div></div>
+      <div class="stat-card"><div class="stat-num">—</div><div class="stat-lbl">Events Listed</div></div>
+      <div class="stat-card"><div class="stat-num">—</div><div class="stat-lbl">Foods to Try</div></div>`;
+  }
+}
+
+async function deletePlan(id) {
+  if (!confirm("Delete this plan?")) return;
+  try {
+    const res = await fetch(`${API}/delete-plan/${id}`, {
+      method: "DELETE", headers: {"Content-Type":"application/json"}, body: JSON.stringify({email})
+    });
+    if (res.ok) { document.getElementById("plan-"+id)?.remove(); loadPlans(); }
+  } catch { alert("Backend not connected."); }
+}
+
+// ── Admin: Live Events ────────────────────────────────────────────────────────
+async function loadEvents() {
+  const tbody = document.getElementById("eventsTableBody");
+  try {
+    const res = await fetch(`${API}/live-events`);
+    const evs = await res.json();
+    if (!evs.length) { tbody.innerHTML = `<tr><td colspan="5" style="text-align:center;color:#aaa;padding:24px">No events yet.</td></tr>`; return; }
+    tbody.innerHTML = evs.map(e => `
+      <tr>
+        <td><b>${e.title}</b></td>
+        <td>${e.venue||"—"}</td>
+        <td>${formatDate(e.event_date)}</td>
+        <td>${e.time||"—"}</td>
+        <td style="display:flex;gap:6px">
+          <button class="tbl-edit" onclick='openModal(${JSON.stringify(e)})'>✏️ Edit</button>
+          <button class="tbl-del"  onclick="deleteEvent(${e.id})">🗑️</button>
+        </td>
+      </tr>`).join("");
+  } catch { tbody.innerHTML = `<tr><td colspan="5" style="text-align:center;color:#aaa;padding:24px">Backend not connected.</td></tr>`; }
+}
+
+function formatDate(d) {
+  if (!d || d==="TBD") return d||"—";
+  try { return new Date(d).toLocaleDateString("en-IN",{day:"numeric",month:"short",year:"numeric"}); } catch { return d; }
+}
+
+// ── Admin: Requests ───────────────────────────────────────────────────────────
+async function loadRequests() {
+  const list = document.getElementById("reqList");
+  try {
+    const res  = await fetch(`${API}/get-requests`);
+    const reqs = await res.json();
+    if (!reqs.length) { list.innerHTML = `<div class="empty-state"><span class="ei">✅</span>No pending requests.</div>`; return; }
+    list.innerHTML = reqs.map(r => `
+      <div class="req-card" id="req-${r.id}">
+        <div class="req-icon">${r.is_approved ? "✅" : "⏳"}</div>
+        <div class="req-body">
+          <h4>${r.title}</h4>
+          <p>${(r.description||"").substring(0,120)}${(r.description||"").length>120?"...":""}</p>
+          <p style="color:#aaa;font-size:.8rem">By: ${r.created_by}</p>
+        </div>
+        <div class="req-actions">
+          ${r.is_approved
+            ? `<span class="approved-badge">Approved</span>`
+            : `<button class="btn-approve" onclick="approveReq(${r.id})">✅ Approve</button>
+               <button class="btn-reject"  onclick="rejectReq(${r.id})">❌ Reject</button>`
+          }
+        </div>
+      </div>`).join("");
+  } catch { list.innerHTML = `<div class="empty-state"><span class="ei">⚠️</span>Backend not connected.</div>`; }
+}
+
+// ── Admin: Users ──────────────────────────────────────────────────────────────
+async function loadUsers() {
+  const tbody = document.getElementById("usersTableBody");
+  try {
+    const res   = await fetch(`${API}/get-users`);
+    const users = await res.json();
+    tbody.innerHTML = users.map((u,i) => `
+      <tr>
+        <td>${i+1}</td>
+        <td>${u.email}</td>
+        <td><span class="${u.is_admin ? 'role-admin' : 'role-user'}">${u.is_admin ? "Admin" : "User"}</span></td>
+      </tr>`).join("");
+  } catch { tbody.innerHTML = `<tr><td colspan="3" style="text-align:center;color:#aaa;padding:24px">Backend not connected.</td></tr>`; }
+}
+
+// ── Modal ─────────────────────────────────────────────────────────────────────
+function openModal(ev) {
+  document.getElementById("modalTitle").textContent = ev ? "Edit Event" : "Add New Event";
+  document.getElementById("editId").value   = ev?.id       || "";
+  document.getElementById("mTitle").value   = ev?.title    || "";
+  document.getElementById("mDesc").value    = ev?.description || "";
+  document.getElementById("mVenue").value   = ev?.venue    || "";
+  document.getElementById("mDate").value    = ev?.event_date || "";
+  document.getElementById("mTime").value    = ev?.time     || "";
+  document.getElementById("mImage").value   = ev?.image_url || "";
+  document.getElementById("modalBack").classList.add("open");
+}
+function closeModal() { document.getElementById("modalBack").classList.remove("open"); }
+document.getElementById("modalBack").addEventListener("click", e => { if(e.target===document.getElementById("modalBack")) closeModal(); });
+
+async function saveEvent() {
+  const id    = document.getElementById("editId").value;
+  const title = document.getElementById("mTitle").value.trim();
+  if (!title) { alert("Title is required"); return; }
+  const payload = {
+    title, description: document.getElementById("mDesc").value.trim(),
+    venue: document.getElementById("mVenue").value.trim(),
+    event_date: document.getElementById("mDate").value,
+    time: document.getElementById("mTime").value.trim(),
+    image_url: document.getElementById("mImage").value.trim() || "/final/images/event1.jpg"
+  };
+  try {
+    const res = await fetch(id ? `${API}/live-events/${id}` : `${API}/live-events`, {
+      method: id ? "PUT" : "POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify(payload)
+    });
+    if (res.ok) { closeModal(); loadEvents(); }
+    else { const d=await res.json(); alert("Error: "+(d.error||"Unknown")); }
+  } catch { alert("Backend not connected."); }
+}
+
+async function deleteEvent(id) {
+  if (!confirm("Delete this event from Live Events?")) return;
+  try { const res=await fetch(`${API}/live-events/${id}`,{method:"DELETE"}); if(res.ok) loadEvents(); }
+  catch { alert("Backend not connected."); }
+}
+
+async function approveReq(id) {
+  try { const res=await fetch(`${API}/approve-event/${id}`,{method:"POST"}); if(res.ok){loadRequests();loadEvents();} }
+  catch { alert("Backend not connected."); }
+}
+async function rejectReq(id) {
+  if (!confirm("Reject this request?")) return;
+  try { const res=await fetch(`${API}/reject-event/${id}`,{method:"DELETE"}); if(res.ok) document.getElementById("req-"+id)?.remove(); }
+  catch { alert("Backend not connected."); }
+}
+
+// ── PDF ───────────────────────────────────────────────────────────────────────
+function downloadPDF(plan) {
+  const {jsPDF}=window.jspdf; const doc=new jsPDF(); let y=20;
+  doc.setFontSize(20);doc.setTextColor(255,102,0);doc.text("Surat City Tourism",10,y);
+  y+=10;doc.setFontSize(13);doc.setTextColor(60,60,60);doc.text("Travel Itinerary",10,y);
+  y+=12;doc.setFontSize(11);doc.text(`Date: ${plan.dates}`,10,y);
+  const sec=(label,arr)=>{y+=10;doc.setFontSize(12);doc.setTextColor(255,102,0);doc.text(label,10,y);doc.setTextColor(60,60,60);y+=7;(arr||[]).forEach(i=>{doc.text("  • "+i,10,y);y+=7;});if(!(arr||[]).length){doc.text("  None",10,y);y+=7;}};
+  sec("Places:",plan.places);sec("Events:",plan.events);sec("Food:",plan.food);
+  y+=8;doc.setFontSize(9);doc.setTextColor(160,160,160);doc.text("Generated by Surat City Tourism © 2025",10,y);
+  doc.save("surat-itinerary.pdf");
+}
+
+// ── Init ──────────────────────────────────────────────────────────────────────
+loadPlans();
+if (isAdmin) { loadEvents(); loadRequests(); loadUsers(); }
+</script>
+</body>
+</html>

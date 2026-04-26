@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Flavors of Surat - Surat City Tourism</title>
+    <link rel="stylesheet" href="simple-surat-tourism.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container">
+            <h2 class="brand-title">Surat City Tourism</h2>
+            <div class="nav-menu" style="display:flex;align-items:center;">
+                <a href="index.html">Home</a>
+                <a href="attractions.html">Attractions</a>
+                <a href="culture.html">Culture</a>
+                <a href="food.html" class="active">Food</a>
+                <a href="events.html">Live Events</a>
+                <a href="itinerary.html">Plan Trip</a>
+                <a href="contact.html">Contact</a>
+                <!-- LOGIN LINK (shown when logged out) -->
+                <a href="login.html" class="nav-login-link" id="loginLink">Login</a>
+                <!-- AVATAR DROPDOWN (shown when logged in) -->
+                <div class="user-avatar-wrapper" id="avatarWrapper" style="display:none;">
+                  <button class="user-avatar-btn" id="avatarBtn" title="Account">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M12 12c2.7 0 5-2.3 5-5s-2.3-5-5-5-5 2.3-5 5 2.3 5 5 5zm0 2c-3.3 0-10 1.7-10 5v2h20v-2c0-3.3-6.7-5-10-5z"/>
+                    </svg>
+                  </button>
+                  <div class="user-dropdown" id="userDropdown">
+                    <div class="user-email-label" id="dropdownEmail"></div>
+                    <a href="dashboard.html">&#128193; Dashboard</a>
+                    <a href="itinerary.html">&#128506; My Itineraries</a>
+                    <button class="dropdown-item logout-item" id="logoutBtn">&#128682; Logout</button>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Content Section -->
+    <section class="content-section">
+        <div class="container">
+            <h2 class="section-title">Culinary Journey of Surat</h2>
+
+            <div class="photo-grid">
+
+                <!-- Locho -->
+                <a href="details.html?id=surati-locho" class="detail-link">
+                    <div class="photo-card">
+                        <img src="/final/images/locho.jpeg" alt="Locho">
+                        <div class="photo-overlay">
+                            <h4>🍲 Surati Locho</h4>
+                            <p>A spicy, steamed snack unique to the city's streets.</p>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Undhiyo -->
+                <a href="details.html?id=undhiyo" class="detail-link">
+                    <div class="photo-card">
+                        <img src="/final/images/undhiyo.jpeg" alt="Undhiyo">
+                        <div class="photo-overlay">
+                            <h4>🥘 Winter Undhiyo</h4>
+                            <p>A rich, mixed vegetable dish cooked in clay pots.</p>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Thali -->
+                <a href="details.html?id=thali" class="detail-link">
+                    <div class="photo-card">
+                        <img src="/final/images/gujrati thali.jpeg" alt="Thali">
+                        <div class="photo-overlay">
+                            <h4>🥗 Authentic Thali</h4>
+                            <p>A wholesome platter representing Gujarati hospitality.</p>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Ice Dish -->
+                <a href="details.html?id=ice-dish" class="detail-link">
+                    <div class="photo-card">
+                        <img src="/final/images/five-star-ice-dish-nanpura-surat-ice-cream-parlours-wdz5qq01n4.avif" alt="Ice Dish">
+                        <div class="photo-overlay">
+                            <h4>🍧 Ice Dish</h4>
+                            <p>The ultimate colorful street dessert of Surat.</p>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Khavsa -->
+                <a href="details.html?id=khavsa" class="detail-link">
+                    <div class="photo-card">
+                        <img src="/final/images/Khavsa.webp" alt="Khavsa">
+                        <div class="photo-overlay">
+                            <h4>🍜 Khavsa</h4>
+                            <p>Surti Khavsa is a creamy Burmese-style noodle soup with coconut curry, crunchy toppings, and spicy chutney.</p>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Dhokla -->
+                <a href="details.html?id=dhokla" class="detail-link">
+                    <div class="photo-card">
+                        <img src="/final/images/0b1236f2e5c7fe1311996caaa594f272.avif" alt="Dhokla">
+                        <div class="photo-overlay">
+                            <h4>😋 Dhokla</h4>
+                            <p>Soft, fluffy, and perfectly fermented Surti Khaman — a staple Gujarati snack.</p>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Veg Ghotala -->
+                <a href="details.html?id=veg-ghotala" class="detail-link">
+                    <div class="photo-card">
+                        <img src="/final/images/ghot.jpg" alt="Veg Ghotala">
+                        <div class="photo-overlay">
+                            <h4>🍲 Veg Ghotala</h4>
+                            <p>A rich, buttery, and cheesy street food made with paneer and spices.</p>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Farsan -->
+                <a href="details.html?id=farsan" class="detail-link">
+                    <div class="photo-card">
+                        <img src="/final/images/snaks.avif" alt="Farsan">
+                        <div class="photo-overlay">
+                            <h4>🫓 Farsan</h4>
+                            <p>Crispy, savory snacks that perfectly complement tea-time.</p>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Ponk -->
+                <a href="details.html?id=ponk" class="detail-link">
+                    <div class="photo-card">
+                        <img src="/final/images/ponk.JPG" alt="Ponk">
+                        <div class="photo-overlay">
+                            <h4>🌾 Ponk</h4>
+                            <p>Surat's rare winter superfood — fresh green sorghum roasted to perfection.</p>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Surti Ghari -->
+                <a href="details.html?id=surti-ghari" class="detail-link">
+                    <div class="photo-card">
+                        <img src="/final/images/ghari.jpg" alt="Surti Ghari">
+                        <div class="photo-overlay">
+                            <h4>🍮 Surti Ghari</h4>
+                            <p>A rich, ghee-laden festive sweet — Surat's Chandi Padvo specialty.</p>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Jalebi Fafda -->
+                <a href="details.html?id=jalebi-fafda" class="detail-link">
+                    <div class="photo-card">
+                        <img src="/final/images/jalebi.jpg" alt="Jalebi Fafda">
+                        <div class="photo-overlay">
+                            <h4>🥨 Jalebi Fafda</h4>
+                            <p>The iconic Gujarati breakfast combo — crispy fafda with syrupy jalebi.</p>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Surti Chai -->
+                <a href="details.html?id=surti-chai" class="detail-link">
+                    <div class="photo-card">
+                        <img src="/final/images/chai.jpg" alt="Surti Chai">
+                        <div class="photo-overlay">
+                            <h4>☕ Surti Cutting Chai</h4>
+                            <p>Strong, cardamom-spiced tea — the heartbeat of Surat's street culture.</p>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Lilo Chevdo -->
+                <a href="details.html?id=lilo-chevdo" class="detail-link">
+                    <div class="photo-card">
+                        <img src="/final/images/lilo-chewado-banner.jpeg" alt="Lilo Chevdo">
+                        <div class="photo-overlay">
+                            <h4>🥗 Lilo Chevdo</h4>
+                            <p>Fresh green savory mix — a unique Surati monsoon season treat.</p>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Sev Usal -->
+                <a href="details.html?id=sev-usal" class="detail-link">
+                    <div class="photo-card">
+                        <img src="/final/images/ghot.jpg" alt="Sev Usal">
+                        <div class="photo-overlay">
+                            <h4>🍛 Sev Usal</h4>
+                            <p>Spicy dried peas curry topped with crunchy sev & tangy chutneys.</p>
+                        </div>
+                    </div>
+                </a>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>© 2025 Surat City Tourism. All rights reserved.</p>
+    </footer>
+
+  <script src="nav-avatar.js"></script>
+</body>
+</html>

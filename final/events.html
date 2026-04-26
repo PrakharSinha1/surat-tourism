@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Live Events in Surat - Surat City Tourism</title>
+  <link rel="stylesheet" href="simple-surat-tourism.css">
+  <style>
+    /* ── Admin toolbar ── */
+    #adminBar {
+      display: none;
+      background: #1e1e2f;
+      color: #fff;
+      padding: 14px 20px;
+      text-align: center;
+    }
+    #adminBar span { color: #ff6600; font-weight: 700; margin-right: 16px; }
+    #addEventBtn {
+      background: #ff6600; color: #fff; border: none;
+      padding: 9px 20px; border-radius: 8px; cursor: pointer;
+      font-size: 0.9rem; font-weight: 600; transition: background 0.2s;
+    }
+    #addEventBtn:hover { background: #ff4500; }
+
+    /* ── Event cards ── */
+    .event-wrapper { position: relative; }
+
+    .event-admin-controls {
+      display: none;
+      position: absolute;
+      top: 8px; right: 8px;
+      z-index: 10;
+      gap: 6px;
+    }
+    .admin-mode .event-admin-controls { display: flex; }
+
+    .edit-btn, .del-btn {
+      border: none; border-radius: 6px;
+      padding: 5px 10px; cursor: pointer;
+      font-size: 0.8rem; font-weight: 600;
+    }
+    .edit-btn { background: #ffc107; color: #000; }
+    .del-btn  { background: #dc3545; color: #fff; }
+
+    /* ── Modal ── */
+    .modal-backdrop {
+      display: none; position: fixed; inset: 0;
+      background: rgba(0,0,0,0.6); z-index: 3000;
+      align-items: center; justify-content: center;
+    }
+    .modal-backdrop.open { display: flex; }
+
+    .modal-card {
+      background: #fff; border-radius: 16px;
+      padding: 36px; width: 460px; max-width: 95vw;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      animation: fadeSlideUp 0.3s ease;
+    }
+    .modal-card h2 { margin-bottom: 20px; color: #222; }
+
+    .modal-field { margin-bottom: 14px; }
+    .modal-field label {
+      display: block; font-size: 0.8rem; font-weight: 700;
+      color: #555; text-transform: uppercase; margin-bottom: 4px;
+    }
+    .modal-field input, .modal-field textarea {
+      width: 100%; padding: 9px 12px; border: 2px solid #eee;
+      border-radius: 8px; font-family: inherit; font-size: 0.92rem;
+      box-sizing: border-box; transition: border-color 0.2s;
+    }
+    .modal-field input:focus, .modal-field textarea:focus {
+      outline: none; border-color: #ff6600;
+    }
+    .modal-actions { display: flex; gap: 10px; margin-top: 18px; }
+    .modal-save {
+      flex: 1; padding: 11px; background: #ff6600; color: #fff;
+      border: none; border-radius: 8px; font-size: 1rem;
+      font-weight: 600; cursor: pointer;
+    }
+    .modal-save:hover { background: #ff4500; }
+    .modal-cancel {
+      padding: 11px 18px; background: #eee; color: #333;
+      border: none; border-radius: 8px; cursor: pointer; font-size: 1rem;
+    }
+
+    /* ── Empty / loading states ── */
+    .events-loading {
+      text-align: center; padding: 60px 20px; color: #aaa; font-size: 1.1rem;
+    }
+
+    /* ── Requests panel (admin) ── */
+    #requestsPanel {
+      display: none;
+      max-width: 1200px; margin: 0 auto 40px; padding: 0 20px;
+    }
+    #requestsPanel h2 {
+      font-size: 1.4rem; color: #222; margin-bottom: 16px;
+      border-left: 4px solid #ff6600; padding-left: 12px;
+    }
+    .req-card {
+      background: #1e1e2f; color: #fff; border-radius: 12px;
+      padding: 18px 22px; margin-bottom: 12px;
+      display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+    }
+    .req-card .req-info { flex: 1; }
+    .req-card .req-info h4 { color: #ff6600; margin-bottom: 4px; }
+    .req-card .req-info p { font-size: 0.85rem; color: #ccc; }
+    .req-approve { background: #28a745; color: #fff; border: none; padding: 7px 14px; border-radius: 7px; cursor: pointer; }
+    .req-reject  { background: #dc3545; color: #fff; border: none; padding: 7px 14px; border-radius: 7px; cursor: pointer; }
+  </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar">
+  <div class="container">
+    <h2 class="brand-title">Surat City Tourism</h2>
+    <div class="nav-menu" style="display:flex;align-items:center;">
+      <a href="index.html">Home</a>
+      <a href="attractions.html">Attractions</a>
+      <a href="culture.html">Culture</a>
+      <a href="food.html">Food</a>
+      <a href="events.html" class="active">Live Events</a>
+      <a href="itinerary.html">Plan Trip</a>
+      <a href="contact.html">Contact</a>
+      <a href="login.html" class="nav-login-link" id="loginLink">Login</a>
+      <div class="user-avatar-wrapper" id="avatarWrapper" style="display:none;">
+        <button class="user-avatar-btn" id="avatarBtn" title="Account">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 12c2.7 0 5-2.3 5-5s-2.3-5-5-5-5 2.3-5 5 2.3 5 5 5zm0 2c-3.3 0-10 1.7-10 5v2h20v-2c0-3.3-6.7-5-10-5z"/>
+          </svg>
+        </button>
+        <div class="user-dropdown" id="userDropdown">
+          <div class="user-email-label" id="dropdownEmail"></div>
+          <a href="dashboard.html">🗂️ Dashboard</a>
+          <a href="itinerary.html">🗺️ My Itineraries</a>
+          <button class="dropdown-item logout-item" id="logoutBtn">🚪 Logout</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- Admin toolbar -->
+<div id="adminBar">
+  <span>🛡️ Admin Mode — Live Events Manager</span>
+  <button id="addEventBtn">＋ Add New Event</button>
+</div>
+
+<!-- Events Section -->
+<section class="content-section">
+  <div class="container">
+    <h2 class="section-title">Live Events in Surat</h2>
+    <p class="section-subtitle" style="color:#666;margin-bottom:24px;">Don't miss what's happening in the city!</p>
+    <div id="eventsGrid" class="photo-grid">
+      <div class="events-loading">⏳ Loading events...</div>
+    </div>
+  </div>
+</section>
+
+<!-- Admin: Pending Requests -->
+<div id="requestsPanel">
+  <h2>📥 Pending Event Requests</h2>
+  <div id="requestsList"></div>
+</div>
+
+<footer class="footer">
+  <p>© 2025 Surat City Tourism. All rights reserved.</p>
+</footer>
+
+<!-- Add / Edit Modal -->
+<div class="modal-backdrop" id="modalBackdrop">
+  <div class="modal-card">
+    <h2 id="modalTitle">Add Event</h2>
+    <input type="hidden" id="editingId">
+
+    <div class="modal-field">
+      <label>Event Title *</label>
+      <input type="text" id="mTitle" placeholder="e.g. Navratri Garba Night">
+    </div>
+    <div class="modal-field">
+      <label>Description</label>
+      <textarea id="mDesc" rows="2" placeholder="Short description..."></textarea>
+    </div>
+    <div class="modal-field">
+      <label>Venue</label>
+      <input type="text" id="mVenue" placeholder="e.g. Piplod Grounds">
+    </div>
+    <div class="modal-field">
+      <label>Date</label>
+      <input type="date" id="mDate">
+    </div>
+    <div class="modal-field">
+      <label>Time</label>
+      <input type="text" id="mTime" placeholder="e.g. 8:00 PM">
+    </div>
+    <div class="modal-field">
+      <label>Image URL (optional)</label>
+      <input type="text" id="mImage" placeholder="/final/images/event1.jpg">
+    </div>
+
+    <div class="modal-actions">
+      <button class="modal-save" id="modalSaveBtn">Save Event</button>
+      <button class="modal-cancel" id="modalCancelBtn">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<script src="nav-avatar.js"></script>
+<script>
+const API = "http://127.0.0.1:5000";
+const isAdmin = localStorage.getItem("isAdmin") === "true";
+
+// ── Admin UI ─────────────────────────────────────────────────────────────────
+if (isAdmin) {
+  document.getElementById("adminBar").style.display = "block";
+  document.getElementById("requestsPanel").style.display = "block";
+  document.getElementById("eventsGrid").classList.add("admin-mode");
+  loadRequests();
+}
+
+document.getElementById("addEventBtn")?.addEventListener("click", () => openModal());
+document.getElementById("modalCancelBtn").addEventListener("click", closeModal);
+document.getElementById("modalBackdrop").addEventListener("click", e => {
+  if (e.target === document.getElementById("modalBackdrop")) closeModal();
+});
+document.getElementById("modalSaveBtn").addEventListener("click", saveEvent);
+
+// ── Load Events ───────────────────────────────────────────────────────────────
+async function loadEvents() {
+  const grid = document.getElementById("eventsGrid");
+  try {
+    const res = await fetch(`${API}/live-events`);
+    const events = await res.json();
+
+    if (!events.length) {
+      grid.innerHTML = "<p style='color:#aaa;padding:20px'>No live events right now. Check back soon!</p>";
+      return;
+    }
+
+    grid.classList.toggle("admin-mode", isAdmin);
+    grid.innerHTML = events.map(ev => `
+      <div class="event-wrapper">
+        <a href="details.html?id=${ev.detail_id || 'event'}" class="detail-link">
+          <div class="photo-card">
+            <img src="${ev.image_url || '/final/images/event1.jpg'}"
+                 alt="${ev.title}"
+                 onerror="this.src='/final/images/event1.jpg'">
+            <div class="photo-overlay">
+              <h4>🎭 ${ev.title}</h4>
+              <p>${ev.description || ''}</p>
+              <p>📍 ${ev.venue || ''}</p>
+              <p>⏰ ${formatDate(ev.event_date)}${ev.time ? ', ' + ev.time : ''}</p>
+            </div>
+          </div>
+        </a>
+        ${isAdmin ? `
+        <div class="event-admin-controls">
+          <button class="edit-btn" onclick="openModal(${JSON.stringify(ev).replace(/"/g,'&quot;')})">✏️ Edit</button>
+          <button class="del-btn"  onclick="deleteEvent(${ev.id}, '${escHtml(ev.title)}')">🗑️ Delete</button>
+        </div>` : ''}
+      </div>
+    `).join("");
+
+  } catch {
+    grid.innerHTML = `
+      <div class="events-loading">
+        ⚠️ Could not connect to backend.<br>
+        <small style="font-size:0.85rem">Start the Flask server to see live events.</small>
+      </div>`;
+  }
+}
+
+function formatDate(d) {
+  if (!d || d === "TBD") return d || "";
+  try {
+    return new Date(d).toLocaleDateString("en-IN", { day:"numeric", month:"short", year:"numeric" });
+  } catch { return d; }
+}
+
+function escHtml(s) { return (s||"").replace(/'/g, "\\'"); }
+
+// ── Modal ─────────────────────────────────────────────────────────────────────
+function openModal(ev) {
+  document.getElementById("modalTitle").textContent  = ev ? "Edit Event" : "Add New Event";
+  document.getElementById("editingId").value         = ev ? ev.id : "";
+  document.getElementById("mTitle").value            = ev?.title       || "";
+  document.getElementById("mDesc").value             = ev?.description || "";
+  document.getElementById("mVenue").value            = ev?.venue       || "";
+  document.getElementById("mDate").value             = ev?.event_date  || "";
+  document.getElementById("mTime").value             = ev?.time        || "";
+  document.getElementById("mImage").value            = ev?.image_url   || "";
+  document.getElementById("modalBackdrop").classList.add("open");
+}
+
+function closeModal() {
+  document.getElementById("modalBackdrop").classList.remove("open");
+}
+
+async function saveEvent() {
+  const id    = document.getElementById("editingId").value;
+  const title = document.getElementById("mTitle").value.trim();
+  if (!title) { alert("Title is required"); return; }
+
+  const payload = {
+    title,
+    description: document.getElementById("mDesc").value.trim(),
+    venue:       document.getElementById("mVenue").value.trim(),
+    event_date:  document.getElementById("mDate").value,
+    time:        document.getElementById("mTime").value.trim(),
+    image_url:   document.getElementById("mImage").value.trim() || "/final/images/event1.jpg",
+  };
+
+  try {
+    const res = await fetch(
+      id ? `${API}/live-events/${id}` : `${API}/live-events`,
+      {
+        method:  id ? "PUT" : "POST",
+        headers: { "Content-Type": "application/json" },
+        body:    JSON.stringify(payload)
+      }
+    );
+
+    if (res.ok) {
+      closeModal();
+      loadEvents();
+    } else {
+      const d = await res.json();
+      alert("Error: " + (d.error || "Unknown"));
+    }
+  } catch {
+    alert("❌ Could not connect to backend.");
+  }
+}
+
+async function deleteEvent(id, title) {
+  if (!confirm(`Delete "${title}"?`)) return;
+  try {
+    const res = await fetch(`${API}/live-events/${id}`, { method: "DELETE" });
+    if (res.ok) loadEvents();
+    else alert("Failed to delete.");
+  } catch {
+    alert("❌ Could not connect to backend.");
+  }
+}
+
+// ── Admin Requests ────────────────────────────────────────────────────────────
+async function loadRequests() {
+  const list = document.getElementById("requestsList");
+  try {
+    const res  = await fetch(`${API}/get-requests`);
+    const reqs = await res.json();
+    const pending = reqs.filter(r => !r.is_approved);
+
+    if (!pending.length) {
+      list.innerHTML = "<p style='color:#aaa'>No pending requests.</p>";
+      return;
+    }
+
+    list.innerHTML = pending.map(r => `
+      <div class="req-card" id="req-${r.id}">
+        <div class="req-info">
+          <h4>${r.title}</h4>
+          <p>${r.description || "No description"} &nbsp;·&nbsp; Submitted by: <b>${r.created_by}</b></p>
+        </div>
+        <button class="req-approve" onclick="approveReq(${r.id})">✅ Approve</button>
+        <button class="req-reject"  onclick="rejectReq(${r.id})">❌ Reject</button>
+      </div>
+    `).join("");
+  } catch {
+    list.innerHTML = "<p style='color:#aaa'>Could not load requests.</p>";
+  }
+}
+
+async function approveReq(id) {
+  const res = await fetch(`${API}/approve-event/${id}`, { method: "POST" });
+  if (res.ok) { loadRequests(); loadEvents(); }
+}
+
+async function rejectReq(id) {
+  if (!confirm("Reject this request?")) return;
+  const res = await fetch(`${API}/reject-event/${id}`, { method: "DELETE" });
+  if (res.ok) loadRequests();
+}
+
+// ── Init ──────────────────────────────────────────────────────────────────────
+loadEvents();
+</script>
+</body>
+</html>

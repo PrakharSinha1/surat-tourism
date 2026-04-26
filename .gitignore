@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.env
+venv/
+env/
+
+# SQLite - don't commit the DB (it resets on Render anyway)
+# Comment out the line below if you want to commit initial seed data
+# database.db
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/

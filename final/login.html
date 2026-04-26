@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login - Surat Tourism</title>
+<link rel="stylesheet" href="login.css">
+<style>
+  .admin-toggle-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin: 14px 0 6px;
+    font-size: 0.9rem;
+    color: #ccc;
+  }
+
+  .toggle-switch {
+    position: relative;
+    width: 44px;
+    height: 24px;
+    display: inline-block;
+  }
+
+  .toggle-switch input { opacity: 0; width: 0; height: 0; }
+
+  .toggle-slider {
+    position: absolute;
+    cursor: pointer;
+    inset: 0;
+    background: #555;
+    border-radius: 24px;
+    transition: 0.3s;
+  }
+
+  .toggle-slider::before {
+    content: '';
+    position: absolute;
+    height: 18px; width: 18px;
+    left: 3px; bottom: 3px;
+    background: white;
+    border-radius: 50%;
+    transition: 0.3s;
+  }
+
+  .toggle-switch input:checked + .toggle-slider { background: #ff6600; }
+  .toggle-switch input:checked + .toggle-slider::before { transform: translateX(20px); }
+
+  .admin-badge {
+    display: none;
+    background: #ff6600;
+    color: white;
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 20px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .admin-badge.visible { display: inline-block; }
+
+  .back-link {
+    display: inline-block;
+    margin-top: 14px;
+    font-size: 13px;
+    color: #aaa;
+    text-decoration: none;
+  }
+  .back-link:hover { color: #ff8533; }
+</style>
+</head>
+
+<body>
+
+<div class="login-container">
+  <div class="login-card">
+
+    <h2 id="formTitle">Login ✨</h2>
+    <div id="adminBadge" class="admin-badge">Admin Mode</div>
+
+    <div class="input-group">
+      <input type="email" id="email" required>
+      <label>Email</label>
+    </div>
+
+    <div class="input-group">
+      <input type="password" id="password" required>
+      <label>Password</label>
+    </div>
+
+    <!-- Admin Toggle -->
+    <div class="admin-toggle-row">
+      <span>Admin Login</span>
+      <label class="toggle-switch">
+        <input type="checkbox" id="adminToggle" onchange="toggleAdmin()">
+        <span class="toggle-slider"></span>
+      </label>
+    </div>
+
+    <button onclick="handleAuth()" id="authBtn">Login</button>
+
+    <p class="extra">
+      <span id="toggleText">New here?</span>
+      <a href="#" onclick="toggleMode()">Create account</a>
+    </p>
+
+    <a href="index.html" class="back-link">← Back to Home</a>
+  </div>
+</div>
+
+<script>
+if (localStorage.getItem("userEmail")) {
+    window.location.href = "index.html";
+}
+</script>
+<script src="login.js"></script>
+<script>
+function toggleAdmin() {
+    const isAdmin = document.getElementById("adminToggle").checked;
+    document.getElementById("adminBadge").classList.toggle("visible", isAdmin);
+}
+</script>
+</body>
+</html>

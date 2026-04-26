@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Plan Your Itinerary - Surat Tourism</title>
+  <link rel="stylesheet" href="simple-surat-tourism.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <style>
+    .itin-hero {
+      background: linear-gradient(135deg, #1e1e2f 0%, #2c2c54 60%);
+      color: #fff; text-align: center; padding: 70px 20px 55px;
+    }
+    .itin-hero h1 { font-size: 2.4rem; margin-bottom: 8px; }
+    .itin-hero p  { color: #bbb; font-size: 1rem; }
+
+    /* ── Main layout ── */
+    .itin-body {
+      max-width: 1140px; margin: 0 auto; padding: 40px 20px 20px;
+      display: grid;
+      grid-template-columns: 420px 1fr;
+      gap: 30px;
+      align-items: start;
+    }
+    @media (max-width: 860px) { .itin-body { grid-template-columns: 1fr; } }
+
+    /* ── Form card ── */
+    .form-card {
+      background: #fff; border-radius: 16px; padding: 32px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.09);
+      position: sticky; top: 90px;
+    }
+    .form-card h2 { font-size: 1.3rem; color: #222; margin-bottom: 22px; }
+
+    .fg { margin-bottom: 15px; }
+    .fg label {
+      display: block; font-size: .78rem; font-weight: 700;
+      color: #666; text-transform: uppercase; letter-spacing: .5px; margin-bottom: 5px;
+    }
+    .fg input {
+      width: 100%; padding: 10px 13px; border: 2px solid #eee;
+      border-radius: 8px; font-size: .93rem; font-family: inherit;
+      box-sizing: border-box; transition: border-color .25s;
+    }
+    .fg input:focus { outline: none; border-color: #ff6600; }
+
+    .gen-btn {
+      width: 100%; padding: 13px; background: #ff6600; color: #fff;
+      border: none; border-radius: 8px; font-size: 1rem; font-weight: 700;
+      cursor: pointer; transition: background .2s, transform .15s; margin-top: 4px;
+      letter-spacing: .3px;
+    }
+    .gen-btn:hover:not(:disabled) { background: #ff4500; transform: scale(1.02); }
+    .gen-btn:disabled { opacity: .6; cursor: not-allowed; }
+
+    .success-msg { background: #d4edda; border: 1px solid #28a745; border-radius: 8px; padding: 11px 14px; color: #155724; font-size: .88rem; margin-top: 10px; }
+    .error-msg   { background: #fff3cd; border: 1px solid #ffc107; border-radius: 8px; padding: 11px 14px; color: #856404; font-size: .88rem; margin-top: 10px; }
+
+    /* ── Right column ── */
+    .right-col { display: flex; flex-direction: column; gap: 28px; }
+
+    /* Preview panel */
+    .preview-panel {
+      background: #fff; border-radius: 16px; padding: 32px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.09); min-height: 260px;
+    }
+    .preview-panel h2 { font-size: 1.3rem; color: #222; margin-bottom: 20px; }
+
+    .preview-empty {
+      display: flex; flex-direction: column; align-items: center;
+      justify-content: center; padding: 50px 20px; color: #bbb; text-align: center;
+    }
+    .preview-empty .ei { font-size: 2.8rem; margin-bottom: 10px; }
+
+    /* Filled preview card */
+    .filled-preview {
+      background: linear-gradient(135deg, #fff8f5, #fff3ec);
+      border: 2px solid #ff6600; border-radius: 12px; padding: 24px;
+      animation: fadeSlideUp .4s ease;
+    }
+    .filled-preview h3 { color: #ff6600; margin-bottom: 16px; font-size: 1.1rem; }
+    .prow { display: flex; gap: 10px; margin-bottom: 11px; align-items: flex-start; }
+    .plabel { font-weight: 700; color: #444; min-width: 85px; font-size: .88rem; flex-shrink: 0; }
+    .ptags { display: flex; flex-wrap: wrap; gap: 5px; }
+    .ptag { padding: 3px 11px; border-radius: 20px; font-size: .78rem; font-weight: 600; color: #fff; }
+    .ptag.orange { background: #ff6600; }
+    .ptag.green  { background: #28a745; }
+    .ptag.blue   { background: #007bff; }
+    .ptag.none   { background: transparent; color: #aaa; font-weight: 400; font-size: .85rem; }
+
+    .pdf-btn {
+      margin-top: 16px; padding: 9px 18px; background: #222; color: #fff;
+      border: none; border-radius: 8px; cursor: pointer; font-size: .9rem;
+      transition: background .2s;
+    }
+    .pdf-btn:hover { background: #444; }
+
+    /* Saved plans */
+    .saved-panel {
+      background: #fff; border-radius: 16px; padding: 32px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.09);
+    }
+    .saved-panel h2 { font-size: 1.3rem; color: #222; margin-bottom: 20px; }
+    .plans-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 16px;
+    }
+    .saved-card {
+      background: #fafafa; border-radius: 10px; padding: 18px;
+      border-top: 3px solid #ff6600; transition: transform .25s, box-shadow .25s;
+    }
+    .saved-card:hover { transform: translateY(-4px); box-shadow: 0 6px 18px rgba(0,0,0,.1); }
+    .saved-card h3 { color: #ff6600; font-size: .95rem; margin-bottom: 8px; }
+    .saved-card p  { font-size: .83rem; color: #666; margin-bottom: 4px; }
+    .card-btns { display: flex; gap: 7px; margin-top: 12px; }
+    .card-btns button {
+      flex: 1; padding: 6px; border: none; border-radius: 7px;
+      cursor: pointer; font-size: .82rem; font-weight: 600; transition: opacity .2s;
+    }
+    .card-btns button:hover { opacity: .85; }
+    .btn-pdf { background: #222; color: #fff; }
+    .btn-del { background: #dc3545; color: #fff; }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="container">
+      <h2 class="brand-title">Surat City Tourism</h2>
+      <div class="nav-menu" style="display:flex;align-items:center;">
+        <a href="index.html">Home</a>
+        <a href="attractions.html">Attractions</a>
+        <a href="culture.html">Culture</a>
+        <a href="food.html">Food</a>
+        <a href="events.html">Live Events</a>
+        <a href="itinerary.html" class="active">Plan Trip</a>
+        <a href="contact.html">Contact</a>
+        <a href="login.html" class="nav-login-link" id="loginLink">Login</a>
+        <div class="user-avatar-wrapper" id="avatarWrapper" style="display:none;">
+          <button class="user-avatar-btn" id="avatarBtn" title="Account">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 12c2.7 0 5-2.3 5-5s-2.3-5-5-5-5 2.3-5 5 2.3 5 5 5zm0 2c-3.3 0-10 1.7-10 5v2h20v-2c0-3.3-6.7-5-10-5z"/>
+            </svg>
+          </button>
+          <div class="user-dropdown" id="userDropdown">
+            <div class="user-email-label" id="dropdownEmail"></div>
+            <a href="dashboard.html">🗂️ Dashboard</a>
+            <a href="itinerary.html">🗺️ My Itineraries</a>
+            <button class="dropdown-item logout-item" id="logoutBtn">🚪 Logout</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="itin-hero">
+    <h1>Plan Your Dream Trip ✈️</h1>
+    <p>Build your perfect Surat experience and download it as a PDF</p>
+  </div>
+
+  <div class="itin-body">
+
+    <!-- LEFT: Form -->
+    <div class="form-card">
+      <h2>📋 Create Itinerary</h2>
+
+      <div class="fg">
+        <label>Your Email</label>
+        <input type="email" id="email" placeholder="you@example.com">
+      </div>
+      <div class="fg">
+        <label>Travel Date</label>
+        <input type="date" id="date">
+      </div>
+      <div class="fg">
+        <label>Places to Visit</label>
+        <input type="text" id="places" placeholder="e.g. Dumas Beach, Surat Fort">
+      </div>
+      <div class="fg">
+        <label>Events to Attend</label>
+        <input type="text" id="events" placeholder="e.g. Navratri, Kite Festival">
+      </div>
+      <div class="fg">
+        <label>Food to Try</label>
+        <input type="text" id="food" placeholder="e.g. Locho, Undhiyo, Thali">
+      </div>
+
+      <button class="gen-btn" id="submitBtn" onclick="submitItinerary()">Generate Plan 🚀</button>
+      <div id="formMsg"></div>
+    </div>
+
+    <!-- RIGHT: Preview + Saved -->
+    <div class="right-col">
+
+      <!-- Live Preview -->
+      <div class="preview-panel">
+        <h2>🌍 Live Preview</h2>
+        <div id="previewContent">
+          <div class="preview-empty">
+            <span class="ei">🗺️</span>
+            <span>Fill in the form — your itinerary preview will appear here instantly!</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Saved Plans -->
+      <div class="saved-panel">
+        <h2>📁 Your Saved Plans</h2>
+        <div id="plansContainer" class="plans-grid">
+          <p style="color:#aaa;font-size:.9rem">Login and start creating plans to see them here.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <footer class="footer" style="margin-top:50px">
+    <div class="container">
+      <p>© 2025 Surat City Tourism. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="nav-avatar.js"></script>
+  <script>
+const API = "http://127.0.0.1:5000";
+
+// ── Live preview as user types ────────────────────────────────────────────────
+["email","date","places","events","food"].forEach(id => {
+  document.getElementById(id).addEventListener("input", updatePreview);
+});
+
+function updatePreview() {
+  const date   = document.getElementById("date").value;
+  const places = splitTrim(document.getElementById("places").value);
+  const events = splitTrim(document.getElementById("events").value);
+  const food   = splitTrim(document.getElementById("food").value);
+
+  // Only show preview once at least date or one field has content
+  if (!date && !places.length && !events.length && !food.length) {
+    document.getElementById("previewContent").innerHTML = `
+      <div class="preview-empty">
+        <span class="ei">🗺️</span>
+        <span>Fill in the form — your itinerary preview will appear here instantly!</span>
+      </div>`;
+    return;
+  }
+
+  renderPreview({ dates: date || "—", places, events, food }, false);
+}
+
+function splitTrim(str) {
+  return str.split(",").map(s => s.trim()).filter(Boolean);
+}
+
+function renderPreview(data, saved) {
+  const makeTags = (arr, cls) => arr.length
+    ? arr.map(i => `<span class="ptag ${cls}">${i}</span>`).join("")
+    : `<span class="ptag none">None</span>`;
+
+  document.getElementById("previewContent").innerHTML = `
+    <div class="filled-preview">
+      <h3>✈️ Your Surat Itinerary</h3>
+      <div class="prow"><span class="plabel">📅 Date</span><span>${data.dates}</span></div>
+      <div class="prow"><span class="plabel">📍 Places</span><div class="ptags">${makeTags(data.places,"orange")}</div></div>
+      <div class="prow"><span class="plabel">🎉 Events</span><div class="ptags">${makeTags(data.events,"green")}</div></div>
+      <div class="prow"><span class="plabel">🍽️ Food</span><div class="ptags">${makeTags(data.food,"blue")}</div></div>
+      ${saved ? '<p style="font-size:.8rem;color:#28a745;margin-top:8px">✅ Saved to your account</p>' : '<p style="font-size:.8rem;color:#888;margin-top:8px">Click "Generate Plan" to save this</p>'}
+      <button class="pdf-btn" id="previewPdfBtn">📄 Download PDF</button>
+    </div>`;
+
+  document.getElementById("previewPdfBtn").addEventListener("click", () => downloadPDF(data));
+}
+
+// ── Submit ────────────────────────────────────────────────────────────────────
+async function submitItinerary() {
+  const email  = document.getElementById("email").value.trim();
+  const date   = document.getElementById("date").value;
+  const msgEl  = document.getElementById("formMsg");
+  const btn    = document.getElementById("submitBtn");
+  const places = splitTrim(document.getElementById("places").value);
+  const events = splitTrim(document.getElementById("events").value);
+  const food   = splitTrim(document.getElementById("food").value);
+
+  if (!email || !date) {
+    msgEl.innerHTML = '<div class="error-msg">⚠️ Please enter your email and travel date.</div>';
+    return;
+  }
+
+  renderPreview({ dates: date, places, events, food }, false);
+  localStorage.setItem("userEmail", email);
+
+  btn.disabled = true; btn.textContent = "Saving...";
+
+  try {
+    const res  = await fetch(`${API}/plan-trip`, {
+      method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, dates: date, places, events, food })
+    });
+    const data = await res.json();
+
+    if (res.ok) {
+      msgEl.innerHTML = '<div class="success-msg">✅ Plan saved!</div>';
+      renderPreview({ dates: date, places, events, food }, true);
+      // Clear inputs except email
+      ["date","places","events","food"].forEach(id => document.getElementById(id).value = "");
+      loadPlans(email);
+    } else {
+      msgEl.innerHTML = `<div class="error-msg">⚠️ ${data.error || "Could not save."}</div>`;
+    }
+  } catch {
+    msgEl.innerHTML = '<div class="error-msg">📴 Offline — preview shown but not saved.</div>';
+    renderPreview({ dates: date, places, events, food }, false);
+  } finally {
+    btn.disabled = false; btn.textContent = "Generate Plan 🚀";
+  }
+}
+
+// ── Load saved plans ──────────────────────────────────────────────────────────
+async function loadPlans(email) {
+  const c = document.getElementById("plansContainer");
+  try {
+    const res  = await fetch(`${API}/get-plans?email=${encodeURIComponent(email)}`);
+    const data = await res.json();
+
+    if (!data.length) {
+      c.innerHTML = "<p style='color:#aaa;font-size:.9rem'>No saved plans yet. Create one!</p>";
+      return;
+    }
+    c.innerHTML = "";
+    data.forEach(plan => {
+      const card = document.createElement("div");
+      card.className = "saved-card";
+      card.id = "plan-" + plan.id;
+      card.innerHTML = `
+        <h3>📅 ${plan.dates}</h3>
+        <p>📍 ${(plan.places||[]).join(", ") || "No places"}</p>
+        <p>🎉 ${(plan.events||[]).join(", ") || "No events"}</p>
+        <p>🍽️ ${(plan.food||[]).join(", ") || "No food"}</p>
+        <div class="card-btns">
+          <button class="btn-pdf">📄 PDF</button>
+          <button class="btn-del">🗑️ Delete</button>
+        </div>`;
+      card.querySelector(".btn-pdf").addEventListener("click", () => downloadPDF(plan));
+      card.querySelector(".btn-del").addEventListener("click", () => deletePlan(plan.id, email));
+      c.appendChild(card);
+    });
+  } catch {
+    c.innerHTML = "<p style='color:#aaa;font-size:.9rem'>Connect to backend to see saved plans.</p>";
+  }
+}
+
+async function deletePlan(id, email) {
+  if (!confirm("Delete this plan?")) return;
+  try {
+    const res = await fetch(`${API}/delete-plan/${id}`, {
+      method: "DELETE", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email })
+    });
+    if (res.ok) document.getElementById("plan-" + id)?.remove();
+  } catch { alert("Backend not connected."); }
+}
+
+// ── PDF ───────────────────────────────────────────────────────────────────────
+function downloadPDF(plan) {
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF();
+  let y = 20;
+  doc.setFontSize(20); doc.setTextColor(255,102,0); doc.text("Surat City Tourism", 10, y);
+  y += 10; doc.setFontSize(13); doc.setTextColor(60,60,60); doc.text("Travel Itinerary", 10, y);
+  y += 12; doc.setFontSize(11); doc.text(`Date: ${plan.dates}`, 10, y);
+
+  const section = (label, arr) => {
+    y += 10; doc.setFontSize(12); doc.setTextColor(255,102,0); doc.text(label, 10, y);
+    doc.setTextColor(60,60,60); y += 7;
+    (arr||[]).forEach(i => { doc.text("  • " + i, 10, y); y += 7; });
+    if (!(arr||[]).length) { doc.text("  None", 10, y); y += 7; }
+  };
+  section("Places to Visit:", plan.places);
+  section("Events:", plan.events);
+  section("Food to Try:", plan.food);
+
+  y += 8; doc.setFontSize(9); doc.setTextColor(160,160,160);
+  doc.text("Generated by Surat City Tourism © 2025", 10, y);
+  doc.save("surat-itinerary.pdf");
+}
+
+// ── Init ──────────────────────────────────────────────────────────────────────
+document.addEventListener("DOMContentLoaded", () => {
+  const email = localStorage.getItem("userEmail");
+  if (email) {
+    document.getElementById("email").value = email;
+    loadPlans(email);
+  }
+});
+  </script>
+</body>
+</html>

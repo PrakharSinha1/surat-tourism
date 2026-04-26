@@ -1,0 +1,70 @@
+body {
+    font-family: Arial;
+    background: #121212;
+    color: white;
+    padding: 20px;
+}
+
+.card-container {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.plan-card {
+    background: #1e1e2f;
+    padding: 20px;
+    border-radius: 15px;
+    width: 250px;
+    transition: 0.3s;
+}
+
+/* 🔥 WOBBLE */
+.plan-card:hover {
+    animation: wobble 0.4s;
+}
+/* Admin Cards */
+.admin-card {
+    background: #1e1e2f;
+    padding: 20px;
+    border-radius: 15px;
+    width: 260px;
+    transition: 0.3s;
+    position: relative;
+}
+
+/* Buttons */
+.card-actions {
+    margin-top: 10px;
+    display: flex;
+    gap: 10px;
+}
+
+.approve-btn {
+    background: #28a745;
+    border: none;
+    padding: 8px;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.reject-btn {
+    background: #dc3545;
+    border: none;
+    padding: 8px;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+/* Hover wobble */
+.admin-card:hover {
+    animation: wobble 0.4s;
+}
+
+@keyframes wobble {
+    25% { transform: rotate(3deg); }
+    50% { transform: rotate(-3deg); }
+    75% { transform: rotate(2deg); }
+}

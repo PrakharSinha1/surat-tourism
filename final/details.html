@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Explore Details - Surat Tourism</title>
+  <link rel="stylesheet" href="simple-surat-tourism.css">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="container">
+      <h2 class="brand-title">Surat City Tourism</h2>
+      <div class="nav-menu" style="display:flex;align-items:center;">
+                <a href="index.html">Home</a>
+                <a href="attractions.html">Attractions</a>
+                <a href="culture.html">Culture</a>
+                <a href="food.html">Food</a>
+                <a href="events.html">Live Events</a>
+                <a href="itinerary.html">Plan Trip</a>
+                <!-- LOGIN LINK (shown when logged out) -->
+                <a href="login.html" class="nav-login-link" id="loginLink">Login</a>
+                <!-- AVATAR DROPDOWN (shown when logged in) -->
+                <div class="user-avatar-wrapper" id="avatarWrapper" style="display:none;">
+                  <button class="user-avatar-btn" id="avatarBtn" title="Account">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M12 12c2.7 0 5-2.3 5-5s-2.3-5-5-5-5 2.3-5 5 2.3 5 5 5zm0 2c-3.3 0-10 1.7-10 5v2h20v-2c0-3.3-6.7-5-10-5z"/>
+                    </svg>
+                  </button>
+                  <div class="user-dropdown" id="userDropdown">
+                    <div class="user-email-label" id="dropdownEmail"></div>
+                    <a href="dashboard.html">&#128193; Dashboard</a>
+                    <a href="itinerary.html">&#128506; My Itineraries</a>
+                    <button class="dropdown-item logout-item" id="logoutBtn">&#128682; Logout</button>
+                  </div>
+                </div>
+            </div>
+    </div>
+  </nav>
+
+  <!-- Details Section -->
+  <main class="detail-container">
+    <h1 id="detail-title" class="section-title" style="text-align:center; color:#222;">
+      Loading...
+    </h1>
+
+    <img id="detail-image" src="" class="main-detail-img" alt="Location Image">
+
+    <div class="info-grid">
+
+      <!-- About -->
+      <div class="info-card" style="grid-column: 1 / -1;">
+        <h3>📜 About</h3>
+        <p id="detail-history" style="line-height:1.8;">Fetching details...</p>
+      </div>
+
+      <!-- Address -->
+      <div class="info-card">
+        <h3>📍 Address</h3>
+        <p id="detail-address">Fetching address...</p>
+      </div>
+
+      <!-- Time -->
+      <div class="info-card">
+        <h3>⏰ Timings</h3>
+        <p id="detail-time">Fetching timing...</p>
+      </div>
+
+      <!-- Travel Tip -->
+      <div class="info-card">
+        <h3>💡 Travel Tip</h3>
+        <p id="detail-tip">Fetching tip...</p>
+      </div>
+
+    </div>
+
+    <!-- Dynamic Extra Info Cards (Entry, Nearby, Price, Duration, etc.) -->
+    <div class="info-grid" id="extra-info-grid" style="margin-top:0;"></div>
+
+    <!-- Back Button -->
+    <div style="text-align: center; margin-top: 40px;">
+      <a href="javascript:history.back()" class="cta-button">← Go Back</a>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>© 2025 Surat City Tourism. All rights reserved.</p>
+  </footer>
+
+  <!-- JS -->
+  <script src="details.js"></script>
+
+  <script src="nav-avatar.js"></script>
+</body>
+</html>

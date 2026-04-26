@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Culture & Heritage - Surat City Tourism</title>
+  <link rel="stylesheet" href="simple-surat-tourism.css">
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="container">
+      <h2 class="brand-title">Surat City Tourism</h2>
+      <div class="nav-menu" style="display:flex;align-items:center;">
+                <a href="index.html">Home</a>
+                <a href="attractions.html">Attractions</a>
+                <a href="culture.html" class="active">Culture</a>
+                <a href="food.html">Food</a>
+                <a href="events.html">Live Events</a>
+                <a href="itinerary.html">Plan Trip</a>
+                <a href="contact.html">Contact</a>
+                <!-- LOGIN LINK (shown when logged out) -->
+                <a href="login.html" class="nav-login-link" id="loginLink">Login</a>
+                <!-- AVATAR DROPDOWN (shown when logged in) -->
+                <div class="user-avatar-wrapper" id="avatarWrapper" style="display:none;">
+                  <button class="user-avatar-btn" id="avatarBtn" title="Account">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M12 12c2.7 0 5-2.3 5-5s-2.3-5-5-5-5 2.3-5 5 2.3 5 5 5zm0 2c-3.3 0-10 1.7-10 5v2h20v-2c0-3.3-6.7-5-10-5z"/>
+                    </svg>
+                  </button>
+                  <div class="user-dropdown" id="userDropdown">
+                    <div class="user-email-label" id="dropdownEmail"></div>
+                    <a href="dashboard.html">&#128193; Dashboard</a>
+                    <a href="itinerary.html">&#128506; My Itineraries</a>
+                    <button class="dropdown-item logout-item" id="logoutBtn">&#128682; Logout</button>
+                  </div>
+                </div>
+            </div>
+    </div>
+  </nav>
+
+  <!-- Section -->
+  <section class="content-section">
+    <div class="container">
+      <h2 class="section-title">Vibrant Culture & Heritage</h2>
+      <p style="text-align: center; color: #666; margin-bottom: 30px;">
+        Surat blends tradition with celebration. Explore festivals, heritage, and cultural life.
+      </p>
+
+      <div class="photo-grid">
+
+        <!-- Heritage -->
+        <a href="details.html?id=heritage" class="detail-link">
+          <div class="photo-card">
+            <img src="/final/images/Slider0-2.jpg" alt="Heritage">
+            <div class="photo-overlay">
+              <h4>🏛️ Heritage Landmarks</h4>
+              <p>Dutch cemeteries & Mughal-era structures</p>
+            </div>
+          </div>
+        </a>
+
+        <!-- Kite Festival -->
+        <a href="details.html?id=kite-festival" class="detail-link">
+          <div class="photo-card">
+            <img src="/final/images/kitee.jpg" alt="Kite Festival">
+            <div class="photo-overlay">
+              <h4>🎉 Uttarayan</h4>
+              <p>Sky filled with vibrant kites</p>
+            </div>
+          </div>
+        </a>
+
+        <!-- Navratri -->
+        <a href="details.html?id=navratri" class="detail-link">
+          <div class="photo-card">
+            <img src="/final/images/Mashaal-Garba-Celebration-jamnagar.jpg" alt="Navratri">
+            <div class="photo-overlay">
+              <h4>💃 Navratri Garba</h4>
+              <p>Dance, music & energy all night</p>
+            </div>
+          </div>
+        </a>
+
+        <!-- Ganpati -->
+        <a href="details.html?id=ganpati" class="detail-link">
+          <div class="photo-card">
+            <img src="/final/images/Ganpati.jpeg" alt="Ganesh Chaturthi">
+            <div class="photo-overlay">
+              <h4>🌸 Ganesh Utsav</h4>
+              <p>Grand celebrations & visarjan</p>
+            </div>
+          </div>
+        </a>
+
+        <!-- NEW 1 -->
+        <a href="details.html?id=chandi-padvo" class="detail-link">
+          <div class="photo-card">
+            <img src="/final/images/sharad-purnima-2025-1759685044.webp" alt="Chandi Padvo">
+            <div class="photo-overlay">
+              <h4>🌕 Chandi Padvo</h4>
+              <p>Sharad Purnima night celebrations</p>
+            </div>
+          </div>
+        </a>
+
+        <!-- NEW 2 -->
+        <a href="details.html?id=ramzan-food" class="detail-link">
+          <div class="photo-card">
+            <img src="/final/images/Ramzan.jpg" alt="Ramzan Nights">
+            <div class="photo-overlay">
+              <h4>🌙 Ramzan Nights</h4>
+              <p>Late-night food & culture vibes</p>
+            </div>
+          </div>
+        </a>
+
+        <!-- NEW 3 -->
+        <a href="details.html?id=jain-temples" class="detail-link">
+          <div class="photo-card">
+            <img src="/final/images/Jain-temple.jpg" alt="Jain Temples">
+            <div class="photo-overlay">
+              <h4>🛕 Jain Temples</h4>
+              <p>Spiritual architecture & peace</p>
+            </div>
+          </div>
+        </a>
+
+        <!-- NEW 4 -->
+        <a href="details.html?id=handicrafts" class="detail-link">
+          <div class="photo-card">
+            <img src="/final/images/Textile.avif" alt="Textile Culture">
+            <div class="photo-overlay">
+              <h4>🧵 Textile Heritage</h4>
+              <p>Silk, zari & embroidery art</p>
+            </div>
+          </div>
+        </a>
+
+        <!-- Diwali in Surat -->
+        <a href="details.html?id=diwali-surat" class="detail-link">
+          <div class="photo-card">
+            <img src="/final/images/diwali-celebration-sparkle-stockcake.webp" alt="Diwali Surat">
+            <div class="photo-overlay">
+              <h4>🪔 Diwali in Surat</h4>
+              <p>City of lights — fireworks, rangoli & sweets</p>
+            </div>
+          </div>
+        </a>
+
+        <!-- Surati Wedding Culture -->
+        <a href="details.html?id=surati-wedding" class="detail-link">
+          <div class="photo-card">
+            <img src="/final/images/Indian_Wedding_Traditions_Rituals_and_Etiquette_for_Brides_Grooms_and_Guests_97b1e009-09d3-48ee-b636-0da63a28c9a0.webp" alt="Surati Wedding">
+            <div class="photo-overlay">
+              <h4>💍 Surati Wedding Traditions</h4>
+              <p>Grand feasts, music & age-old rituals</p>
+            </div>
+          </div>
+        </a>
+
+        <!-- Holi Festival -->
+        <a href="details.html?id=holi-surat" class="detail-link">
+          <div class="photo-card">
+            <img src="/final/images/holi.png" alt="Holi Surat">
+            <div class="photo-overlay">
+              <h4>🎨 Holi — Festival of Colours</h4>
+              <p>Streets dripping in colour, music & masti</p>
+            </div>
+          </div>
+        </a>
+
+        <!-- Armenian Church -->
+        <a href="details.html?id=armenian-church" class="detail-link">
+          <div class="photo-card">
+            <img src="/final/images/Slider0-2.jpg" alt="Armenian Church">
+            <div class="photo-overlay">
+              <h4>⛪ Armenian Church</h4>
+              <p>One of India's oldest surviving churches (1746)</p>
+            </div>
+          </div>
+        </a>
+
+        <!-- Sufi Music -->
+        <a href="details.html?id=sufi-music" class="detail-link">
+          <div class="photo-card">
+            <img src="/final/images/ramzan.jpg" alt="Sufi Music">
+            <div class="photo-overlay">
+              <h4>🎶 Sufi & Qawwali Nights</h4>
+              <p>Devotional music that touches the soul</p>
+            </div>
+          </div>
+        </a>
+
+        <!-- Rangoli & Folk Art -->
+        <a href="details.html?id=folk-art" class="detail-link">
+          <div class="photo-card">
+            <img src="/final/images/Culture-of-Gujarat.jpg" alt="Folk Art">
+            <div class="photo-overlay">
+              <h4>🎨 Folk Art & Rangoli</h4>
+              <p>Vibrant traditional art alive in every lane</p>
+            </div>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>© 2025 Surat City Tourism. All rights reserved.</p>
+  </footer>
+
+  <script src="nav-avatar.js"></script>
+</body>
+</html>

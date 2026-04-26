@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Surat Attractions - Surat City Tourism</title>
+  <link rel="stylesheet" href="simple-surat-tourism.css">
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="container">
+      <h2 class="brand-title">Surat City Tourism</h2>
+      <div class="nav-menu" style="display:flex;align-items:center;">
+                <a href="index.html">Home</a>
+                <a href="attractions.html" class="active">Attractions</a>
+                <a href="culture.html">Culture</a>
+                <a href="food.html">Food</a>
+                <a href="events.html">Live Events</a>
+                <a href="itinerary.html">Plan Trip</a>
+                <a href="contact.html">Contact</a>
+                <!-- LOGIN LINK (shown when logged out) -->
+                <a href="login.html" class="nav-login-link" id="loginLink">Login</a>
+                <!-- AVATAR DROPDOWN (shown when logged in) -->
+                <div class="user-avatar-wrapper" id="avatarWrapper" style="display:none;">
+                  <button class="user-avatar-btn" id="avatarBtn" title="Account">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M12 12c2.7 0 5-2.3 5-5s-2.3-5-5-5-5 2.3-5 5 2.3 5 5 5zm0 2c-3.3 0-10 1.7-10 5v2h20v-2c0-3.3-6.7-5-10-5z"/>
+                    </svg>
+                  </button>
+                  <div class="user-dropdown" id="userDropdown">
+                    <div class="user-email-label" id="dropdownEmail"></div>
+                    <a href="dashboard.html">&#128193; Dashboard</a>
+                    <a href="itinerary.html">&#128506; My Itineraries</a>
+                    <button class="dropdown-item logout-item" id="logoutBtn">&#128682; Logout</button>
+                  </div>
+                </div>
+            </div>
+    </div>
+  </nav>
+
+  <!-- Content -->
+  <section class="content-section">
+    <div class="container">
+      <h2 class="section-title">Explore Surat Attractions</h2>
+
+      <div class="photo-grid">
+
+        <!-- Dumas Beach -->
+        <a href="details.html?id=dumas-beach" class="detail-link">
+          <div class="photo-card">
+            <img src="/final/images/sunset-at-dumas-beach.jpg" alt="Dumas Beach">
+            <div class="photo-overlay">
+              <h4>🏖️ Dumas Beach</h4>
+              <p>Sunset views & street food vibes</p>
+            </div>
+          </div>
+        </a>
+
+        <!-- Surat Fort -->
+        <a href="details.html?id=surat-fort" class="detail-link">
+          <div class="photo-card">
+            <img src="/final/images/Surat Fort.jpeg" alt="Surat Fort">
+            <div class="photo-overlay">
+              <h4>🏰 Surat Fort</h4>
+              <p>Historic architecture & heritage</p>
+            </div>
+          </div>
+        </a>
+
+        <!-- Diamond Market -->
+        <a href="details.html?id=diamond-market" class="detail-link">
+          <div class="photo-card">
+            <img src="/final/images/diamond.jpg" alt="Diamond Market">
+            <div class="photo-overlay">
+              <h4>💎 Diamond Market</h4>
+              <p>World’s diamond processing hub</p>
+            </div>
+          </div>
+        </a>
+
+        <!-- Modern Surat -->
+        <a href="details.html?id=modern-surat" class="detail-link">
+          <div class="photo-card">
+            <img src="/final/images/attarction.jpeg" alt="Modern Surat">
+            <div class="photo-overlay">
+              <h4>🏢 Modern Surat</h4>
+              <p>Cafes, malls & nightlife</p>
+            </div>
+          </div>
+        </a>
+
+        <!-- Sarthana Nature Park -->
+        <a href="details.html?id=sarthana" class="detail-link">
+          <div class="photo-card">
+            <img src="/final/images/sarthana-national-park.jpg" alt="Sarthana Nature Park">
+            <div class="photo-overlay">
+              <h4>🦁 Sarthana Nature Park</h4>
+              <p>Green escape with zoo & trails</p>
+            </div>
+          </div>
+        </a>
+
+        <!-- Temple -->
+        <a href="details.html?id=temple" class="detail-link">
+          <div class="photo-card">
+            <img src="/final/images/temple.jpg" alt="Temple">
+            <div class="photo-overlay">
+              <h4>🛕 Ambika Niketan</h4>
+              <p>Peaceful riverside temple</p>
+            </div>
+          </div>
+        </a>
+
+        <!-- Botanical Garden -->
+        <a href="details.html?id=garden" class="detail-link">
+          <div class="photo-card">
+            <img src="/final/images/sneh-rashmi-botanical-garden-surat-tourism-entry-fee-timings-holidays-reviews-header.jpg" alt="Botanical Garden">
+            <div class="photo-overlay">
+              <h4>🌲 Botanical Garden</h4>
+              <p>Nature, greenery & calm vibes</p>
+            </div>
+          </div>
+        </a>
+
+        <!-- Vibrant Surat (UPDATED) -->
+        <a href="details.html?id=vibrant-surat" class="detail-link">
+          <div class="photo-card">
+            <img src="/final/images/DJI_20240525170609_0018_D.jpg" alt="Vibrant Surat">
+            <div class="photo-overlay">
+              <h4>✨ Vibrant Surat</h4>
+              <p>VR Mall, RahulRaj Mall & city life</p>
+            </div>
+          </div>
+        </a>
+
+        <!-- NEW CARD 1: Science Center -->
+        <a href="details.html?id=science-center" class="detail-link">
+          <div class="photo-card">
+            <img src="/final/images/science-center.jpg" alt="Science Center">
+            <div class="photo-overlay">
+              <h4>🔬 Science Center</h4>
+              <p>Interactive exhibits & planetarium</p>
+            </div>
+          </div>
+        </a>
+
+        <!-- Gopi Talav -->
+        <a href="details.html?id=gopi-talav" class="detail-link">
+          <div class="photo-card">
+            <img src="/final/images/gopi-talav.jpg" alt="Gopi Talav">
+            <div class="photo-overlay">
+              <h4>🌊 Gopi Talav</h4>
+              <p>Historic lake with musical fountain & evening lights</p>
+            </div>
+          </div>
+        </a>
+
+        <!-- Tapi Riverfront -->
+        <a href="details.html?id=tapi-riverfront" class="detail-link">
+          <div class="photo-card">
+            <img src="/final/images/tapi.jpg" alt="Tapi Riverfront">
+            <div class="photo-overlay">
+              <h4>🌊 Tapi Riverfront</h4>
+              <p>Award-winning 20 km promenade along Surat's lifeline river</p>
+            </div>
+          </div>
+        </a>
+
+        <!-- Dutch Garden -->
+        <a href="details.html?id=dutch-garden" class="detail-link">
+          <div class="photo-card">
+            <img src="/final/images/dutch-garden-surat-india-tourism-history.jpg" alt="Dutch Garden">
+            <div class="photo-overlay">
+              <h4>🏛️ Dutch Garden</h4>
+              <p>17th-century colonial cemetery — Surat's hidden history</p>
+            </div>
+          </div>
+        </a>
+
+        <!-- Hajira Beach -->
+        <a href="details.html?id=hajira-beach" class="detail-link">
+          <div class="photo-card">
+            <img src="/final/images/hazira-beach-surat-tourism-header.jpg" alt="Hajira Beach">
+            <div class="photo-overlay">
+              <h4>🏝️ Hajira Beach</h4>
+              <p>Serene industrial coastline with fishing villages & seafood</p>
+            </div>
+          </div>
+        </a>
+
+        <!-- Suvali Beach -->
+        <a href="details.html?id=suvali-beach" class="detail-link">
+          <div class="photo-card">
+            <img src="/final/images/suvali-beach-hazira-surat-surat-picnic-spots-gh4tPIVw4I.webp" alt="Suvali Beach">
+            <div class="photo-overlay">
+              <h4>🌅 Suvali Beach</h4>
+              <p>Secluded beach with golden sand & calm waves near Hazira</p>
+            </div>
+          </div>
+        </a>
+
+        <!-- Chintamani Jain Temple -->
+        <a href="details.html?id=chintamani-temple" class="detail-link">
+          <div class="photo-card">
+            <img src="/final/images/Chintamani-Jain-Temple-Surat.jpg" alt="Chintamani Jain Temple">
+            <div class="photo-overlay">
+              <h4>🛕 Chintamani Temple</h4>
+              <p>17th-century Jain marvel with intricate marble carvings</p>
+            </div>
+          </div>
+        </a>
+
+        <!-- Surat Diamond Bourse -->
+        <a href="details.html?id=surat-diamond-bourse" class="detail-link">
+          <div class="photo-card">
+            <img src="/final/images/diamond.jpg" alt="Surat Diamond Bourse">
+            <div class="photo-overlay">
+              <h4>💎 Surat Diamond Bourse</h4>
+              <p>World's largest office building — the global diamond hub</p>
+            </div>
+          </div>
+        </a>
+
+        <!-- Sardar Patel Museum -->
+        <a href="details.html?id=sardar-museum" class="detail-link">
+          <div class="photo-card">
+            <img src="/final/images/sardar-patel-museum-header-surat-tourism.jpg" alt="Sardar Patel Museum">
+            <div class="photo-overlay">
+              <h4>🏛️ Sardar Patel Museum</h4>
+              <p>Tribute to the Iron Man of India — history & artefacts</p>
+            </div>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p>© 2025 Surat City Tourism. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="nav-avatar.js"></script>
+</body>
+</html>

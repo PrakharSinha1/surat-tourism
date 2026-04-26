@@ -1,0 +1,481 @@
+/* Simple Surat City Tourism CSS */
+
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background: #F5F2E8;
+    color: #4A3C28;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+}
+
+/* Container */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Navigation */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: rgba(245, 242, 232, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(139, 115, 85, 0.1);
+    padding: 1rem 0;
+    z-index: 1000;
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.brand-title {
+    background: linear-gradient(135deg, #E88B47, #F9E5D3);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.nav-menu {
+    display: flex;
+    gap: 2rem;
+}
+
+.nav-link {
+    color: #4A3C28;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.nav-link:hover {
+    color: #E88B47;
+}
+
+.nav-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.nav-toggle span {
+    width: 25px;
+    height: 3px;
+    background: #4A3C28;
+    margin: 3px 0;
+    transition: 0.3s;
+}
+
+/* Hero Section */
+.hero-section {
+    background: linear-gradient(135deg, #F5F2E8, #FDF7E0, #F9E5D3);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 120px 0 80px;
+}
+
+.hero-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+.hero-title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    color: #4A3C28;
+}
+
+.text-gradient {
+    background: linear-gradient(135deg, #E88B47, #F9E5D3);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 700;
+}
+
+.hero-subtitle {
+    font-size: 1.25rem;
+    font-weight: 300;
+    color: #8B7355;
+    margin-bottom: 2rem;
+    max-width: 500px;
+}
+
+.cta-button {
+    background: #E88B47;
+    border: none;
+    border-radius: 50px;
+    padding: 1rem 2rem;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    font-size: 1rem;
+    margin-bottom: 1rem;
+}
+
+.cta-button:hover {
+    background: #D4793A;
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+}
+
+.hero-tagline {
+    font-style: italic;
+    color: #8B7355;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+}
+
+.hero-image {
+    position: relative;
+}
+
+.hero-image img {
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+    border-radius: 1.5rem;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+}
+
+.image-caption {
+    position: absolute;
+    bottom: 1.5rem;
+    left: 1.5rem;
+    color: white;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 1rem;
+    border-radius: 1rem;
+    backdrop-filter: blur(10px);
+}
+
+.image-caption h5 {
+    margin-bottom: 0.5rem;
+    font-size: 1.25rem;
+}
+
+.image-caption p {
+    margin: 0;
+    opacity: 0.9;
+}
+
+/* Content Section */
+.content-section {
+    background: #F5F2E8;
+    padding: 80px 0;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.section-title {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: #4A3C28;
+}
+
+.section-subtitle {
+    font-size: 1.25rem;
+    color: #8B7355;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Attractions Grid */
+.attractions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-bottom: 4rem;
+}
+
+.attraction-card {
+    border: none;
+    border-radius: 1.5rem;
+    padding: 2rem;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    height: 100%;
+    text-align: center;
+}
+
+.attraction-card.heritage { background: #F5F2E8; }
+.attraction-card.culinary { background: #F9E5D3; }
+.attraction-card.diamond { background: #FDF7E0; }
+.attraction-card.modern { background: #F5F2E8; }
+
+.attraction-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+}
+
+.card-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.card-title {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    color: #4A3C28;
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+}
+
+.card-text {
+    color: #8B7355;
+    line-height: 1.6;
+}
+
+/* Photo Grid */
+.photo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 2rem;
+}
+
+.photo-card {
+    position: relative;
+    border-radius: 1.5rem;
+    overflow: hidden;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.photo-card img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.photo-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+    color: white;
+    padding: 2rem 1.5rem 1.5rem;
+}
+
+.photo-overlay h4 {
+    margin-bottom: 0.5rem;
+    font-size: 1.25rem;
+}
+
+.photo-overlay p {
+    margin: 0;
+    opacity: 0.9;
+}
+
+.photo-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+}
+
+.photo-card:hover img {
+    transform: scale(1.05);
+}
+
+/* Footer */
+.footer {
+    background: linear-gradient(135deg, #E88B47, #F9E5D3);
+    color: white;
+    padding: 4rem 0 2rem;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.footer-title {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+.footer-subtitle {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.footer-text {
+    opacity: 0.9;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+.social-icons {
+    display: flex;
+    gap: 1rem;
+}
+
+.social-icon {
+    font-size: 1.5rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.social-icon:hover {
+    transform: scale(1.2);
+}
+
+.footer-links {
+    list-style: none;
+}
+
+.footer-links li {
+    margin-bottom: 0.5rem;
+}
+
+.footer-links a {
+    color: white;
+    text-decoration: none;
+    opacity: 0.9;
+    transition: all 0.3s ease;
+}
+
+.footer-links a:hover {
+    opacity: 1;
+    color: #FDF7E0;
+}
+
+.contact-info p {
+    margin-bottom: 0.5rem;
+    opacity: 0.9;
+}
+
+.footer-bottom {
+    text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    padding-top: 2rem;
+}
+
+.love-message {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+}
+
+.copyright {
+    font-size: 0.9rem;
+    opacity: 0.75;
+    margin: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .nav-menu {
+        position: fixed;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: rgba(245, 242, 232, 0.98);
+        flex-direction: column;
+        padding: 2rem;
+        transform: translateY(-100%);
+        opacity: 0;
+        transition: all 0.3s ease;
+    }
+
+    .nav-menu.active {
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+    .nav-toggle {
+        display: flex;
+    }
+
+    .hero-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        text-align: center;
+    }
+
+    .hero-title {
+        font-size: 2.5rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1.1rem;
+    }
+
+    .section-title {
+        font-size: 2.5rem;
+    }
+
+    .section-subtitle {
+        font-size: 1.1rem;
+    }
+
+    .hero-image img {
+        height: 300px;
+    }
+
+    .photo-card img {
+        height: 250px;
+    }
+
+    .attractions-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .photo-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero-title {
+        font-size: 2rem;
+    }
+
+    .section-title {
+        font-size: 2rem;
+    }
+
+    .cta-button {
+        padding: 0.75rem 1.5rem;
+    }
+
+    .container {
+        padding: 0 15px;
+    }
+}
