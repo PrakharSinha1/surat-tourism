@@ -14,6 +14,7 @@ CORS(app, origins=[
     "http://127.0.0.1:5500",
     "http://localhost:5500",
     "http://127.0.0.1:3000",
+    "https://surat-tourism-api-ps.onrender.com",
     "https://your-site.netlify.app",   # ← UPDATE after Netlify deploy
     "*"                                 # ← REMOVE after adding real URL
 ])
