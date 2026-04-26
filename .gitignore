@@ -17,3 +17,10 @@ Thumbs.db
 # IDE
 .vscode/
 .idea/
+final/images/
+*.jpg
+*.jpeg
+*.png
+*.avif
+*.webp
+*.JPG
