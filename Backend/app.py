@@ -73,7 +73,7 @@ def create_tables():
                 event_date  TEXT,
                 time        TEXT,
                 image_url   TEXT,
-                detail_id   TEXT
+                detail_id   TEXT UNIQUE
             )
         """)
 
@@ -100,37 +100,43 @@ def create_tables():
         )
         conn.commit()
 
-        # ── Seed default live events if table is empty ──────────────────────
-        count = c.execute("SELECT COUNT(*) FROM live_events").fetchone()[0]
-        if count == 0:
-            default_events = [
-                ("Bluffmaster Gujjubhai",
-                 "Gujarati comedy play full of twists & laughter.",
-                 "Sanjeev Kumar Auditorium", "2026-03-25", "9:30 PM",
-                 "images/event1.jpg", "gujjubhai"),
-                ("Krishna – Radhe Se Ranbhumi Tak",
-                 "Mythology meets theatre in a grand show.",
-                 "Sanjeev Kumar Auditorium", "2026-04-17", "7:30 PM",
-                 "images/event2.avif", "krishna-show"),
-                ("Gujaratipanu",
-                 "Relatable Gujarati stand-up comedy.",
-                 "Osari", "2026-04-04", "8:00 PM",
-                 "images/event3.jpg", "amit-khuva"),
-                ("Usha Uthup Live",
-                 "Iconic voice with electrifying performance.",
-                 "Jambna Party Plot", "2026-04-04", "7:00 PM",
-                 "images/event4.jpg", "usha-uthup"),
-                ("Acting Workshop (Kids)",
-                 "Fun acting & creativity session for kids.",
-                 "Unvind Studio", "2026-03-22", "5:00 PM",
-                 "images/event5.jpg", "kids-acting"),
-            ]
-            c.executemany("""
-                INSERT INTO live_events
-                    (title, description, venue, event_date, time, image_url, detail_id)
-                VALUES (?,?,?,?,?,?,?)
-            """, default_events)
-            conn.commit()
+        # ── Seed default live events (INSERT OR IGNORE prevents duplicates) ──
+        default_events = [
+            ("Bluffmaster Gujjubhai",
+             "Gujarati comedy play full of twists & laughter.",
+             "Sanjeev Kumar Auditorium", "2026-03-25", "9:30 PM",
+             "images/event1.jpg", "gujjubhai"),
+            ("Krishna – Radhe Se Ranbhumi Tak",
+             "Mythology meets theatre in a grand show.",
+             "Sanjeev Kumar Auditorium", "2026-04-17", "7:30 PM",
+             "images/event2.avif", "krishna-show"),
+            ("Gujaratipanu",
+             "Relatable Gujarati stand-up comedy.",
+             "Osari", "2026-04-04", "8:00 PM",
+             "images/event3.jpg", "amit-khuva"),
+            ("Usha Uthup Live",
+             "Iconic voice with electrifying performance.",
+             "Jambna Party Plot", "2026-04-04", "7:00 PM",
+             "images/event4.jpg", "usha-uthup"),
+            ("Acting Workshop (Kids)",
+             "Fun acting & creativity session for kids.",
+             "Unvind Studio", "2026-03-22", "5:00 PM",
+             "images/event5.jpg", "kids-acting"),
+        ]
+        c.executemany("""
+            INSERT OR IGNORE INTO live_events
+                (title, description, venue, event_date, time, image_url, detail_id)
+            VALUES (?,?,?,?,?,?,?)
+        """, default_events)
+
+        # Fix any existing events with wrong image_url
+        for ev in default_events:
+            c.execute("""
+                UPDATE live_events SET image_url=?, title=?, description=?, venue=?, event_date=?, time=?
+                WHERE detail_id=?
+            """, (ev[5], ev[0], ev[1], ev[2], ev[3], ev[4], ev[6]))
+
+        conn.commit()
 
 create_tables()
 
