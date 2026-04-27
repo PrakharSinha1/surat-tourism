@@ -5,9 +5,9 @@ __pycache__/
 .env
 venv/
 env/
+.venv/
 
-# SQLite - don't commit the DB (it resets on Render anyway)
-# Comment out the line below if you want to commit initial seed data
+# SQLite - kept in repo for Render seed data
 # database.db
 
 # OS
@@ -17,10 +17,6 @@ Thumbs.db
 # IDE
 .vscode/
 .idea/
-final/images/
-*.jpg
-*.jpeg
-*.png
-*.avif
-*.webp
-*.JPG
+
+# Virtual env config
+pyvenv.cfg
