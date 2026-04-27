@@ -258,7 +258,7 @@
     <div class="mfg"><label>Venue</label><input type="text" id="mVenue" placeholder="Venue name"></div>
     <div class="mfg"><label>Date</label><input type="date" id="mDate"></div>
     <div class="mfg"><label>Time</label><input type="text" id="mTime" placeholder="e.g. 8:00 PM"></div>
-    <div class="mfg"><label>Image URL</label><input type="text" id="mImage" placeholder="/final/images/event1.jpg"></div>
+    <div class="mfg"><label>Image URL</label><input type="text" id="mImage" placeholder="images/event1.jpg"></div>
     <div class="modal-actions">
       <button class="modal-save" onclick="saveEvent()">Save</button>
       <button class="modal-cancel" onclick="closeModal()">Cancel</button>
@@ -444,7 +444,7 @@ async function saveEvent() {
     venue: document.getElementById("mVenue").value.trim(),
     event_date: document.getElementById("mDate").value,
     time: document.getElementById("mTime").value.trim(),
-    image_url: document.getElementById("mImage").value.trim() || "/final/images/event1.jpg"
+    image_url: document.getElementById("mImage").value.trim() || "images/event1.jpg"
   };
   try {
     const res = await fetch(id ? `${API}/live-events/${id}` : `${API}/live-events`, {

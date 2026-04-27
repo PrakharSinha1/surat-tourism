@@ -179,7 +179,7 @@ body {
    ========================================================================== */
 .hero-section {
   background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), 
-              url('/final/images/hero.avif') no-repeat center/cover;
+              url('images/hero.avif') no-repeat center/cover;
   color: #fff;
   text-align: left;
   padding: 120px 20px;

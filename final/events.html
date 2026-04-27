@@ -195,7 +195,7 @@
     </div>
     <div class="modal-field">
       <label>Image URL (optional)</label>
-      <input type="text" id="mImage" placeholder="/final/images/event1.jpg">
+      <input type="text" id="mImage" placeholder="images/event1.jpg">
     </div>
 
     <div class="modal-actions">
@@ -242,9 +242,9 @@ async function loadEvents() {
       <div class="event-wrapper">
         <a href="details.html?id=${ev.detail_id || 'event'}" class="detail-link">
           <div class="photo-card">
-            <img src="${ev.image_url || '/final/images/event1.jpg'}"
+            <img src="${ev.image_url || 'images/event1.jpg'}"
                  alt="${ev.title}"
-                 onerror="this.src='/final/images/event1.jpg'">
+                 onerror="this.src='images/event1.jpg'">
             <div class="photo-overlay">
               <h4>🎭 ${ev.title}</h4>
               <p>${ev.description || ''}</p>
@@ -307,7 +307,7 @@ async function saveEvent() {
     venue:       document.getElementById("mVenue").value.trim(),
     event_date:  document.getElementById("mDate").value,
     time:        document.getElementById("mTime").value.trim(),
-    image_url:   document.getElementById("mImage").value.trim() || "/final/images/event1.jpg",
+    image_url:   document.getElementById("mImage").value.trim() || "images/event1.jpg",
   };
 
   try {
