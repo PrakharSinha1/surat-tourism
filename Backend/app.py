@@ -460,6 +460,38 @@ def get_users():
         return jsonify([{"id": r[0], "email": r[1], "is_admin": bool(r[2])} for r in rows])
     except Exception as e:
         return jsonify({"error": str(e)}), 500
+
+@app.route("/admin/cleanup-events")
+def cleanup_events():
+    """One-time GET route to clean duplicate events — delete after use"""
+    try:
+        with connect_db() as conn:
+            c = conn.cursor()
+            # Delete all, then reseed via INSERT OR IGNORE
+            c.execute("DELETE FROM live_events")
+            c.execute("DELETE FROM sqlite_sequence WHERE name='live_events'")
+            default_events = [
+                ("Bluffmaster Gujjubhai", "Gujarati comedy play full of twists & laughter.",
+                 "Sanjeev Kumar Auditorium", "2026-03-25", "9:30 PM", "images/event1.jpg", "gujjubhai"),
+                ("Krishna - Radhe Se Ranbhumi Tak", "Mythology meets theatre in a grand show.",
+                 "Sanjeev Kumar Auditorium", "2026-04-17", "7:30 PM", "images/event2.avif", "krishna-show"),
+                ("Gujaratipanu", "Relatable Gujarati stand-up comedy.",
+                 "Osari", "2026-04-04", "8:00 PM", "images/event3.jpg", "amit-khuva"),
+                ("Usha Uthup Live", "Iconic voice with electrifying performance.",
+                 "Jambna Party Plot", "2026-04-04", "7:00 PM", "images/event4.jpg", "usha-uthup"),
+                ("Acting Workshop (Kids)", "Fun acting & creativity session for kids.",
+                 "Unvind Studio", "2026-03-22", "5:00 PM", "images/event5.jpg", "kids-acting"),
+            ]
+            c.executemany("""
+                INSERT OR IGNORE INTO live_events
+                    (title, description, venue, event_date, time, image_url, detail_id)
+                VALUES (?,?,?,?,?,?,?)
+            """, default_events)
+            conn.commit()
+        return jsonify({"message": "Events cleaned and reseeded ✅", "count": 5})
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
 # ─── RUN ─────────────────────────────────────────────────────────────────────
 
 if __name__ == "__main__":
