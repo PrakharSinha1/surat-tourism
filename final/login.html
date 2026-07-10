@@ -3,17 +3,268 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Login - Surat Tourism</title>
-<link rel="stylesheet" href="login.css">
+<title>Login - Surat City Tourism</title>
 <style>
-  .admin-toggle-row {
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Poppins', sans-serif;
+    min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
-    margin: 14px 0 6px;
-    font-size: 0.9rem;
-    color: #ccc;
+    background: #0a0a1a;
+    overflow: hidden;
+    position: relative;
+  }
+
+  /* ── Animated background ── */
+  .bg-gradient {
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(ellipse at 20% 50%, rgba(255,102,0,0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 20%, rgba(44,44,84,0.4) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 80%, rgba(255,102,0,0.08) 0%, transparent 50%),
+                linear-gradient(135deg, #0a0a1a 0%, #1a1a2e 50%, #0d0d1f 100%);
+    z-index: 0;
+  }
+
+  /* ── Floating orbs ── */
+  .orb {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(60px);
+    opacity: 0.4;
+    z-index: 0;
+    animation: floatOrb linear infinite;
+  }
+  .orb-1 { width: 300px; height: 300px; background: rgba(255,102,0,0.3); top: -100px; left: -100px; animation-duration: 20s; }
+  .orb-2 { width: 200px; height: 200px; background: rgba(100,60,200,0.3); bottom: -50px; right: -50px; animation-duration: 25s; animation-delay: -8s; }
+  .orb-3 { width: 150px; height: 150px; background: rgba(255,102,0,0.2); top: 50%; right: 10%; animation-duration: 18s; animation-delay: -5s; }
+
+  @keyframes floatOrb {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    25% { transform: translate(30px, -30px) scale(1.05); }
+    50% { transform: translate(10px, 20px) scale(0.95); }
+    75% { transform: translate(-20px, 10px) scale(1.02); }
+  }
+
+  /* ── Particles ── */
+  .particles { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+  .particle {
+    position: absolute;
+    width: 2px; height: 2px;
+    background: rgba(255,102,0,0.6);
+    border-radius: 50%;
+    animation: particleFloat linear infinite;
+  }
+
+  @keyframes particleFloat {
+    0% { transform: translateY(100vh) scale(0); opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { transform: translateY(-10vh) scale(1); opacity: 0; }
+  }
+
+  /* ── Card ── */
+  .login-wrapper {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    max-width: 420px;
+    padding: 20px;
+    animation: cardEntrance 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+  }
+
+  @keyframes cardEntrance {
+    from { opacity: 0; transform: translateY(40px) scale(0.95); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+  }
+
+  .login-card {
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 24px;
+    padding: 40px 36px;
+    box-shadow: 0 25px 50px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.1);
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Shimmer effect on card */
+  .login-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent 30%, rgba(255,102,0,0.03) 50%, transparent 70%);
+    animation: shimmer 6s linear infinite;
+    pointer-events: none;
+  }
+
+  @keyframes shimmer {
+    0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+    100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+  }
+
+  /* ── Logo / Brand ── */
+  .brand {
+    text-align: center;
+    margin-bottom: 32px;
+  }
+
+  .brand-icon {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #ff6600, #ff4500);
+    border-radius: 16px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+    margin-bottom: 12px;
+    box-shadow: 0 8px 24px rgba(255,102,0,0.4);
+    animation: iconPulse 3s ease-in-out infinite;
+  }
+
+  @keyframes iconPulse {
+    0%, 100% { box-shadow: 0 8px 24px rgba(255,102,0,0.4); transform: scale(1); }
+    50%       { box-shadow: 0 8px 40px rgba(255,102,0,0.7); transform: scale(1.05); }
+  }
+
+  .brand h1 {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #fff;
+    letter-spacing: 0.3px;
+  }
+
+  .brand p {
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.4);
+    margin-top: 4px;
+  }
+
+  /* ── Form title ── */
+  #formTitle {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: rgba(255,255,255,0.85);
+    text-align: center;
+    margin-bottom: 24px;
+    transition: all 0.3s ease;
+  }
+
+  /* ── Admin badge ── */
+  .admin-badge {
+    display: none;
+    text-align: center;
+    margin-bottom: 16px;
+  }
+
+  .admin-badge span {
+    background: linear-gradient(135deg, #ff6600, #ff4500);
+    color: white;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 4px 14px;
+    border-radius: 20px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    box-shadow: 0 4px 12px rgba(255,102,0,0.4);
+    animation: badgePop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+
+  @keyframes badgePop {
+    from { transform: scale(0.5); opacity: 0; }
+    to   { transform: scale(1); opacity: 1; }
+  }
+
+  .admin-badge.visible { display: block; }
+
+  /* ── Input groups ── */
+  .input-group {
+    position: relative;
+    margin-bottom: 20px;
+  }
+
+  .input-group input {
+    width: 100%;
+    padding: 16px 16px 16px 48px;
+    background: rgba(255,255,255,0.06);
+    border: 1.5px solid rgba(255,255,255,0.1);
+    border-radius: 12px;
+    color: #fff;
+    font-size: 0.95rem;
+    font-family: 'Poppins', sans-serif;
+    transition: all 0.3s ease;
+    outline: none;
+  }
+
+  .input-group input:focus {
+    border-color: #ff6600;
+    background: rgba(255,102,0,0.08);
+    box-shadow: 0 0 0 3px rgba(255,102,0,0.15);
+  }
+
+  .input-group input::placeholder { color: rgba(255,255,255,0.25); }
+
+  .input-icon {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 18px;
+    pointer-events: none;
+    transition: all 0.3s ease;
+  }
+
+  .input-group input:focus ~ .input-label,
+  .input-group input:not(:placeholder-shown) ~ .input-label {
+    top: -10px;
+    left: 12px;
+    font-size: 0.72rem;
+    color: #ff6600;
+    background: #1a1a2e;
+    padding: 0 6px;
+  }
+
+  .input-label {
+    position: absolute;
+    left: 48px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.88rem;
+    color: rgba(255,255,255,0.35);
+    transition: all 0.25s ease;
+    pointer-events: none;
+    background: transparent;
+  }
+
+  /* ── Admin toggle ── */
+  .admin-toggle-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 10px;
+    padding: 10px 14px;
+    margin-bottom: 20px;
+  }
+
+  .admin-toggle-row span {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.6);
+    display: flex;
+    align-items: center;
+    gap: 8px;
   }
 
   .toggle-switch {
@@ -21,6 +272,7 @@
     width: 44px;
     height: 24px;
     display: inline-block;
+    flex-shrink: 0;
   }
 
   .toggle-switch input { opacity: 0; width: 0; height: 0; }
@@ -29,7 +281,7 @@
     position: absolute;
     cursor: pointer;
     inset: 0;
-    background: #555;
+    background: rgba(255,255,255,0.15);
     border-radius: 24px;
     transition: 0.3s;
   }
@@ -42,69 +294,171 @@
     background: white;
     border-radius: 50%;
     transition: 0.3s;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
   }
 
   .toggle-switch input:checked + .toggle-slider { background: #ff6600; }
   .toggle-switch input:checked + .toggle-slider::before { transform: translateX(20px); }
 
-  .admin-badge {
-    display: none;
-    background: #ff6600;
+  /* ── Submit button ── */
+  #authBtn {
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(135deg, #ff6600, #ff4500);
     color: white;
-    font-size: 0.72rem;
-    font-weight: 700;
-    padding: 3px 10px;
-    border-radius: 20px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    margin-bottom: 12px;
+    border: none;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    letter-spacing: 0.5px;
+    box-shadow: 0 8px 24px rgba(255,102,0,0.35);
   }
 
-  .admin-badge.visible { display: inline-block; }
+  #authBtn::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+    transition: left 0.5s ease;
+  }
+
+  #authBtn:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(255,102,0,0.5); }
+  #authBtn:hover::before { left: 100%; }
+  #authBtn:active { transform: translateY(0); }
+
+  /* ── Extra links ── */
+  .extra {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.35);
+  }
+
+  .extra a {
+    color: #ff6600;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+
+  .extra a:hover { color: #ff8533; }
 
   .back-link {
-    display: inline-block;
+    display: block;
+    text-align: center;
     margin-top: 14px;
-    font-size: 13px;
-    color: #aaa;
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.25);
     text-decoration: none;
+    transition: color 0.2s;
   }
-  .back-link:hover { color: #ff8533; }
+
+  .back-link:hover { color: rgba(255,255,255,0.6); }
+
+  /* ── Divider ── */
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 20px 0;
+  }
+
+  .divider::before, .divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(255,255,255,0.08);
+  }
+
+  .divider span {
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.25);
+  }
+
+  /* ── Error/Success msg ── */
+  .auth-msg {
+    font-size: 0.82rem;
+    text-align: center;
+    padding: 10px;
+    border-radius: 8px;
+    margin-top: 14px;
+    display: none;
+  }
+
+  .auth-msg.error { background: rgba(220,53,69,0.15); color: #ff6b7a; border: 1px solid rgba(220,53,69,0.3); display: block; }
+  .auth-msg.success { background: rgba(40,167,69,0.15); color: #5dd87a; border: 1px solid rgba(40,167,69,0.3); display: block; }
 </style>
 </head>
 
 <body>
 
-<div class="login-container">
+<!-- Background -->
+<div class="bg-gradient"></div>
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+<div class="orb orb-3"></div>
+
+<!-- Particles -->
+<div class="particles" id="particles"></div>
+
+<!-- Login Card -->
+<div class="login-wrapper">
   <div class="login-card">
 
-    <h2 id="formTitle">Login ✨</h2>
-    <div id="adminBadge" class="admin-badge">Admin Mode</div>
-
-    <div class="input-group">
-      <input type="email" id="email" required>
-      <label>Email</label>
+    <!-- Brand -->
+    <div class="brand">
+      <div class="brand-icon">🏙️</div>
+      <h1>Surat City Tourism</h1>
+      <p>Your gateway to the Diamond City</p>
     </div>
 
+    <h2 id="formTitle">Welcome back 👋</h2>
+
+    <!-- Admin badge -->
+    <div class="admin-badge" id="adminBadge">
+      <span>🛡️ Admin Mode</span>
+    </div>
+
+    <!-- Email -->
     <div class="input-group">
-      <input type="password" id="password" required>
-      <label>Password</label>
+      <span class="input-icon">📧</span>
+      <input type="email" id="email" placeholder=" " required>
+      <label class="input-label">Email address</label>
+    </div>
+
+    <!-- Password -->
+    <div class="input-group">
+      <span class="input-icon">🔒</span>
+      <input type="password" id="password" placeholder=" " required>
+      <label class="input-label">Password</label>
     </div>
 
     <!-- Admin Toggle -->
     <div class="admin-toggle-row">
-      <span>Admin Login</span>
+      <span>🛡️ Admin Login</span>
       <label class="toggle-switch">
         <input type="checkbox" id="adminToggle" onchange="toggleAdmin()">
         <span class="toggle-slider"></span>
       </label>
     </div>
 
-    <button onclick="handleAuth()" id="authBtn">Login</button>
+    <!-- Submit -->
+    <button id="authBtn" onclick="handleAuth()">Login →</button>
+
+    <!-- Message -->
+    <div class="auth-msg" id="authMsg"></div>
+
+    <div class="divider"><span>or</span></div>
 
     <p class="extra">
-      <span id="toggleText">New here?</span>
-      <a href="#" onclick="toggleMode()">Create account</a>
+      <span id="toggleText">New to Surat Tourism?</span>
+      <a href="#" onclick="toggleMode()"> Create account</a>
     </p>
 
     <a href="index.html" class="back-link">← Back to Home</a>
@@ -112,17 +466,120 @@
 </div>
 
 <script>
+// Redirect if already logged in
 if (localStorage.getItem("userEmail")) {
     window.location.href = "index.html";
 }
-</script>
-<script src="api-config.js"></script>
-<script src="login.js"></script>
-<script>
+
+// ── Generate particles ────────────────────────────────────────────────────────
+const container = document.getElementById("particles");
+for (let i = 0; i < 40; i++) {
+    const p = document.createElement("div");
+    p.className = "particle";
+    p.style.cssText = `
+        left: ${Math.random() * 100}%;
+        width: ${Math.random() * 3 + 1}px;
+        height: ${Math.random() * 3 + 1}px;
+        animation-duration: ${Math.random() * 15 + 10}s;
+        animation-delay: ${Math.random() * 15}s;
+        opacity: ${Math.random() * 0.6 + 0.2};
+    `;
+    container.appendChild(p);
+}
+
+// ── Auth logic ────────────────────────────────────────────────────────────────
+let isLogin = true;
+
+function toggleMode() {
+    isLogin = !isLogin;
+    document.getElementById("formTitle").innerText  = isLogin ? "Welcome back 👋" : "Create account 🚀";
+    document.getElementById("authBtn").innerText    = isLogin ? "Login →" : "Register →";
+    document.getElementById("toggleText").innerText = isLogin ? "New to Surat Tourism?" : "Already have an account?";
+    showMsg("", "");
+}
+
 function toggleAdmin() {
     const isAdmin = document.getElementById("adminToggle").checked;
     document.getElementById("adminBadge").classList.toggle("visible", isAdmin);
 }
+
+function showMsg(text, type) {
+    const el = document.getElementById("authMsg");
+    el.textContent = text;
+    el.className = "auth-msg" + (type ? " " + type : "");
+}
+
+async function handleAuth() {
+    const email    = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value.trim();
+    const isAdmin  = document.getElementById("adminToggle")?.checked || false;
+    const btn      = document.getElementById("authBtn");
+
+    if (!email || !password) {
+        showMsg("Please enter your email and password.", "error");
+        return;
+    }
+
+    btn.innerText = "Please wait...";
+    btn.style.opacity = "0.7";
+
+    const url = isLogin ? `${API}/login` : `${API}/register`;
+
+    try {
+        const res  = await fetch(url, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email, password, is_admin: isAdmin })
+        });
+
+        const data = await res.json();
+
+        if (!res.ok) {
+            showMsg(data.error || "Something went wrong.", "error");
+            btn.innerText = isLogin ? "Login →" : "Register →";
+            btn.style.opacity = "1";
+            return;
+        }
+
+        localStorage.setItem("userEmail", email);
+        if (isAdmin || data.is_admin) {
+            localStorage.setItem("isAdmin", "true");
+        } else {
+            localStorage.removeItem("isAdmin");
+        }
+
+        showMsg(isLogin ? "Login successful! Redirecting..." : "Account created! Redirecting...", "success");
+
+        setTimeout(() => {
+            window.location.href = (isAdmin || data.is_admin) ? "dashboard.html" : "index.html";
+        }, 800);
+
+    } catch (err) {
+        // Offline fallback
+        if (isAdmin && email === "admin@surat.com" && password === "admin123@") {
+            localStorage.setItem("userEmail", email);
+            localStorage.setItem("isAdmin", "true");
+            showMsg("Admin login successful!", "success");
+            setTimeout(() => window.location.href = "dashboard.html", 800);
+        } else if (!isAdmin) {
+            localStorage.setItem("userEmail", email);
+            localStorage.removeItem("isAdmin");
+            showMsg("Logged in (offline mode).", "success");
+            setTimeout(() => window.location.href = "index.html", 800);
+        } else {
+            showMsg("Incorrect admin credentials or server offline.", "error");
+            btn.innerText = "Login →";
+            btn.style.opacity = "1";
+        }
+    }
+}
+
+// Allow Enter key to submit
+document.addEventListener("keydown", e => {
+    if (e.key === "Enter") handleAuth();
+});
 </script>
+
+<script src="api-config.js"></script>
 </body>
 </html>
