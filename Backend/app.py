@@ -73,7 +73,7 @@ def create_tables():
                 event_date  TEXT,
                 time        TEXT,
                 image_url   TEXT,
-                detail_id   TEXT UNIQUE
+                detail_id   TEXT
             )
         """)
 
@@ -100,43 +100,42 @@ def create_tables():
         )
         conn.commit()
 
-        # ── Seed default live events (INSERT OR IGNORE prevents duplicates) ──
-        default_events = [
-            ("Bluffmaster Gujjubhai",
-             "Gujarati comedy play full of twists & laughter.",
-             "Sanjeev Kumar Auditorium", "2026-03-25", "9:30 PM",
-             "images/event1.jpg", "gujjubhai"),
-            ("Krishna – Radhe Se Ranbhumi Tak",
-             "Mythology meets theatre in a grand show.",
-             "Sanjeev Kumar Auditorium", "2026-04-17", "7:30 PM",
-             "images/event2.avif", "krishna-show"),
-            ("Gujaratipanu",
-             "Relatable Gujarati stand-up comedy.",
-             "Osari", "2026-04-04", "8:00 PM",
-             "images/event3.jpg", "amit-khuva"),
-            ("Usha Uthup Live",
-             "Iconic voice with electrifying performance.",
-             "Jambna Party Plot", "2026-04-04", "7:00 PM",
-             "images/event4.jpg", "usha-uthup"),
-            ("Acting Workshop (Kids)",
-             "Fun acting & creativity session for kids.",
-             "Unvind Studio", "2026-03-22", "5:00 PM",
-             "images/event5.jpg", "kids-acting"),
-        ]
-        c.executemany("""
-            INSERT OR IGNORE INTO live_events
-                (title, description, venue, event_date, time, image_url, detail_id)
-            VALUES (?,?,?,?,?,?,?)
-        """, default_events)
-
-        # Fix any existing events with wrong image_url
-        for ev in default_events:
-            c.execute("""
-                UPDATE live_events SET image_url=?, title=?, description=?, venue=?, event_date=?, time=?
-                WHERE detail_id=?
-            """, (ev[5], ev[0], ev[1], ev[2], ev[3], ev[4], ev[6]))
-
-        conn.commit()
+        # ── Seed default live events if table is empty ──────────────────────
+        count = c.execute("SELECT COUNT(*) FROM live_events").fetchone()[0]
+        if count == 0:
+            default_events = [
+                ("Manoj Muntashir's Krishna",
+                 "Experience the story of Krishna beyond mythology, into emotion and philosophy. Narrated live by Manoj Muntashir.",
+                 "Sanjeev Kumar Auditorium, Surat", "2026-07-11", "3:00 PM",
+                 "https://cdn-ip.allevents.in/s/rs:fill:500:250/g:sm/sh:100/aHR0cHM6Ly9jZG4tYXouYWxsZXZlbnRzLmluL2V2ZW50czEwL2Jhbm5lcnMvZWVhNGIxNDAtNWZlYi0xMWYxLTliYzAtODdhMTk1MDcxOTViLXJpbWctdzEyMDAtaDYwMC1kYzFjMTIxNC1nbWlyLmpwZz92PTE3ODA1NjAyMzU.avif",
+                 "krishna-muntashir"),
+                ("Humare Ram ft. Ashutosh Rana",
+                 "200+ shows across India. A monumental retelling of the Ramayana — now live in Surat with acclaimed actor Ashutosh Rana.",
+                 "Sanjeev Kumar Auditorium, Surat", "2026-07-18", "2:30 PM",
+                 "https://cdn-ip.allevents.in/s/rs:fill:500:250/g:sm/sh:100/aHR0cHM6Ly9jZG4tYXouYWxsZXZlbnRzLmluL2V2ZW50czkvYmFubmVycy85MzdmNDFlMC01ZmViLTExZjEtYWY2MC0wNTdmM2ZhYjllMDYtcmltZy13MTIwMC1oNjAwLWRjMWUxNDEzLWdtaXIuanBnP3Y9MTc4MDU2MDA4Mg.avif",
+                 "humare-ram"),
+                ("I Am Worth It ft. Rajat Sood",
+                 "India's Laughter Champion brings his brand-new stand-up hour about love, failure and what actually worked.",
+                 "The Green Room, Surat", "2026-07-24", "7:00 PM",
+                 "https://cdn-ip.allevents.in/s/rs:fill:500:250/g:sm/sh:100/aHR0cHM6Ly9jZG4tYXouYWxsZXZlbnRzLmluL2V2ZW50czgvYmFubmVycy8zM2NjZjdhMC02NDJlLTExZjEtOWFlZS1iYmE1YjUyNzgyZmUtcmltZy13MTIwMC1oNjAwLWRjMDUzMDJjLWdtaXIuanBnP3Y9MTc4MTAyODUwMg.avif",
+                 "rajat-sood"),
+                ("Gaurav Kapoor LIVE",
+                 "1M+ YouTube fans — one of India's most prolific stand-up comics brings his live show to Sanjeev Kumar Auditorium.",
+                 "Sanjeev Kumar Auditorium, Surat", "2026-07-26", "9:00 PM",
+                 "https://cdn-ip.allevents.in/s/rs:fill:500:250/g:sm/sh:100/aHR0cHM6Ly9jZG4tYXouYWxsZXZlbnRzLmluL2V2ZW50czEvYmFubmVycy9mY2FhY2ZkMC00YjQ3LTExZjEtYWQxMC1hZjFjMDAwMGZlODItcmltZy13MTIwMC1oNjAwLWRjZjY0NDQ0LWdtaXIuanBnP3Y9MTc3ODI5MDc5OA.avif",
+                 "gaurav-kapoor"),
+                ("Farewell: An Entropy of Separation",
+                 "Sold out in Bengaluru and Mumbai. This acclaimed theatrical experience is finally coming to Surat — book before it sells out.",
+                 "Tara Moti Hall, Surat", "2026-08-01", "8:00 PM",
+                 "https://cdn-ip.allevents.in/s/rs:fill:500:250/g:sm/sh:100/aHR0cHM6Ly9jZG4tYXouYWxsZXZlbnRzLmluL2V2ZW50czQvYmFubmVycy9mOTc3MTlhMC02NDQxLTExZjEtOWM4Ni1jM2QzMjcwZDQ5YTctcmltZy13MTIwMC1oNjAwLWRjZmZmNTI3LWdtaXIuanBnP3Y9MTc4MTAzNjk5NA.avif",
+                 "farewell-entropy"),
+            ]
+            c.executemany("""
+                INSERT INTO live_events
+                    (title, description, venue, event_date, time, image_url, detail_id)
+                VALUES (?,?,?,?,?,?,?)
+            """, default_events)
+            conn.commit()
 
 create_tables()
 
@@ -461,34 +460,52 @@ def get_users():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
-@app.route("/admin/cleanup-events")
-def cleanup_events():
-    """One-time GET route to clean duplicate events — delete after use"""
+
+
+@app.route("/admin/reset-events", methods=["POST"])
+def reset_events():
+    """Reset live events to clean seeded defaults - call once after deploy"""
     try:
         with connect_db() as conn:
             c = conn.cursor()
-            # Delete all, then reseed via INSERT OR IGNORE
+            # Clear all existing events
             c.execute("DELETE FROM live_events")
             c.execute("DELETE FROM sqlite_sequence WHERE name='live_events'")
+            # Re-insert clean defaults
             default_events = [
-                ("Bluffmaster Gujjubhai", "Gujarati comedy play full of twists & laughter.",
-                 "Sanjeev Kumar Auditorium", "2026-03-25", "9:30 PM", "images/event1.jpg", "gujjubhai"),
-                ("Krishna - Radhe Se Ranbhumi Tak", "Mythology meets theatre in a grand show.",
-                 "Sanjeev Kumar Auditorium", "2026-04-17", "7:30 PM", "images/event2.avif", "krishna-show"),
-                ("Gujaratipanu", "Relatable Gujarati stand-up comedy.",
-                 "Osari", "2026-04-04", "8:00 PM", "images/event3.jpg", "amit-khuva"),
-                ("Usha Uthup Live", "Iconic voice with electrifying performance.",
-                 "Jambna Party Plot", "2026-04-04", "7:00 PM", "images/event4.jpg", "usha-uthup"),
-                ("Acting Workshop (Kids)", "Fun acting & creativity session for kids.",
-                 "Unvind Studio", "2026-03-22", "5:00 PM", "images/event5.jpg", "kids-acting"),
+                ("Manoj Muntashir's Krishna",
+                 "Experience the story of Krishna beyond mythology, into emotion and philosophy. Narrated live by Manoj Muntashir.",
+                 "Sanjeev Kumar Auditorium, Surat", "2026-07-11", "3:00 PM",
+                 "https://cdn-ip.allevents.in/s/rs:fill:500:250/g:sm/sh:100/aHR0cHM6Ly9jZG4tYXouYWxsZXZlbnRzLmluL2V2ZW50czEwL2Jhbm5lcnMvZWVhNGIxNDAtNWZlYi0xMWYxLTliYzAtODdhMTk1MDcxOTViLXJpbWctdzEyMDAtaDYwMC1kYzFjMTIxNC1nbWlyLmpwZz92PTE3ODA1NjAyMzU.avif",
+                 "krishna-muntashir"),
+                ("Humare Ram ft. Ashutosh Rana",
+                 "200+ shows across India. A monumental retelling of the Ramayana — now live in Surat with acclaimed actor Ashutosh Rana.",
+                 "Sanjeev Kumar Auditorium, Surat", "2026-07-18", "2:30 PM",
+                 "https://cdn-ip.allevents.in/s/rs:fill:500:250/g:sm/sh:100/aHR0cHM6Ly9jZG4tYXouYWxsZXZlbnRzLmluL2V2ZW50czkvYmFubmVycy85MzdmNDFlMC01ZmViLTExZjEtYWY2MC0wNTdmM2ZhYjllMDYtcmltZy13MTIwMC1oNjAwLWRjMWUxNDEzLWdtaXIuanBnP3Y9MTc4MDU2MDA4Mg.avif",
+                 "humare-ram"),
+                ("I Am Worth It ft. Rajat Sood",
+                 "India's Laughter Champion brings his brand-new stand-up hour about love, failure and what actually worked.",
+                 "The Green Room, Surat", "2026-07-24", "7:00 PM",
+                 "https://cdn-ip.allevents.in/s/rs:fill:500:250/g:sm/sh:100/aHR0cHM6Ly9jZG4tYXouYWxsZXZlbnRzLmluL2V2ZW50czgvYmFubmVycy8zM2NjZjdhMC02NDJlLTExZjEtOWFlZS1iYmE1YjUyNzgyZmUtcmltZy13MTIwMC1oNjAwLWRjMDUzMDJjLWdtaXIuanBnP3Y9MTc4MTAyODUwMg.avif",
+                 "rajat-sood"),
+                ("Gaurav Kapoor LIVE",
+                 "1M+ YouTube fans — one of India's most prolific stand-up comics brings his live show to Sanjeev Kumar Auditorium.",
+                 "Sanjeev Kumar Auditorium, Surat", "2026-07-26", "9:00 PM",
+                 "https://cdn-ip.allevents.in/s/rs:fill:500:250/g:sm/sh:100/aHR0cHM6Ly9jZG4tYXouYWxsZXZlbnRzLmluL2V2ZW50czEvYmFubmVycy9mY2FhY2ZkMC00YjQ3LTExZjEtYWQxMC1hZjFjMDAwMGZlODItcmltZy13MTIwMC1oNjAwLWRjZjY0NDQ0LWdtaXIuanBnP3Y9MTc3ODI5MDc5OA.avif",
+                 "gaurav-kapoor"),
+                ("Farewell: An Entropy of Separation",
+                 "Sold out in Bengaluru and Mumbai. This acclaimed theatrical experience is finally coming to Surat — book before it sells out.",
+                 "Tara Moti Hall, Surat", "2026-08-01", "8:00 PM",
+                 "https://cdn-ip.allevents.in/s/rs:fill:500:250/g:sm/sh:100/aHR0cHM6Ly9jZG4tYXouYWxsZXZlbnRzLmluL2V2ZW50czQvYmFubmVycy9mOTc3MTlhMC02NDQxLTExZjEtOWM4Ni1jM2QzMjcwZDQ5YTctcmltZy13MTIwMC1oNjAwLWRjZmZmNTI3LWdtaXIuanBnP3Y9MTc4MTAzNjk5NA.avif",
+                 "farewell-entropy"),
             ]
             c.executemany("""
-                INSERT OR IGNORE INTO live_events
+                INSERT INTO live_events
                     (title, description, venue, event_date, time, image_url, detail_id)
                 VALUES (?,?,?,?,?,?,?)
             """, default_events)
             conn.commit()
-        return jsonify({"message": "Events cleaned and reseeded ✅", "count": 5})
+        return jsonify({"message": "Live events reset successfully ✅"})
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
