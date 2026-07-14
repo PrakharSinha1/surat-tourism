@@ -1,379 +1,100 @@
-const locationData = {
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Explore Details - Surat City Tourism</title>
+  <link rel="stylesheet" href="simple-surat-tourism.css">
+</head>
+<body>
 
-  // ======================
-  // ATTRACTIONS
-  // ======================
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="container">
+      <h2 class="brand-title">Surat City Tourism</h2>
+      <div class="nav-menu" style="display:flex;align-items:center;">
+        <a href="index.html">Home</a>
+        <a href="attractions.html">Attractions</a>
+        <a href="culture.html">Culture</a>
+        <a href="food.html">Food</a>
+        <a href="events.html">Live Events</a>
+        <a href="itinerary.html">Plan Trip</a>
+        <a href="contact.html">Contact</a>
+        <a href="login.html" class="nav-login-link" id="loginLink">Login</a>
+        <div class="user-avatar-wrapper" id="avatarWrapper" style="display:none;">
+          <button class="user-avatar-btn" id="avatarBtn" title="Account">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 12c2.7 0 5-2.3 5-5s-2.3-5-5-5-5 2.3-5 5 2.3 5 5 5zm0 2c-3.3 0-10 1.7-10 5v2h20v-2c0-3.3-6.7-5-10-5z"/>
+            </svg>
+          </button>
+          <div class="user-dropdown" id="userDropdown">
+            <div class="user-email-label" id="dropdownEmail"></div>
+            <a href="dashboard.html">🗂️ Dashboard</a>
+            <a href="itinerary.html">🗺️ My Itineraries</a>
+            <button class="dropdown-item logout-item" id="logoutBtn">🚪 Logout</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
 
-  "dumas-beach": {
-    title: "Dumas Beach",
-    history: "Famous for its mysterious black sand and cool sea breeze, Dumas Beach is one of Surat’s most iconic hangout spots. Locals gather here in the evenings to relax, enjoy street food, and watch breathtaking sunsets over the Arabian Sea.",
-    address: "Dumas Road, Near Surat Airport, Gujarat 395007",
-    time: "6:00 AM – 8:00 PM",
-    tip: "Visit during sunset for the best vibe and try local snacks like bhajiya and corn.",
-    image: "images/sunset-at-dumas-beach.jpg"
-  },
+  <!-- Detail Page -->
+  <main class="detail-container">
 
-  "surat-fort": {
-    title: "Surat Fort",
-    history: "Built in the 16th century to defend Surat from Portuguese invasions, this fort stands as a symbol of strength and heritage. Its massive walls and riverside location reflect the city’s historical importance as a trading port.",
-    address: "Chowk Bazar, Near Tapi River, Surat, Gujarat 395003",
-    time: "10:00 AM – 6:00 PM",
-    tip: "Combine your visit with a walk through Chowk Bazaar for an authentic old-city experience.",
-    image: "images/Surat Fort.jpeg"
-  },
+    <h1 id="detail-title" class="section-title" style="text-align:center; color:#222;">
+      Loading...
+    </h1>
 
-  "diamond-market": {
-    title: "Diamond Market",
-    history: "Surat processes nearly 90% of the world’s diamonds, making this market a global powerhouse. Thousands of traders and workers contribute to this sparkling industry every day.",
-    address: "Mahidharpura Diamond Market & Varachha Road, Surat",
-    time: "11:00 AM – 8:00 PM",
-    tip: "Weekdays are best to witness real business activity.",
-    image: "images/diamond.jpg"
-  },
+    <img id="detail-image" src="" class="main-detail-img" alt="Location Image"
+         onerror="this.style.display='none'">
 
-  "modern-surat": {
-    title: "Modern Surat",
-    history: "A fast-growing urban side of Surat filled with trendy cafes, rooftop lounges, and vibrant nightlife. Areas like Vesu and VIP Road showcase the city’s modern lifestyle.",
-    address: "Vesu, VIP Road, Adajan & Piplod, Surat",
-    time: "Best experienced after 6:00 PM",
-    tip: "Ideal for café hopping, long drives, and late-night food exploration.",
-    image: "images/attarction.jpeg"
-  },
+    <div class="info-grid">
 
-  "vibrant-surat": {
-    title: "Vibrant Surat",
-    history: "A lively blend of shopping, entertainment, and city life. Malls like VR Surat and RahulRaj Mall define the modern urban culture of the city.",
-    address: "VR Mall (Dumas Road) & RahulRaj Mall (Piplod), Surat",
-    time: "12:00 PM – 11:00 PM",
-    tip: "Perfect for shopping, movies, and chilling with friends.",
-    image: "images/DJI_20240525170609_0018_D.jpg"
-  },
+      <!-- About — full width -->
+      <div class="info-card" style="grid-column: 1 / -1;">
+        <h3>📜 About</h3>
+        <p id="detail-history" style="line-height:1.85;">Fetching details...</p>
+      </div>
 
-  "sarthana": {
-    title: "Sarthana Nature Park",
-    history: "A peaceful green space featuring a zoo and nature trails. It’s one of the oldest zoological parks in Gujarat and a great escape from city life.",
-    address: "Sarthana Jakat Naka, Nana Varachha, Surat",
-    time: "9:00 AM – 6:00 PM",
-    tip: "Visit early morning for a cooler and quieter experience.",
-    image: "images/sarthana-national-park.jpg"
-  },
+      <!-- Address -->
+      <div class="info-card">
+        <h3>📍 Address</h3>
+        <p id="detail-address">Fetching address...</p>
+      </div>
 
-  "temple": {
-    title: "Ambika Niketan Temple",
-    history: "Located along the Tapi River, this temple is a major spiritual center in Surat. Devotees visit throughout the year for peace and blessings.",
-    address: "Athwa Lines, Near Tapi Riverfront, Surat",
-    time: "6:00 AM – 9:00 PM",
-    tip: "Evening aarti offers a calm and spiritual atmosphere.",
-    image: "images/temple.jpg"
-  },
+      <!-- Timings -->
+      <div class="info-card">
+        <h3>⏰ Timings</h3>
+        <p id="detail-time">Fetching timing...</p>
+      </div>
 
-  "garden": {
-    title: "Botanical Garden",
-    history: "A beautifully maintained green space with diverse plant species, walking paths, and relaxing spots for families and nature lovers.",
-    address: "Sneh Rashmi Botanical Garden, Sarthana, Surat",
-    time: "8:00 AM – 7:00 PM",
-    tip: "Carry a camera — great for nature photography.",
-    image: "images/sneh-rashmi-botanical-garden.jpg"
-  },
+      <!-- Travel Tip -->
+      <div class="info-card">
+        <h3>💡 Travel Tip</h3>
+        <p id="detail-tip">Fetching tip...</p>
+      </div>
 
-  "science-center": {
-    title: "Science Center",
-    history: "An interactive hub of science learning featuring exhibitions, space galleries, and a planetarium that makes education fun.",
-    address: "City Light Road, Surat",
-    time: "10:00 AM – 6:00 PM",
-    tip: "Don’t miss the planetarium show — it’s the highlight!",
-    image: "images/science-center.jpg"
-  },
+    </div>
 
-  "gopi-talav": {
-    title: "Gopi Talav",
-    history: "A historic lake revitalized into a modern attraction with boating, lights, and entertainment areas for families.",
-    address: "Gopipura Main Road, Surat",
-    time: "9:00 AM – 10:00 PM",
-    tip: "Visit in the evening for lights and a lively atmosphere.",
-    image: "images/gopi-talav.jpg"
-  },
+    <!-- Dynamic extra cards (entry fee, nearby, price, rating etc.) -->
+    <div class="info-grid" id="extra-info-grid" style="margin-top:0;"></div>
 
+    <!-- Back Button -->
+    <div style="text-align:center; margin-top:40px;">
+      <a href="javascript:history.back()" class="cta-button">← Go Back</a>
+    </div>
 
-  // ======================
-  // CULTURE
-  // ======================
+  </main>
 
-  "heritage": {
-    title: "Heritage Landmarks",
-    history: "Surat’s heritage includes Dutch cemeteries, Mughal Sarai, and colonial-era structures that reflect its rich trading history.",
-    address: "Dutch Garden (Nanpura) & Mughal Sarai Area, Surat",
-    time: "9:00 AM – 6:00 PM",
-    tip: "Explore with a guide to understand the history deeply.",
-    image: "images/Slider0-2.jpg"
-  },
+  <!-- Footer -->
+  <footer class="footer">
+    <p>© 2025 Surat City Tourism. All rights reserved.</p>
+  </footer>
 
-  "navratri": {
-    title: "Navratri Festival",
-    history: "A grand festival celebrated with Garba, music, and vibrant traditional attire across Surat.",
-    address: "Piplod Grounds, Vesu Party Plots & Club Grounds",
-    time: "September – October",
-    tip: "Join Garba nights in traditional dress for full experience.",
-    image: "images/navratri.jpeg"
-  },
+  <!-- Scripts — order matters: api-config first, then nav-avatar, then details -->
+  <script src="api-config.js"></script>
+  <script src="nav-avatar.js"></script>
+  <script src="details.js"></script>
 
-  "kite-festival": {
-    title: "Uttarayan Kite Festival",
-    history: "A colorful festival where the sky is filled with kites and people celebrate with food, music, and joy.",
-    address: "Varachha, Adajan & City-wide rooftops",
-    time: "14 January",
-    tip: "Wear gloves to avoid cuts from kite strings.",
-    image: "images/kitee.jpg"
-  },
-
-  "ganpati": {
-    title: "Ganesh Chaturthi",
-    history: "A vibrant festival with beautifully crafted idols, prayers, and grand visarjan processions.",
-    address: "Chowk, Adajan & City-wide",
-    time: "August – September",
-    tip: "Visarjan day is the most energetic and lively.",
-    image: "images/Ganpati.jpeg"
-  },
-
-  "chandi-padvo": {
-    title: "Chandi Padvo",
-    history: "Celebrated on Sharad Purnima with moonlight gatherings, music, and traditional sweets.",
-    address: "Residential Societies & Open Grounds, Surat",
-    time: "October (Full Moon Night)",
-    tip: "Enjoy doodh-poha under the moonlight.",
-    image: "images/sharad-purnima-2025-1759685044.webp"
-  },
-
-  "ramzan-food": {
-    title: "Ramzan Nights",
-    history: "During Ramzan, Surat’s streets transform into lively food hubs offering kebabs, sweets, and Mughlai dishes.",
-    address: "Zampa Bazaar & Rander Road",
-    time: "Evening till midnight",
-    tip: "Try kebabs and malpua after iftar.",
-    image: "images/ramzan.jpg"
-  },
-
-  "jain-temples": {
-    title: "Jain Temples",
-    history: "Known for intricate carvings and peaceful surroundings, these temples reflect deep spiritual traditions.",
-    address: "Adajan & Nanpura Areas",
-    time: "6:00 AM – 8:00 PM",
-    tip: "Maintain silence and respect temple customs.",
-    image: "images/jain-temple.jpg"
-  },
-
-  "handicrafts": {
-    title: "Textile Heritage",
-    history: "Surat is famous for silk, zari work, and embroidery, forming the backbone of its textile industry.",
-    address: "Ring Road Textile Market & Surat Cloth Market",
-    time: "10:00 AM – 8:00 PM",
-    tip: "Best place to shop for sarees and fabrics.",
-    image: "images/Textile.avif"
-  },
-
-
-  // ======================
-  // FOOD
-  // ======================
-
-  "surati-locho": {
-    title: "Surati Locho",
-    history: "A unique steamed snack known for its soft texture and spicy flavor — a true Surat specialty.",
-    address: "Jani Locho (Athwa) & Chowk Bazaar",
-    time: "Morning & Evening",
-    tip: "Add butter and sev for ultimate taste.",
-    image: "images/locho.jpeg"
-  },
-
-  "undhiyo": {
-    title: "Undhiyo",
-    history: "A traditional Gujarati winter dish made with mixed vegetables and spices, slow-cooked to perfection.",
-    address: "Sasuma & Kansar Restaurant",
-    time: "Winter Season",
-    tip: "Best paired with puri and jalebi.",
-    image: "images/undhiyo.jpeg"
-  },
-
-  "thali": {
-    title: "Gujarati Thali",
-    history: "A wholesome meal offering a variety of authentic Gujarati dishes served with warmth and hospitality.",
-    address: "Sasuma, Kansar & Rajdhani Restaurant",
-    time: "Lunch & Dinner",
-    tip: "Go hungry — unlimited servings!",
-    image: "images/gujrati thali.jpeg"
-  },
-
-  "ice-dish": {
-    title: "Ice Dish",
-    history: "A refreshing dessert made with crushed ice, flavored syrups, and colorful toppings.",
-    address: "Nanpura & Chowk Street Stalls",
-    time: "Evening",
-    tip: "Perfect after a heavy dinner.",
-    image: "images/ice-dish.jpg"
-  },
-
-  "khavsa": {
-    title: "Surti Khavsa",
-    history: "A Burmese-inspired noodle dish adapted in Surat with spicy coconut curry and toppings.",
-    address: "Zampa Bazaar & Rander Road",
-    time: "Evening & Night",
-    tip: "Mix everything well before eating.",
-    image: "images/Khavsa.webp"
-  },
-
-  "dhokla": {
-    title: "Surti Dhokla",
-    history: "A soft, fluffy and slightly tangy snack loved across Gujarat.",
-    address: "Jani Farsan & Kansar Farsan",
-    time: "Morning & Evening",
-    tip: "Best eaten fresh with chutney.",
-    image: "images/dhokla.jpg"
-  },
-
-  "veg-ghotala": {
-    title: "Veg Ghotala",
-    history: "A rich and buttery street food dish made with paneer, spices, and creamy gravy.",
-    address: "Gaurav Path & Adajan Food Streets",
-    time: "Night",
-    tip: "Best enjoyed with butter pav.",
-    image: "images/ghot.jpg"
-  },
-
-  "farsan": {
-    title: "Surti Farsan",
-    history: "A variety of crispy and savory snacks that define Gujarati cuisine.",
-    address: "24 Carat & Jani Farsan",
-    time: "Anytime",
-    tip: "Perfect snack with chai.",
-    image: "images/snaks.avif"
-  },
-
-
-  // ======================
-  // LIVE EVENTS
-  // ======================
-
-  "gujjubhai": {
-    title: "Bluffmaster Gujjubhai",
-    history: "A hilarious Gujarati comedy play packed with laughter and clever twists.",
-    address: "Sanjeev Kumar Auditorium",
-    time: "25 March 2026, 9:30 PM",
-    tip: "Reach early for best seats.",
-    image: "images/event1.jpg"
-  },
-
-  "krishna-show": {
-    title: "Krishna Show",
-    history: "A theatrical performance showcasing the life and teachings of Lord Krishna.",
-    address: "Sanjeev Kumar Auditorium",
-    time: "17 April 2026",
-    tip: "Great for families and spiritual audiences.",
-    image: "images/event2.jpg"
-  },
-
-  "amit-khuva": {
-    title: "Gujaratipanu",
-    history: "A stand-up comedy show capturing the essence of Gujarati lifestyle and humor.",
-    address: "Osari",
-    time: "4 April 2026",
-    tip: "Sit closer for interactive moments.",
-    image: "images/event3.jpg"
-  },
-
-  "usha-uthup": {
-    title: "Usha Uthup Live",
-    history: "A musical night featuring legendary singer Usha Uthup performing her iconic songs.",
-    address: "Jambna Party Plot",
-    time: "4 April 2026",
-    tip: "Perfect for music lovers.",
-    image: "images/event4.jpg"
-  },
-
-  "kids-acting": {
-    title: "Kids Acting Workshop",
-    history: "A fun and creative workshop where kids learn acting, expression, and confidence.",
-    address: "Unvind Studio",
-    time: "22 March 2026",
-    tip: "Arrive early for smooth registration.",
-    image: "images/event5.jpg"
-  },
-
-  // ======================
-  // NEW LIVE EVENTS (Jul–Aug 2026)
-  // ======================
-
-  "krishna-muntashir": {
-    title: "Manoj Muntashir's Krishna",
-    history: "Experience the story of Krishna like never before — beyond mythology, into emotion, philosophy and purpose. Manoj Muntashir, one of India's most celebrated lyricists and poets, narrates the life of Krishna in a powerful live performance that has moved audiences across the country.",
-    address: "Sanjeev Kumar Auditorium, Surat",
-    time: "11 July 2026, 3:00 PM",
-    tip: "Book tickets in advance — this show sells out fast. Carry a handkerchief.",
-    image: "images/event1.jpg"
-  },
-
-  "humare-ram": {
-    title: "Humare Ram ft. Ashutosh Rana",
-    history: "A monumental theatrical production that has completed 200+ shows across India. Acclaimed Bollywood actor Ashutosh Rana brings the Ramayana to life in a way that is both deeply spiritual and powerfully emotional. One of the most celebrated stage productions in recent years.",
-    address: "Sanjeev Kumar Auditorium, Surat",
-    time: "18 July 2026, 2:30 PM",
-    tip: "Arrive 30 minutes early for the best seating. Family-friendly show.",
-    image: "images/event2.avif"
-  },
-
-  "rajat-sood": {
-    title: "I Am Worth It ft. Rajat Sood",
-    history: "Rajat Sood, winner of India's biggest TV comedy show, brings his brand-new stand-up hour to Surat. 'I Am Worth It' is a relatable, hilarious and at times unexpectedly emotional show about love, failure, self-worth and everything in between.",
-    address: "The Green Room, Surat",
-    time: "24 July 2026, 7:00 PM",
-    tip: "Sit in the front rows for the most interactive experience.",
-    image: "images/event3.jpg"
-  },
-
-  "gaurav-kapoor": {
-    title: "Gaurav Kapoor LIVE",
-    history: "With over 1 million YouTube subscribers and 300K on Instagram, Gaurav Kapoor is one of India's most prolific stand-up comedians. His live shows are known for sharp writing, perfect timing, and a warm connection with the audience.",
-    address: "Sanjeev Kumar Auditorium, Surat",
-    time: "26 July 2026, 9:00 PM",
-    tip: "Late-night show — plan your transport in advance.",
-    image: "images/event4.jpg"
-  },
-
-  "farewell-entropy": {
-    title: "Farewell: An Entropy of Separation",
-    history: "Already sold out in Bengaluru and Mumbai, this acclaimed theatrical experience explores the bittersweet beauty of goodbyes — through movement, music and storytelling. Critics have called it one of the most emotionally resonant productions of the decade.",
-    address: "Tara Moti Hall, Surat",
-    time: "1 August 2026, 8:00 PM",
-    tip: "Book immediately — limited seats and this will sell out in Surat too.",
-    image: "images/event5.jpg"
-  }
-};
-
-
-// ======================
-// SCRIPT
-// ======================
-
-document.addEventListener("DOMContentLoaded", () => {
-  const params = new URLSearchParams(window.location.search);
-  const id = params.get("id");
-
-  if (id && locationData[id]) {
-    const data = locationData[id];
-
-    document.getElementById("detail-title").innerText = data.title;
-    document.getElementById("detail-history").innerText = data.history;
-    document.getElementById("detail-address").innerText = data.address;
-    document.getElementById("detail-time").innerText = data.time;
-    document.getElementById("detail-image").src = data.image;
-
-    const tipElement = document.getElementById("detail-tip");
-    if (tipElement) {
-      tipElement.innerText = data.tip;
-    }
-
-    document.title = data.title + " - Surat Tourism";
-  } else {
-    document.getElementById("detail-title").innerText = "Location Not Found";
-    document.getElementById("detail-history").innerText = "Please select a valid item.";
-  }
-});
+</body>
+</html>

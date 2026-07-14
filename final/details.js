@@ -13,7 +13,7 @@ const locationData = {
     entry: "Free Entry",
     nearby: "Nani Daman (60 km), Hajira Beach (15 km), Dumas Temple",
     rating: "⭐⭐⭐⭐⭐",
-    image: "images/sunset-at-dumas-beach.jpg"
+    image: "/final/images/sunset-at-dumas-beach.jpg"
   },
 
   "surat-fort": {
@@ -25,7 +25,7 @@ const locationData = {
     entry: "₹25 for Indians | ₹300 for Foreigners",
     nearby: "Dutch Garden (2 km), Gopi Talav (3 km), Chintamani Jain Temple (1 km)",
     rating: "⭐⭐⭐⭐",
-    image: "images/Surat Fort.jpeg"
+    image: "/final/images/Surat Fort.jpeg"
   },
 
   "diamond-market": {
@@ -37,7 +37,7 @@ const locationData = {
     entry: "Outer Market — Free | SDB requires visitor pass",
     nearby: "Varachha Market, Textile Market (3 km)",
     rating: "⭐⭐⭐⭐⭐",
-    image: "images/diamond.jpg"
+    image: "/final/images/diamond.jpg"
   },
 
   "modern-surat": {
@@ -49,7 +49,7 @@ const locationData = {
     entry: "Free to explore",
     nearby: "VR Surat Mall, Dream The Mall, Nirmal Lifestyle, Tapi Riverfront",
     rating: "⭐⭐⭐⭐⭐",
-    image: "images/attarction.jpeg"
+    image: "/final/images/attarction.jpeg"
   },
 
   "vibrant-surat": {
@@ -61,7 +61,7 @@ const locationData = {
     entry: "Free Entry to Malls",
     nearby: "Dumas Beach (5 km from VR Surat), Adajan Food Street, Tapi Riverfront",
     rating: "⭐⭐⭐⭐",
-    image: "images/DJI_20240525170609_0018_D.jpg"
+    image: "/final/images/DJI_20240525170609_0018_D.jpg"
   },
 
   "sarthana": {
@@ -73,7 +73,7 @@ const locationData = {
     entry: "₹50 Adults | ₹25 Children | Camera: ₹25",
     nearby: "Sneh Rashmi Botanical Garden (1 km), Tapi Riverfront (2 km)",
     rating: "⭐⭐⭐⭐",
-    image: "images/sarthana-national-park.jpg"
+    image: "/final/images/sarthana-national-park.jpg"
   },
 
   "temple": {
@@ -85,7 +85,7 @@ const locationData = {
     entry: "Free Entry",
     nearby: "Tapi Riverfront Promenade (adjacent), VR Surat (4 km), Dutch Garden",
     rating: "⭐⭐⭐⭐⭐",
-    image: "images/temple.jpg"
+    image: "/final/images/temple.jpg"
   },
 
   "garden": {
@@ -97,7 +97,7 @@ const locationData = {
     entry: "₹20 per person | Boat ride: ₹30",
     nearby: "Sarthana Nature Park (1 km), Tapi River",
     rating: "⭐⭐⭐⭐",
-    image: "images/sneh-rashmi-botanical-garden.jpg"
+    image: "/final/images/sneh-rashmi-botanical-garden.jpg"
   },
 
   "science-center": {
@@ -109,7 +109,7 @@ const locationData = {
     entry: "₹50 Adults | ₹30 Children | Planetarium: ₹40 extra",
     nearby: "City Light Beach (2 km), Pal Area Cafés",
     rating: "⭐⭐⭐⭐⭐",
-    image: "images/science-center.jpg"
+    image: "/final/images/science-center.jpg"
   },
 
   "gopi-talav": {
@@ -121,7 +121,7 @@ const locationData = {
     entry: "Free Entry | Boating: ₹50 per person",
     nearby: "Chowk Bazaar (2 km), Surat Fort (3 km)",
     rating: "⭐⭐⭐⭐⭐",
-    image: "images/gopi-talav.jpg"
+    image: "/final/images/gopi-talav.jpg"
   },
 
   "hajira-beach": {
@@ -133,7 +133,7 @@ const locationData = {
     entry: "Free Entry",
     nearby: "Suvali Beach (10 km), Dumas Beach (15 km), Hazira Port",
     rating: "⭐⭐⭐⭐",
-    image: "images/hazira.webp"
+    image: "/final/images/hazira.webp"
   },
 
   "suvali-beach": {
@@ -145,7 +145,7 @@ const locationData = {
     entry: "Free Entry",
     nearby: "Hajira Beach (10 km), Dumas Beach (20 km)",
     rating: "⭐⭐⭐⭐",
-    image: "images/suvali-beach-hazira-surat-surat-picnic-spots-gh4tPIVw4I.webp"
+    image: "/final/images/suvali-beach-hazira-surat-surat-picnic-spots-gh4tPIVw4I.webp"
   },
 
   "chintamani-temple": {
@@ -157,7 +157,7 @@ const locationData = {
     entry: "Free Entry",
     nearby: "Dutch Garden (1.5 km), Surat Fort (2 km), Gopi Talav (2 km)",
     rating: "⭐⭐⭐⭐⭐",
-    image: "images/Chintamani-Jain-Temple-Surat.jpg"
+    image: "/final/images/Chintamani-Jain-Temple-Surat.jpg"
   },
 
   "surat-diamond-bourse": {
@@ -169,7 +169,7 @@ const locationData = {
     entry: "Outer areas free | Trading floors by appointment",
     nearby: "Khajod Textile Market, Surat Airport (8 km)",
     rating: "⭐⭐⭐⭐⭐",
-    image: "images/diamond.jpg"
+    image: "/final/images/diamond.jpg"
   },
 
   "sardar-museum": {
@@ -181,7 +181,7 @@ const locationData = {
     entry: "₹20 Adults | ₹10 Children",
     nearby: "Surat Fort (2 km), Tapi Riverfront",
     rating: "⭐⭐⭐⭐",
-    image: "images/sardar-patel-museum-header-surat-tourism.jpg"
+    image: "/final/images/sardar-patel-museum-header-surat-tourism.jpg"
   },
 
   "tapi-riverfront": {
@@ -193,7 +193,7 @@ const locationData = {
     entry: "Free Entry | Cycles on rent: ₹30/hour",
     nearby: "Ambika Niketan Temple, Dutch Garden, Sarthana Nature Park",
     rating: "⭐⭐⭐⭐⭐",
-    image: "images/DJI_20240525170609_0018_D.jpg"
+    image: "/final/images/DJI_20240525170609_0018_D.jpg"
   },
 
   "dutch-garden": {
@@ -205,7 +205,7 @@ const locationData = {
     entry: "Free Entry",
     nearby: "Surat Fort (2 km), Mughal Sarai, Armenian Church",
     rating: "⭐⭐⭐⭐",
-    image: "images/Slider0-2.jpg"
+    image: "/final/images/Slider0-2.jpg"
   },
 
 
@@ -222,7 +222,7 @@ const locationData = {
     entry: "Most sites free | Heritage walk: ₹200 per person",
     nearby: "Surat Fort, Gopi Talav, Chowk Bazaar",
     rating: "⭐⭐⭐⭐⭐",
-    image: "images/Slider0-2.jpg"
+    image: "/final/images/Slider0-2.jpg"
   },
 
   "navratri": {
@@ -234,7 +234,7 @@ const locationData = {
     entry: "₹200 – ₹2,000 depending on venue and performer",
     nearby: "All across Surat's western zones",
     rating: "⭐⭐⭐⭐⭐",
-    image: "images/navratri.jpeg"
+    image: "/final/images/navratri.jpeg"
   },
 
   "kite-festival": {
@@ -246,7 +246,7 @@ const locationData = {
     entry: "Free | Kite kits: ₹50–₹500",
     nearby: "City-wide celebration",
     rating: "⭐⭐⭐⭐⭐",
-    image: "images/kitee.jpg"
+    image: "/final/images/kitee.jpg"
   },
 
   "ganpati": {
@@ -258,7 +258,7 @@ const locationData = {
     entry: "Free | Prasad available at all pandals",
     nearby: "City-wide celebration | Tapi River Ghats for immersion",
     rating: "⭐⭐⭐⭐⭐",
-    image: "images/Ganpati.jpeg"
+    image: "/final/images/Ganpati.jpeg"
   },
 
   "chandi-padvo": {
@@ -270,7 +270,7 @@ const locationData = {
     entry: "Community event — typically free",
     nearby: "City-wide residential areas",
     rating: "⭐⭐⭐⭐",
-    image: "images/sharad-purnima-2025-1759685044.webp"
+    image: "/final/images/sharad-purnima-2025-1759685044.webp"
   },
 
   "ramzan-food": {
@@ -282,7 +282,7 @@ const locationData = {
     entry: "Free to visit | Food from ₹30 per item",
     nearby: "Jama Masjid, Zampa Bazaar, Rander Village",
     rating: "⭐⭐⭐⭐⭐",
-    image: "images/ramzan.jpg"
+    image: "/final/images/ramzan.jpg"
   },
 
   "jain-temples": {
@@ -294,7 +294,7 @@ const locationData = {
     entry: "Free Entry",
     nearby: "Dutch Garden, Surat Fort, Chowk Bazaar",
     rating: "⭐⭐⭐⭐⭐",
-    image: "images/jain-temple.jpg"
+    image: "/final/images/jain-temple.jpg"
   },
 
   "handicrafts": {
@@ -306,7 +306,7 @@ const locationData = {
     entry: "Free to browse",
     nearby: "Chowk Bazaar, Silk Market, Mangaldeep Market",
     rating: "⭐⭐⭐⭐⭐",
-    image: "images/Textile.avif"
+    image: "/final/images/Textile.avif"
   },
 
 
@@ -323,7 +323,7 @@ const locationData = {
     price: "₹30 – ₹80 per plate",
     category: "Breakfast & Snack",
     rating: "⭐⭐⭐⭐⭐",
-    image: "images/locho.jpeg"
+    image: "/final/images/locho.jpeg"
   },
 
   "undhiyo": {
@@ -335,7 +335,7 @@ const locationData = {
     price: "₹120 – ₹250 per serving",
     category: "Seasonal Main Course",
     rating: "⭐⭐⭐⭐⭐",
-    image: "images/undhiyo.jpeg"
+    image: "/final/images/undhiyo.jpeg"
   },
 
   "thali": {
@@ -347,7 +347,7 @@ const locationData = {
     price: "₹200 – ₹500 per person",
     category: "Complete Meal",
     rating: "⭐⭐⭐⭐⭐",
-    image: "images/gujrati thali.jpeg"
+    image: "/final/images/gujrati thali.jpeg"
   },
 
   "ice-dish": {
@@ -359,7 +359,7 @@ const locationData = {
     price: "₹40 – ₹120 per dish",
     category: "Dessert",
     rating: "⭐⭐⭐⭐⭐",
-    image: "images/ice-dish.jpg"
+    image: "/final/images/ice-dish.jpg"
   },
 
   "khavsa": {
@@ -371,7 +371,7 @@ const locationData = {
     price: "₹60 – ₹120 per serving",
     category: "Main Course / Snack",
     rating: "⭐⭐⭐⭐⭐",
-    image: "images/Khavsa.webp"
+    image: "/final/images/Khavsa.webp"
   },
 
   "dhokla": {
@@ -383,7 +383,7 @@ const locationData = {
     price: "₹30 – ₹80 per plate",
     category: "Breakfast & Snack",
     rating: "⭐⭐⭐⭐⭐",
-    image: "images/dhokla.jpg"
+    image: "/final/images/dhokla.jpg"
   },
 
   "veg-ghotala": {
@@ -395,7 +395,7 @@ const locationData = {
     price: "₹80 – ₹150 per plate with pav",
     category: "Night Street Food",
     rating: "⭐⭐⭐⭐⭐",
-    image: "images/ghot.jpg"
+    image: "/final/images/ghot.jpg"
   },
 
   "farsan": {
@@ -407,7 +407,7 @@ const locationData = {
     price: "₹50 – ₹300 per 250g pack",
     category: "Snack & Gift",
     rating: "⭐⭐⭐⭐⭐",
-    image: "images/snaks.avif"
+    image: "/final/images/snaks.avif"
   },
 
   "ponk": {
@@ -419,7 +419,7 @@ const locationData = {
     price: "₹30 – ₹80 per serving",
     category: "Seasonal Winter Snack",
     rating: "⭐⭐⭐⭐⭐",
-    image: "images/ponk.JPG"
+    image: "/final/images/ponk.JPG"
   },
 
 
@@ -432,7 +432,7 @@ const locationData = {
     entry: "Free",
     nearby: "City-wide celebration",
     rating: "⭐⭐⭐⭐⭐",
-    image: "images/diwali.jpg"
+    image: "/final/images/diwali.jpg"
   },
 
   "surati-wedding": {
@@ -444,7 +444,7 @@ const locationData = {
     entry: "By invitation",
     nearby: "City-wide throughout wedding season",
     rating: "⭐⭐⭐⭐⭐",
-    image: "images/Culture-of-Gujarat.jpg"
+    image: "/final/images/Culture-of-Gujarat.jpg"
   },
 
   "holi-surat": {
@@ -456,7 +456,7 @@ const locationData = {
     entry: "Free | Society parties: ₹100–₹300",
     nearby: "City-wide celebration",
     rating: "⭐⭐⭐⭐⭐",
-    image: "images/holi.png"
+    image: "/final/images/holi.png"
   },
 
   "armenian-church": {
@@ -468,7 +468,7 @@ const locationData = {
     entry: "Free (donations welcome)",
     nearby: "Dutch Garden (500 m), Surat Fort (2 km)",
     rating: "⭐⭐⭐⭐⭐",
-    image: "images/Slider0-2.jpg"
+    image: "/final/images/Slider0-2.jpg"
   },
 
   "sufi-music": {
@@ -480,7 +480,7 @@ const locationData = {
     entry: "Free | Donations to the dargah are customary",
     nearby: "Zampa Bazaar, Rander Road, Old City",
     rating: "⭐⭐⭐⭐⭐",
-    image: "images/ramzan.jpg"
+    image: "/final/images/ramzan.jpg"
   },
 
   "folk-art": {
@@ -492,7 +492,7 @@ const locationData = {
     entry: "Free to observe | Workshop fees vary",
     nearby: "City-wide during festivals",
     rating: "⭐⭐⭐⭐",
-    image: "images/Culture-of-Gujarat.jpg"
+    image: "/final/images/Culture-of-Gujarat.jpg"
   },
 
   // ======================
@@ -508,7 +508,7 @@ const locationData = {
     price: "₹60 – ₹200 per piece depending on variety",
     category: "Festive Sweet",
     rating: "⭐⭐⭐⭐⭐",
-    image: "images/ghari.jpg"
+    image: "/final/images/ghari.jpg"
   },
 
   "jalebi-fafda": {
@@ -520,7 +520,7 @@ const locationData = {
     price: "₹40 – ₹80 per plate",
     category: "Breakfast",
     rating: "⭐⭐⭐⭐⭐",
-    image: "images/jalebi.jpg"
+    image: "/final/images/jalebi.jpg"
   },
 
   "surti-chai": {
@@ -532,7 +532,7 @@ const locationData = {
     price: "₹10 – ₹25 per glass",
     category: "Beverage",
     rating: "⭐⭐⭐⭐⭐",
-    image: "images/chai.jpg"
+    image: "/final/images/chai.jpg"
   },
 
   "lilo-chevdo": {
@@ -544,7 +544,7 @@ const locationData = {
     price: "₹20 – ₹50 per serving",
     category: "Seasonal Snack",
     rating: "⭐⭐⭐⭐⭐",
-    image: "images/lilo-chewado-banner.jpeg"
+    image: "/final/images/lilo-chewado-banner.jpeg"
   },
 
   "sev-usal": {
@@ -556,7 +556,7 @@ const locationData = {
     price: "₹30 – ₹60 per bowl",
     category: "Street Snack",
     rating: "⭐⭐⭐⭐⭐",
-    image: "images/lilo-chewado-banner.jpeg"
+    image: "/final/images/lilo-chewado-banner.jpeg"
   },
 
 
@@ -570,7 +570,7 @@ const locationData = {
     entry: "₹500 – ₹1,500 per ticket",
     duration: "Approximately 2.5 hours with interval",
     rating: "⭐⭐⭐⭐⭐",
-    image: "images/event1.jpg"
+    image: "/final/images/event1.jpg"
   },
 
   "krishna-show": {
@@ -582,7 +582,7 @@ const locationData = {
     entry: "₹400 – ₹1,200 per ticket",
     duration: "Approximately 3 hours with one interval",
     rating: "⭐⭐⭐⭐⭐",
-    image: "images/event2.jpg"
+    image: "/final/images/event2.jpg"
   },
 
   "amit-khuva": {
@@ -594,7 +594,7 @@ const locationData = {
     entry: "₹300 – ₹800 per ticket",
     duration: "Approximately 90 minutes (no interval)",
     rating: "⭐⭐⭐⭐⭐",
-    image: "images/event3.jpg"
+    image: "/final/images/event3.jpg"
   },
 
   "usha-uthup": {
@@ -606,7 +606,7 @@ const locationData = {
     entry: "₹500 – ₹2,000 per ticket",
     duration: "Approximately 2.5 hours",
     rating: "⭐⭐⭐⭐⭐",
-    image: "images/event4.jpg"
+    image: "/final/images/event4.jpg"
   },
 
   "kids-acting": {
@@ -618,7 +618,7 @@ const locationData = {
     entry: "₹500 per child",
     duration: "3 hours",
     rating: "⭐⭐⭐⭐",
-    image: "images/event5.jpg"
+    image: "/final/images/event5.jpg"
   }
 };
 
