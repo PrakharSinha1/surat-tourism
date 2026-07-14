@@ -13,7 +13,7 @@ const locationData = {
     entry: "Free Entry",
     nearby: "Nani Daman (60 km), Hajira Beach (15 km), Dumas Temple",
     rating: "⭐⭐⭐⭐⭐",
-    image: "/final/images/sunset-at-dumas-beach.jpg"
+    image: "images/sunset-at-dumas-beach.jpg"
   },
 
   "surat-fort": {
@@ -25,7 +25,7 @@ const locationData = {
     entry: "₹25 for Indians | ₹300 for Foreigners",
     nearby: "Dutch Garden (2 km), Gopi Talav (3 km), Chintamani Jain Temple (1 km)",
     rating: "⭐⭐⭐⭐",
-    image: "/final/images/Surat Fort.jpeg"
+    image: "images/Surat Fort.jpeg"
   },
 
   "diamond-market": {
@@ -37,7 +37,7 @@ const locationData = {
     entry: "Outer Market — Free | SDB requires visitor pass",
     nearby: "Varachha Market, Textile Market (3 km)",
     rating: "⭐⭐⭐⭐⭐",
-    image: "/final/images/diamond.jpg"
+    image: "images/diamond.jpg"
   },
 
   "modern-surat": {
@@ -49,7 +49,7 @@ const locationData = {
     entry: "Free to explore",
     nearby: "VR Surat Mall, Dream The Mall, Nirmal Lifestyle, Tapi Riverfront",
     rating: "⭐⭐⭐⭐⭐",
-    image: "/final/images/attarction.jpeg"
+    image: "images/attarction.jpeg"
   },
 
   "vibrant-surat": {
@@ -61,7 +61,7 @@ const locationData = {
     entry: "Free Entry to Malls",
     nearby: "Dumas Beach (5 km from VR Surat), Adajan Food Street, Tapi Riverfront",
     rating: "⭐⭐⭐⭐",
-    image: "/final/images/DJI_20240525170609_0018_D.jpg"
+    image: "images/DJI_20240525170609_0018_D.jpg"
   },
 
   "sarthana": {
@@ -73,7 +73,7 @@ const locationData = {
     entry: "₹50 Adults | ₹25 Children | Camera: ₹25",
     nearby: "Sneh Rashmi Botanical Garden (1 km), Tapi Riverfront (2 km)",
     rating: "⭐⭐⭐⭐",
-    image: "/final/images/sarthana-national-park.jpg"
+    image: "images/sarthana-national-park.jpg"
   },
 
   "temple": {
@@ -85,7 +85,7 @@ const locationData = {
     entry: "Free Entry",
     nearby: "Tapi Riverfront Promenade (adjacent), VR Surat (4 km), Dutch Garden",
     rating: "⭐⭐⭐⭐⭐",
-    image: "/final/images/temple.jpg"
+    image: "images/temple.jpg"
   },
 
   "garden": {
@@ -97,7 +97,7 @@ const locationData = {
     entry: "₹20 per person | Boat ride: ₹30",
     nearby: "Sarthana Nature Park (1 km), Tapi River",
     rating: "⭐⭐⭐⭐",
-    image: "/final/images/sneh-rashmi-botanical-garden.jpg"
+    image: "images/sneh-rashmi-botanical-garden.jpg"
   },
 
   "science-center": {
@@ -109,7 +109,7 @@ const locationData = {
     entry: "₹50 Adults | ₹30 Children | Planetarium: ₹40 extra",
     nearby: "City Light Beach (2 km), Pal Area Cafés",
     rating: "⭐⭐⭐⭐⭐",
-    image: "/final/images/science-center.jpg"
+    image: "images/science-center.jpg"
   },
 
   "gopi-talav": {
@@ -121,7 +121,7 @@ const locationData = {
     entry: "Free Entry | Boating: ₹50 per person",
     nearby: "Chowk Bazaar (2 km), Surat Fort (3 km)",
     rating: "⭐⭐⭐⭐⭐",
-    image: "/final/images/gopi-talav.jpg"
+    image: "images/gopi-talav.jpg"
   },
 
   "hajira-beach": {
@@ -133,7 +133,7 @@ const locationData = {
     entry: "Free Entry",
     nearby: "Suvali Beach (10 km), Dumas Beach (15 km), Hazira Port",
     rating: "⭐⭐⭐⭐",
-    image: "/final/images/hazira.webp"
+    image: "images/hazira.webp"
   },
 
   "suvali-beach": {
@@ -145,7 +145,7 @@ const locationData = {
     entry: "Free Entry",
     nearby: "Hajira Beach (10 km), Dumas Beach (20 km)",
     rating: "⭐⭐⭐⭐",
-    image: "/final/images/suvali-beach-hazira-surat-surat-picnic-spots-gh4tPIVw4I.webp"
+    image: "images/suvali-beach-hazira-surat-surat-picnic-spots-gh4tPIVw4I.webp"
   },
 
   "chintamani-temple": {
@@ -157,7 +157,7 @@ const locationData = {
     entry: "Free Entry",
     nearby: "Dutch Garden (1.5 km), Surat Fort (2 km), Gopi Talav (2 km)",
     rating: "⭐⭐⭐⭐⭐",
-    image: "/final/images/Chintamani-Jain-Temple-Surat.jpg"
+    image: "images/Chintamani-Jain-Temple-Surat.jpg"
   },
 
   "surat-diamond-bourse": {
@@ -169,7 +169,7 @@ const locationData = {
     entry: "Outer areas free | Trading floors by appointment",
     nearby: "Khajod Textile Market, Surat Airport (8 km)",
     rating: "⭐⭐⭐⭐⭐",
-    image: "/final/images/diamond.jpg"
+    image: "images/diamond.jpg"
   },
 
   "sardar-museum": {
@@ -181,7 +181,7 @@ const locationData = {
     entry: "₹20 Adults | ₹10 Children",
     nearby: "Surat Fort (2 km), Tapi Riverfront",
     rating: "⭐⭐⭐⭐",
-    image: "/final/images/sardar-patel-museum-header-surat-tourism.jpg"
+    image: "images/sardar-patel-museum-header-surat-tourism.jpg"
   },
 
   "tapi-riverfront": {
@@ -193,7 +193,7 @@ const locationData = {
     entry: "Free Entry | Cycles on rent: ₹30/hour",
     nearby: "Ambika Niketan Temple, Dutch Garden, Sarthana Nature Park",
     rating: "⭐⭐⭐⭐⭐",
-    image: "/final/images/DJI_20240525170609_0018_D.jpg"
+    image: "images/DJI_20240525170609_0018_D.jpg"
   },
 
   "dutch-garden": {
@@ -205,7 +205,7 @@ const locationData = {
     entry: "Free Entry",
     nearby: "Surat Fort (2 km), Mughal Sarai, Armenian Church",
     rating: "⭐⭐⭐⭐",
-    image: "/final/images/Slider0-2.jpg"
+    image: "images/Slider0-2.jpg"
   },
 
 
@@ -222,7 +222,7 @@ const locationData = {
     entry: "Most sites free | Heritage walk: ₹200 per person",
     nearby: "Surat Fort, Gopi Talav, Chowk Bazaar",
     rating: "⭐⭐⭐⭐⭐",
-    image: "/final/images/Slider0-2.jpg"
+    image: "images/Slider0-2.jpg"
   },
 
   "navratri": {
@@ -234,7 +234,7 @@ const locationData = {
     entry: "₹200 – ₹2,000 depending on venue and performer",
     nearby: "All across Surat's western zones",
     rating: "⭐⭐⭐⭐⭐",
-    image: "/final/images/navratri.jpeg"
+    image: "images/navratri.jpeg"
   },
 
   "kite-festival": {
@@ -246,7 +246,7 @@ const locationData = {
     entry: "Free | Kite kits: ₹50–₹500",
     nearby: "City-wide celebration",
     rating: "⭐⭐⭐⭐⭐",
-    image: "/final/images/kitee.jpg"
+    image: "images/kitee.jpg"
   },
 
   "ganpati": {
@@ -258,7 +258,7 @@ const locationData = {
     entry: "Free | Prasad available at all pandals",
     nearby: "City-wide celebration | Tapi River Ghats for immersion",
     rating: "⭐⭐⭐⭐⭐",
-    image: "/final/images/Ganpati.jpeg"
+    image: "images/Ganpati.jpeg"
   },
 
   "chandi-padvo": {
@@ -270,7 +270,7 @@ const locationData = {
     entry: "Community event — typically free",
     nearby: "City-wide residential areas",
     rating: "⭐⭐⭐⭐",
-    image: "/final/images/sharad-purnima-2025-1759685044.webp"
+    image: "images/sharad-purnima-2025-1759685044.webp"
   },
 
   "ramzan-food": {
@@ -282,7 +282,7 @@ const locationData = {
     entry: "Free to visit | Food from ₹30 per item",
     nearby: "Jama Masjid, Zampa Bazaar, Rander Village",
     rating: "⭐⭐⭐⭐⭐",
-    image: "/final/images/ramzan.jpg"
+    image: "images/ramzan.jpg"
   },
 
   "jain-temples": {
@@ -294,7 +294,7 @@ const locationData = {
     entry: "Free Entry",
     nearby: "Dutch Garden, Surat Fort, Chowk Bazaar",
     rating: "⭐⭐⭐⭐⭐",
-    image: "/final/images/jain-temple.jpg"
+    image: "images/jain-temple.jpg"
   },
 
   "handicrafts": {
@@ -306,7 +306,7 @@ const locationData = {
     entry: "Free to browse",
     nearby: "Chowk Bazaar, Silk Market, Mangaldeep Market",
     rating: "⭐⭐⭐⭐⭐",
-    image: "/final/images/Textile.avif"
+    image: "images/Textile.avif"
   },
 
 
@@ -323,7 +323,7 @@ const locationData = {
     price: "₹30 – ₹80 per plate",
     category: "Breakfast & Snack",
     rating: "⭐⭐⭐⭐⭐",
-    image: "/final/images/locho.jpeg"
+    image: "images/locho.jpeg"
   },
 
   "undhiyo": {
@@ -335,7 +335,7 @@ const locationData = {
     price: "₹120 – ₹250 per serving",
     category: "Seasonal Main Course",
     rating: "⭐⭐⭐⭐⭐",
-    image: "/final/images/undhiyo.jpeg"
+    image: "images/undhiyo.jpeg"
   },
 
   "thali": {
@@ -347,7 +347,7 @@ const locationData = {
     price: "₹200 – ₹500 per person",
     category: "Complete Meal",
     rating: "⭐⭐⭐⭐⭐",
-    image: "/final/images/gujrati thali.jpeg"
+    image: "images/gujrati thali.jpeg"
   },
 
   "ice-dish": {
@@ -359,7 +359,7 @@ const locationData = {
     price: "₹40 – ₹120 per dish",
     category: "Dessert",
     rating: "⭐⭐⭐⭐⭐",
-    image: "/final/images/ice-dish.jpg"
+    image: "images/ice-dish.jpg"
   },
 
   "khavsa": {
@@ -371,7 +371,7 @@ const locationData = {
     price: "₹60 – ₹120 per serving",
     category: "Main Course / Snack",
     rating: "⭐⭐⭐⭐⭐",
-    image: "/final/images/Khavsa.webp"
+    image: "images/Khavsa.webp"
   },
 
   "dhokla": {
@@ -383,7 +383,7 @@ const locationData = {
     price: "₹30 – ₹80 per plate",
     category: "Breakfast & Snack",
     rating: "⭐⭐⭐⭐⭐",
-    image: "/final/images/dhokla.jpg"
+    image: "images/dhokla.jpg"
   },
 
   "veg-ghotala": {
@@ -395,7 +395,7 @@ const locationData = {
     price: "₹80 – ₹150 per plate with pav",
     category: "Night Street Food",
     rating: "⭐⭐⭐⭐⭐",
-    image: "/final/images/ghot.jpg"
+    image: "images/ghot.jpg"
   },
 
   "farsan": {
@@ -407,7 +407,7 @@ const locationData = {
     price: "₹50 – ₹300 per 250g pack",
     category: "Snack & Gift",
     rating: "⭐⭐⭐⭐⭐",
-    image: "/final/images/snaks.avif"
+    image: "images/snaks.avif"
   },
 
   "ponk": {
@@ -419,7 +419,7 @@ const locationData = {
     price: "₹30 – ₹80 per serving",
     category: "Seasonal Winter Snack",
     rating: "⭐⭐⭐⭐⭐",
-    image: "/final/images/ponk.JPG"
+    image: "images/ponk.JPG"
   },
 
 
@@ -432,7 +432,7 @@ const locationData = {
     entry: "Free",
     nearby: "City-wide celebration",
     rating: "⭐⭐⭐⭐⭐",
-    image: "/final/images/diwali.jpg"
+    image: "images/diwali.jpg"
   },
 
   "surati-wedding": {
@@ -444,7 +444,7 @@ const locationData = {
     entry: "By invitation",
     nearby: "City-wide throughout wedding season",
     rating: "⭐⭐⭐⭐⭐",
-    image: "/final/images/Culture-of-Gujarat.jpg"
+    image: "images/Culture-of-Gujarat.jpg"
   },
 
   "holi-surat": {
@@ -456,7 +456,7 @@ const locationData = {
     entry: "Free | Society parties: ₹100–₹300",
     nearby: "City-wide celebration",
     rating: "⭐⭐⭐⭐⭐",
-    image: "/final/images/holi.png"
+    image: "images/holi.png"
   },
 
   "armenian-church": {
@@ -468,7 +468,7 @@ const locationData = {
     entry: "Free (donations welcome)",
     nearby: "Dutch Garden (500 m), Surat Fort (2 km)",
     rating: "⭐⭐⭐⭐⭐",
-    image: "/final/images/Slider0-2.jpg"
+    image: "images/Slider0-2.jpg"
   },
 
   "sufi-music": {
@@ -480,7 +480,7 @@ const locationData = {
     entry: "Free | Donations to the dargah are customary",
     nearby: "Zampa Bazaar, Rander Road, Old City",
     rating: "⭐⭐⭐⭐⭐",
-    image: "/final/images/ramzan.jpg"
+    image: "images/ramzan.jpg"
   },
 
   "folk-art": {
@@ -492,7 +492,7 @@ const locationData = {
     entry: "Free to observe | Workshop fees vary",
     nearby: "City-wide during festivals",
     rating: "⭐⭐⭐⭐",
-    image: "/final/images/Culture-of-Gujarat.jpg"
+    image: "images/Culture-of-Gujarat.jpg"
   },
 
   // ======================
@@ -508,7 +508,7 @@ const locationData = {
     price: "₹60 – ₹200 per piece depending on variety",
     category: "Festive Sweet",
     rating: "⭐⭐⭐⭐⭐",
-    image: "/final/images/ghari.jpg"
+    image: "images/ghari.jpg"
   },
 
   "jalebi-fafda": {
@@ -520,7 +520,7 @@ const locationData = {
     price: "₹40 – ₹80 per plate",
     category: "Breakfast",
     rating: "⭐⭐⭐⭐⭐",
-    image: "/final/images/jalebi.jpg"
+    image: "images/jalebi.jpg"
   },
 
   "surti-chai": {
@@ -532,7 +532,7 @@ const locationData = {
     price: "₹10 – ₹25 per glass",
     category: "Beverage",
     rating: "⭐⭐⭐⭐⭐",
-    image: "/final/images/chai.jpg"
+    image: "images/chai.jpg"
   },
 
   "lilo-chevdo": {
@@ -544,7 +544,7 @@ const locationData = {
     price: "₹20 – ₹50 per serving",
     category: "Seasonal Snack",
     rating: "⭐⭐⭐⭐⭐",
-    image: "/final/images/lilo-chewado-banner.jpeg"
+    image: "images/lilo-chewado-banner.jpeg"
   },
 
   "sev-usal": {
@@ -556,7 +556,7 @@ const locationData = {
     price: "₹30 – ₹60 per bowl",
     category: "Street Snack",
     rating: "⭐⭐⭐⭐⭐",
-    image: "/final/images/lilo-chewado-banner.jpeg"
+    image: "images/lilo-chewado-banner.jpeg"
   },
 
 
@@ -570,7 +570,7 @@ const locationData = {
     entry: "₹500 – ₹1,500 per ticket",
     duration: "Approximately 2.5 hours with interval",
     rating: "⭐⭐⭐⭐⭐",
-    image: "/final/images/event1.jpg"
+    image: "images/event1.jpg"
   },
 
   "krishna-show": {
@@ -582,7 +582,7 @@ const locationData = {
     entry: "₹400 – ₹1,200 per ticket",
     duration: "Approximately 3 hours with one interval",
     rating: "⭐⭐⭐⭐⭐",
-    image: "/final/images/event2.jpg"
+    image: "images/event2.jpg"
   },
 
   "amit-khuva": {
@@ -594,7 +594,7 @@ const locationData = {
     entry: "₹300 – ₹800 per ticket",
     duration: "Approximately 90 minutes (no interval)",
     rating: "⭐⭐⭐⭐⭐",
-    image: "/final/images/event3.jpg"
+    image: "images/event3.jpg"
   },
 
   "usha-uthup": {
@@ -606,7 +606,7 @@ const locationData = {
     entry: "₹500 – ₹2,000 per ticket",
     duration: "Approximately 2.5 hours",
     rating: "⭐⭐⭐⭐⭐",
-    image: "/final/images/event4.jpg"
+    image: "images/event4.jpg"
   },
 
   "kids-acting": {
@@ -618,8 +618,73 @@ const locationData = {
     entry: "₹500 per child",
     duration: "3 hours",
     rating: "⭐⭐⭐⭐",
-    image: "/final/images/event5.jpg"
+    image: "images/event5.jpg"
+  },
+
+  // ======================
+  // NEW LIVE EVENTS (Jul–Aug 2026)
+  // ======================
+
+  "krishna-muntashir": {
+    title: "Manoj Muntashir's Krishna",
+    history: "Experience the story of Krishna like never before — beyond mythology, into emotion, philosophy and purpose. Manoj Muntashir, one of India's most celebrated lyricists and poets behind songs like 'Teri Mitti' and 'Kesariya', narrates the life of Krishna in a powerful live performance that has moved audiences to tears across the country. This is not a religious sermon — it is a poetic, philosophical, deeply human exploration of what Krishna means to India. The show has played to sold-out audiences in Mumbai, Delhi, Ahmedabad and Pune before arriving in Surat.",
+    address: "Sanjeev Kumar Auditorium, Athwa Lines, Surat",
+    time: "11 July 2026 | 3:00 PM",
+    tip: "Book tickets well in advance — this show sells out extremely fast. Carry a handkerchief. The experience is best enjoyed without distractions — put your phone away and let the performance wash over you.",
+    entry: "₹500 – ₹2,000 per ticket",
+    duration: "Approximately 2 hours",
+    rating: "⭐⭐⭐⭐⭐",
+    image: "images/event1.jpg"
+  },
+
+  "humare-ram": {
+    title: "Humare Ram ft. Ashutosh Rana",
+    history: "A monumental theatrical production that has completed over 200 shows across India and moved millions. Acclaimed Bollywood actor Ashutosh Rana — known for his powerful screen presence in films like Dushman and Sangharsh — brings the Ramayana to life on stage in a way that is both deeply spiritual and powerfully emotional. The production features stunning stage design, traditional music, and a cast of 30+ performers. It is widely regarded as one of the finest Indian theatrical productions of the last decade, praised by critics and audiences alike for its authenticity, scale, and emotional depth.",
+    address: "Sanjeev Kumar Auditorium, Athwa Lines, Surat",
+    time: "18 July 2026 | 2:30 PM",
+    tip: "Arrive 30 minutes early for the best seating. Completely family-friendly — ideal for children and grandparents together. The second half is the most emotionally powerful. Parking is available at the auditorium complex.",
+    entry: "₹400 – ₹1,500 per ticket",
+    duration: "Approximately 3 hours with one interval",
+    rating: "⭐⭐⭐⭐⭐",
+    image: "images/event2.avif"
+  },
+
+  "rajat-sood": {
+    title: "I Am Worth It ft. Rajat Sood",
+    history: "Rajat Sood, winner of India's biggest TV comedy show, brings his brand-new stand-up hour to Surat. 'I Am Worth It' is a deeply relatable, hilarious and at times unexpectedly emotional show about love, self-worth, relationships and the gap between who we are and who we pretend to be. Rajat's comedy has a rare quality — it makes you laugh loudly and then quietly think. His previous show toured 40+ cities and won outstanding reviews. Surat is one of only a handful of cities on the new tour.",
+    address: "The Green Room, Surat",
+    time: "24 July 2026 | 7:00 PM",
+    tip: "Sit in the front rows for the most interactive experience — Rajat loves working the crowd. The show contains mature themes and is best suited for audiences 16+. Book early — The Green Room is a smaller venue and will sell out.",
+    entry: "₹400 – ₹900 per ticket",
+    duration: "Approximately 75 minutes (no interval)",
+    rating: "⭐⭐⭐⭐⭐",
+    image: "images/event3.jpg"
+  },
+
+  "gaurav-kapoor": {
+    title: "Gaurav Kapoor LIVE",
+    history: "With over 1 million YouTube subscribers and a devoted following built through years of sharp, observational stand-up comedy, Gaurav Kapoor is one of India's most consistently excellent comics. His material covers relationships, family dynamics, the absurdity of Indian social norms, and the peculiarities of growing up in India — all delivered with perfect timing and a warm, self-deprecating style that wins over every crowd. His live shows are known for a completely different energy from his recorded specials — looser, more spontaneous, and deeply connected to the audience in the room.",
+    address: "Sanjeev Kumar Auditorium, Athwa Lines, Surat",
+    time: "26 July 2026 | 9:00 PM",
+    tip: "Late-night show — plan your transport home in advance. Arrive at least 20 minutes early as the auditorium will fill up fast. The show contains adult humour and is recommended for audiences 18+.",
+    entry: "₹350 – ₹1,000 per ticket",
+    duration: "Approximately 90 minutes",
+    rating: "⭐⭐⭐⭐⭐",
+    image: "images/event4.jpg"
+  },
+
+  "farewell-entropy": {
+    title: "Farewell: An Entropy of Separation",
+    history: "Already sold out in Bengaluru, Mumbai, Pune and Hyderabad — this acclaimed theatrical experience is finally coming to Surat. 'Farewell: An Entropy of Separation' explores the bittersweet, complex beauty of goodbyes — between lovers, between friends, between versions of ourselves we leave behind. Through movement, original music, poetry, and intimate storytelling, the production creates a deeply personal experience that has left audiences across India moved to silence. Critics have called it one of the most emotionally resonant and beautifully crafted independent productions of the decade.",
+    address: "Tara Moti Hall, Surat",
+    time: "1 August 2026 | 8:00 PM",
+    tip: "Book immediately — limited seats and this will sell out in Surat. The venue is intimate and every seat is a good seat. Go alone or with someone you trust — this show opens something in you. Arrive on time as latecomers are not admitted after the show begins.",
+    entry: "₹600 – ₹1,200 per ticket",
+    duration: "Approximately 80 minutes (no interval)",
+    rating: "⭐⭐⭐⭐⭐",
+    image: "images/event5.jpg"
   }
+
 };
 
 
