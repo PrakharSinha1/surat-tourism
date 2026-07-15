@@ -761,7 +761,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     document.title = data.title + " — Surat City Tourism";
-
   } else {
     document.getElementById("detail-title").innerText   = "Location Not Found";
     document.getElementById("detail-history").innerText = "Please select a valid item from our Attractions, Food, Culture, or Events pages.";
