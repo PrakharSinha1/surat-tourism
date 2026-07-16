@@ -658,7 +658,7 @@ const locationData = {
     entry: "₹400 – ₹900 per ticket",
     duration: "Approximately 75 minutes (no interval)",
     rating: "⭐⭐⭐⭐⭐",
-    image: "images/event3.jpg"
+    image: "images/rajat.avif"
   },
 
   "gaurav-kapoor": {
@@ -670,7 +670,7 @@ const locationData = {
     entry: "₹350 – ₹1,000 per ticket",
     duration: "Approximately 90 minutes",
     rating: "⭐⭐⭐⭐⭐",
-    image: "images/event4.jpg"
+    image: "images/gaurav.avif"
   },
 
   "farewell-entropy": {
@@ -682,7 +682,7 @@ const locationData = {
     entry: "₹600 – ₹1,200 per ticket",
     duration: "Approximately 80 minutes (no interval)",
     rating: "⭐⭐⭐⭐⭐",
-    image: "images/event5.jpg"
+    image: "images/farewell.jpg"
   }
 
 };
